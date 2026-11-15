@@ -1,0 +1,74 @@
+{
+  "id": "001-why-inflation-hurts",
+  "title": "Why $100 Isn't $100 Anymore",
+  "topic": "Economics",
+  "aspectRatio": "9:16",
+  "fps": 30,
+  "totalDurationInFrames": 1203,
+  "narrativeMood": "tension-to-clarity",
+  "narration": {
+    "engine": "edge-tts",
+    "voiceId": "en-US-ChristopherNeural",
+    "audioFile": "001-why-inflation-hurts/narration.mp3",
+    "durationInSeconds": 40.11
+  },
+  "sfxEvents": [],
+  "captions": [],
+  "scenes": [
+    {
+      "id": "scene-1-hook",
+      "type": "hook",
+      "durationInFrames": 126,
+      "headline": "Somebody is quietly taking 4 hours of your work every week.",
+      "subtext": "You never signed up for it.",
+      "highlightWord": "quietly",
+      "metaphor": "dollar-burn"
+    },
+    {
+      "id": "scene-2-stakes",
+      "type": "human-stakes",
+      "durationInFrames": 234,
+      "personaLabel": "Your Grocery Cart",
+      "comparison": {
+        "pastLabel": "2020",
+        "pastValue": "$100 (Full Cart)",
+        "presentLabel": "Today",
+        "presentValue": "$142 (Half Empty)"
+      },
+      "impactStatement": "You didn't work any less. The farmer didn't work any less."
+    },
+    {
+      "id": "scene-3-mechanism",
+      "type": "chart-explanation",
+      "durationInFrames": 375,
+      "chartType": "bar",
+      "chartTitle": "Purchasing Power of the Dollar",
+      "unit": "%",
+      "data": [
+        { "label": "2020", "value": 100 },
+        { "label": "2022", "value": 85 },
+        { "label": "2024", "value": 72 },
+        { "label": "2026", "value": 61 }
+      ],
+      "highlightIndex": 3,
+      "keyTakeaway": "39% of your purchasing power vanished in 6 years."
+    },
+    {
+      "id": "scene-4-climax",
+      "type": "dramatic-climax",
+      "durationInFrames": 285,
+      "epiphanyHeadline": "Inflation isn't prices rising.",
+      "punchline": "It is your life energy being quietly diluted.",
+      "dramaticPauseFrames": 35,
+      "subBassHit": true
+    },
+    {
+      "id": "scene-5-payoff",
+      "type": "empowerment-payoff",
+      "durationInFrames": 183,
+      "coreLesson": "Don't save currency that can be printed. Own real assets.",
+      "callToAction": "Follow to protect your time.",
+      "loopTransitionPhrase": "Because every single week..."
+    }
+  ]
+}

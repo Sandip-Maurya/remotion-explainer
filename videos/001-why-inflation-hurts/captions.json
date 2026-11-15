@@ -1,0 +1,524 @@
+[
+  {
+    "text": "Somebody",
+    "startMs": 100,
+    "endMs": 612,
+    "isEmphasized": false
+  },
+  {
+    "text": "is",
+    "startMs": 625,
+    "endMs": 750,
+    "isEmphasized": false
+  },
+  {
+    "text": "quietly",
+    "startMs": 762,
+    "endMs": 1250,
+    "isEmphasized": false
+  },
+  {
+    "text": "taking",
+    "startMs": 1262,
+    "endMs": 1625,
+    "isEmphasized": false
+  },
+  {
+    "text": "4 hours",
+    "startMs": 1638,
+    "endMs": 2300,
+    "isEmphasized": false
+  },
+  {
+    "text": "of",
+    "startMs": 2312,
+    "endMs": 2375,
+    "isEmphasized": false
+  },
+  {
+    "text": "your",
+    "startMs": 2388,
+    "endMs": 2538,
+    "isEmphasized": false
+  },
+  {
+    "text": "work",
+    "startMs": 2550,
+    "endMs": 2800,
+    "isEmphasized": false
+  },
+  {
+    "text": "every",
+    "startMs": 2812,
+    "endMs": 3062,
+    "isEmphasized": false
+  },
+  {
+    "text": "single",
+    "startMs": 3075,
+    "endMs": 3450,
+    "isEmphasized": false
+  },
+  {
+    "text": "week",
+    "startMs": 3462,
+    "endMs": 3850,
+    "isEmphasized": false
+  },
+  {
+    "text": "Sounds",
+    "startMs": 4712,
+    "endMs": 5112,
+    "isEmphasized": false
+  },
+  {
+    "text": "crazy",
+    "startMs": 5125,
+    "endMs": 5662,
+    "isEmphasized": false
+  },
+  {
+    "text": "right",
+    "startMs": 5938,
+    "endMs": 6325,
+    "isEmphasized": false
+  },
+  {
+    "text": "You",
+    "startMs": 7188,
+    "endMs": 7338,
+    "isEmphasized": false
+  },
+  {
+    "text": "never",
+    "startMs": 7350,
+    "endMs": 7638,
+    "isEmphasized": false
+  },
+  {
+    "text": "signed",
+    "startMs": 7650,
+    "endMs": 7950,
+    "isEmphasized": false
+  },
+  {
+    "text": "up",
+    "startMs": 7962,
+    "endMs": 8100,
+    "isEmphasized": false
+  },
+  {
+    "text": "for",
+    "startMs": 8112,
+    "endMs": 8375,
+    "isEmphasized": false
+  },
+  {
+    "text": "it",
+    "startMs": 8388,
+    "endMs": 8562,
+    "isEmphasized": false
+  },
+  {
+    "text": "Look",
+    "startMs": 9425,
+    "endMs": 9688,
+    "isEmphasized": false
+  },
+  {
+    "text": "at",
+    "startMs": 9700,
+    "endMs": 9775,
+    "isEmphasized": false
+  },
+  {
+    "text": "this",
+    "startMs": 9788,
+    "endMs": 9975,
+    "isEmphasized": false
+  },
+  {
+    "text": "grocery",
+    "startMs": 9988,
+    "endMs": 10412,
+    "isEmphasized": false
+  },
+  {
+    "text": "cart",
+    "startMs": 10425,
+    "endMs": 10712,
+    "isEmphasized": false
+  },
+  {
+    "text": "from 2020",
+    "startMs": 10725,
+    "endMs": 11688,
+    "isEmphasized": false
+  },
+  {
+    "text": "One",
+    "startMs": 12550,
+    "endMs": 12788,
+    "isEmphasized": false
+  },
+  {
+    "text": "hundred",
+    "startMs": 12800,
+    "endMs": 13112,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollars",
+    "startMs": 13125,
+    "endMs": 13550,
+    "isEmphasized": false
+  },
+  {
+    "text": "filled",
+    "startMs": 13562,
+    "endMs": 13850,
+    "isEmphasized": false
+  },
+  {
+    "text": "it",
+    "startMs": 13862,
+    "endMs": 13950,
+    "isEmphasized": false
+  },
+  {
+    "text": "to",
+    "startMs": 13962,
+    "endMs": 14050,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 14062,
+    "endMs": 14162,
+    "isEmphasized": false
+  },
+  {
+    "text": "brim",
+    "startMs": 14175,
+    "endMs": 14575,
+    "isEmphasized": false
+  },
+  {
+    "text": "Today",
+    "startMs": 15438,
+    "endMs": 15925,
+    "isEmphasized": false
+  },
+  {
+    "text": "That",
+    "startMs": 16775,
+    "endMs": 17025,
+    "isEmphasized": false
+  },
+  {
+    "text": "same",
+    "startMs": 17038,
+    "endMs": 17312,
+    "isEmphasized": false
+  },
+  {
+    "text": "hundred",
+    "startMs": 17325,
+    "endMs": 17612,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollars",
+    "startMs": 17625,
+    "endMs": 18038,
+    "isEmphasized": false
+  },
+  {
+    "text": "leaves",
+    "startMs": 18050,
+    "endMs": 18300,
+    "isEmphasized": false
+  },
+  {
+    "text": "it",
+    "startMs": 18312,
+    "endMs": 18388,
+    "isEmphasized": false
+  },
+  {
+    "text": "half",
+    "startMs": 18400,
+    "endMs": 18688,
+    "isEmphasized": false
+  },
+  {
+    "text": "empty",
+    "startMs": 18700,
+    "endMs": 19125,
+    "isEmphasized": false
+  },
+  {
+    "text": "You",
+    "startMs": 19988,
+    "endMs": 20138,
+    "isEmphasized": false
+  },
+  {
+    "text": "didn't",
+    "startMs": 20150,
+    "endMs": 20388,
+    "isEmphasized": false
+  },
+  {
+    "text": "work",
+    "startMs": 20400,
+    "endMs": 20662,
+    "isEmphasized": false
+  },
+  {
+    "text": "any",
+    "startMs": 20675,
+    "endMs": 20850,
+    "isEmphasized": false
+  },
+  {
+    "text": "less",
+    "startMs": 20862,
+    "endMs": 21375,
+    "isEmphasized": false
+  },
+  {
+    "text": "The",
+    "startMs": 22238,
+    "endMs": 22375,
+    "isEmphasized": false
+  },
+  {
+    "text": "farmer",
+    "startMs": 22388,
+    "endMs": 22775,
+    "isEmphasized": false
+  },
+  {
+    "text": "didn't",
+    "startMs": 22788,
+    "endMs": 23012,
+    "isEmphasized": false
+  },
+  {
+    "text": "work",
+    "startMs": 23025,
+    "endMs": 23288,
+    "isEmphasized": false
+  },
+  {
+    "text": "any",
+    "startMs": 23300,
+    "endMs": 23475,
+    "isEmphasized": false
+  },
+  {
+    "text": "less",
+    "startMs": 23488,
+    "endMs": 23988,
+    "isEmphasized": false
+  },
+  {
+    "text": "So",
+    "startMs": 24850,
+    "endMs": 25112,
+    "isEmphasized": false
+  },
+  {
+    "text": "where",
+    "startMs": 25125,
+    "endMs": 25288,
+    "isEmphasized": false
+  },
+  {
+    "text": "did",
+    "startMs": 25300,
+    "endMs": 25400,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 25412,
+    "endMs": 25462,
+    "isEmphasized": false
+  },
+  {
+    "text": "missing",
+    "startMs": 25475,
+    "endMs": 25825,
+    "isEmphasized": false
+  },
+  {
+    "text": "value",
+    "startMs": 25838,
+    "endMs": 26162,
+    "isEmphasized": false
+  },
+  {
+    "text": "go",
+    "startMs": 26175,
+    "endMs": 26512,
+    "isEmphasized": false
+  },
+  {
+    "text": "Inflation",
+    "startMs": 27375,
+    "endMs": 28075,
+    "isEmphasized": false
+  },
+  {
+    "text": "isn't",
+    "startMs": 28088,
+    "endMs": 28325,
+    "isEmphasized": false
+  },
+  {
+    "text": "prices",
+    "startMs": 28338,
+    "endMs": 28775,
+    "isEmphasized": false
+  },
+  {
+    "text": "rising",
+    "startMs": 28788,
+    "endMs": 29350,
+    "isEmphasized": false
+  },
+  {
+    "text": "It",
+    "startMs": 30212,
+    "endMs": 30350,
+    "isEmphasized": false
+  },
+  {
+    "text": "is",
+    "startMs": 30362,
+    "endMs": 30488,
+    "isEmphasized": false
+  },
+  {
+    "text": "your",
+    "startMs": 30500,
+    "endMs": 30625,
+    "isEmphasized": false
+  },
+  {
+    "text": "life",
+    "startMs": 30638,
+    "endMs": 30925,
+    "isEmphasized": false
+  },
+  {
+    "text": "energy",
+    "startMs": 30938,
+    "endMs": 31325,
+    "isEmphasized": false
+  },
+  {
+    "text": "being",
+    "startMs": 31338,
+    "endMs": 31600,
+    "isEmphasized": false
+  },
+  {
+    "text": "quietly",
+    "startMs": 31612,
+    "endMs": 32100,
+    "isEmphasized": false
+  },
+  {
+    "text": "diluted",
+    "startMs": 32112,
+    "endMs": 32662,
+    "isEmphasized": false
+  },
+  {
+    "text": "Don't",
+    "startMs": 33525,
+    "endMs": 33788,
+    "isEmphasized": false
+  },
+  {
+    "text": "save",
+    "startMs": 33800,
+    "endMs": 34138,
+    "isEmphasized": false
+  },
+  {
+    "text": "currency",
+    "startMs": 34150,
+    "endMs": 34638,
+    "isEmphasized": false
+  },
+  {
+    "text": "that",
+    "startMs": 34650,
+    "endMs": 34800,
+    "isEmphasized": false
+  },
+  {
+    "text": "can",
+    "startMs": 34812,
+    "endMs": 34938,
+    "isEmphasized": false
+  },
+  {
+    "text": "be",
+    "startMs": 34950,
+    "endMs": 35038,
+    "isEmphasized": false
+  },
+  {
+    "text": "printed",
+    "startMs": 35050,
+    "endMs": 35550,
+    "isEmphasized": false
+  },
+  {
+    "text": "Own",
+    "startMs": 36412,
+    "endMs": 36738,
+    "isEmphasized": false
+  },
+  {
+    "text": "real",
+    "startMs": 36750,
+    "endMs": 37012,
+    "isEmphasized": false
+  },
+  {
+    "text": "assets",
+    "startMs": 37025,
+    "endMs": 37738,
+    "isEmphasized": false
+  },
+  {
+    "text": "Because",
+    "startMs": 38600,
+    "endMs": 39000,
+    "isEmphasized": false
+  },
+  {
+    "text": "every",
+    "startMs": 39012,
+    "endMs": 39275,
+    "isEmphasized": false
+  },
+  {
+    "text": "single",
+    "startMs": 39288,
+    "endMs": 39688,
+    "isEmphasized": false
+  },
+  {
+    "text": "week",
+    "startMs": 39700,
+    "endMs": 40112,
+    "isEmphasized": false
+  }
+]
