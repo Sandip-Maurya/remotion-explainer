@@ -90,11 +90,11 @@ export const Root: React.FC = () => {
         }}
       />
 
-      {/* Phase 2.5: Episode 002 Remastered with Living Canvas & Editorial Callouts */}
+      {/* Phase 2.5 & 3: Episode 002 Remastered with Living Canvas & ElevenLabs Narration */}
       <Composition
         id="TheDebtClockRemastered"
         component={TheDebtClockRemastered}
-        durationInFrames={1770}
+        durationInFrames={1902}
         fps={30}
         width={1080}
         height={1920}
@@ -106,7 +106,7 @@ export const Root: React.FC = () => {
       <Composition
         id="TheDebtClockRemastered-SafeZone"
         component={TheDebtClockRemastered}
-        durationInFrames={1770}
+        durationInFrames={1902}
         fps={30}
         width={1080}
         height={1920}

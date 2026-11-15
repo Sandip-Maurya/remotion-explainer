@@ -4,13 +4,13 @@
   "topic": "Economics",
   "aspectRatio": "9:16",
   "fps": 30,
-  "totalDurationInFrames": 1770,
+  "totalDurationInFrames": 1902,
   "narrativeMood": "urgent-escalation",
   "narration": {
-    "engine": "edge-tts",
-    "voiceId": "en-US-ChristopherNeural",
+    "engine": "elevenlabs",
+    "voiceId": "Daniel (onwK4e9ZLuTAKqWW03F9)",
     "audioFile": "002-debt-clock/narration.mp3",
-    "durationInSeconds": 59.00
+    "durationInSeconds": 63.39
   },
   "sfxEvents": [
     {
@@ -68,7 +68,7 @@
     {
       "id": "scene-1-hook",
       "type": "hook",
-      "durationInFrames": 360,
+      "durationInFrames": 390,
       "headline": "$35 TRILLION",
       "subtext": "Every American citizen owes over $100,000.",
       "highlightWord": "TRILLION",
@@ -77,7 +77,7 @@
     {
       "id": "scene-2-agitation",
       "type": "human-stakes",
-      "durationInFrames": 375,
+      "durationInFrames": 455,
       "personaLabel": "US National Debt Explosion",
       "comparison": {
         "pastLabel": "Year 2000",
@@ -90,7 +90,7 @@
     {
       "id": "scene-3-mechanism",
       "type": "chart-explanation",
-      "durationInFrames": 516,
+      "durationInFrames": 490,
       "chartType": "line",
       "chartTitle": "National Debt Trajectory & Major Holders",
       "data": [
@@ -125,7 +125,7 @@
     {
       "id": "scene-4-climax",
       "type": "dramatic-climax",
-      "durationInFrames": 328,
+      "durationInFrames": 340,
       "epiphanyHeadline": "THE STEALTH TRAP",
       "punchline": "They don't raise taxes. They quietly print more currency, eroding the purchasing power of every dollar you save.",
       "dramaticPauseFrames": 45,
@@ -134,7 +134,7 @@
     {
       "id": "scene-5-payoff",
       "type": "empowerment-payoff",
-      "durationInFrames": 191,
+      "durationInFrames": 227,
       "coreLesson": "When debt grows faster than real value, it's not a loan. It's a stealth tax on your time.",
       "callToAction": "Subscribe to understand the real money machine.",
       "loopTransitionPhrase": "Thirty-five trillion dollars."

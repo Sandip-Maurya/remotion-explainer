@@ -1,0 +1,794 @@
+[
+  {
+    "text": "Thirty-five",
+    "startMs": 0,
+    "endMs": 720,
+    "isEmphasized": false
+  },
+  {
+    "text": "trillion",
+    "startMs": 720,
+    "endMs": 1161,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollars...",
+    "startMs": 1161,
+    "endMs": 2276,
+    "isEmphasized": false
+  },
+  {
+    "text": "That",
+    "startMs": 2276,
+    "endMs": 2844,
+    "isEmphasized": false
+  },
+  {
+    "text": "is",
+    "startMs": 2844,
+    "endMs": 3111,
+    "isEmphasized": false
+  },
+  {
+    "text": "thirty-five",
+    "startMs": 3111,
+    "endMs": 3878,
+    "isEmphasized": false
+  },
+  {
+    "text": "million",
+    "startMs": 3878,
+    "endMs": 4377,
+    "isEmphasized": false
+  },
+  {
+    "text": "millions.",
+    "startMs": 4377,
+    "endMs": 5457,
+    "isEmphasized": false
+  },
+  {
+    "text": "Right",
+    "startMs": 5457,
+    "endMs": 5817,
+    "isEmphasized": false
+  },
+  {
+    "text": "now,",
+    "startMs": 5817,
+    "endMs": 6780,
+    "isEmphasized": false
+  },
+  {
+    "text": "every",
+    "startMs": 6780,
+    "endMs": 7245,
+    "isEmphasized": false
+  },
+  {
+    "text": "single",
+    "startMs": 7245,
+    "endMs": 7651,
+    "isEmphasized": false
+  },
+  {
+    "text": "American",
+    "startMs": 7651,
+    "endMs": 8162,
+    "isEmphasized": false
+  },
+  {
+    "text": "citizen",
+    "startMs": 8162,
+    "endMs": 8870,
+    "isEmphasized": false
+  },
+  {
+    "text": "owes",
+    "startMs": 8870,
+    "endMs": 9311,
+    "isEmphasized": false
+  },
+  {
+    "text": "over",
+    "startMs": 9311,
+    "endMs": 9659,
+    "isEmphasized": false
+  },
+  {
+    "text": "one",
+    "startMs": 9659,
+    "endMs": 9950,
+    "isEmphasized": false
+  },
+  {
+    "text": "hundred",
+    "startMs": 9950,
+    "endMs": 10298,
+    "isEmphasized": false
+  },
+  {
+    "text": "thousand",
+    "startMs": 10298,
+    "endMs": 10693,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollars",
+    "startMs": 10693,
+    "endMs": 11285,
+    "isEmphasized": false
+  },
+  {
+    "text": "of",
+    "startMs": 11285,
+    "endMs": 11517,
+    "isEmphasized": false
+  },
+  {
+    "text": "national",
+    "startMs": 11517,
+    "endMs": 12028,
+    "isEmphasized": false
+  },
+  {
+    "text": "debt.",
+    "startMs": 12028,
+    "endMs": 13026,
+    "isEmphasized": false
+  },
+  {
+    "text": "Back",
+    "startMs": 13026,
+    "endMs": 13375,
+    "isEmphasized": false
+  },
+  {
+    "text": "in",
+    "startMs": 13375,
+    "endMs": 13526,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 13526,
+    "endMs": 13653,
+    "isEmphasized": false
+  },
+  {
+    "text": "year",
+    "startMs": 13653,
+    "endMs": 13920,
+    "isEmphasized": false
+  },
+  {
+    "text": "2000,",
+    "startMs": 13920,
+    "endMs": 15186,
+    "isEmphasized": true
+  },
+  {
+    "text": "that",
+    "startMs": 15186,
+    "endMs": 15441,
+    "isEmphasized": false
+  },
+  {
+    "text": "number",
+    "startMs": 15441,
+    "endMs": 15929,
+    "isEmphasized": false
+  },
+  {
+    "text": "was",
+    "startMs": 15929,
+    "endMs": 16149,
+    "isEmphasized": false
+  },
+  {
+    "text": "just",
+    "startMs": 16149,
+    "endMs": 16463,
+    "isEmphasized": false
+  },
+  {
+    "text": "five",
+    "startMs": 16463,
+    "endMs": 16916,
+    "isEmphasized": false
+  },
+  {
+    "text": "trillion.",
+    "startMs": 16916,
+    "endMs": 18228,
+    "isEmphasized": false
+  },
+  {
+    "text": "Today,",
+    "startMs": 18228,
+    "endMs": 19145,
+    "isEmphasized": false
+  },
+  {
+    "text": "interest",
+    "startMs": 19145,
+    "endMs": 19563,
+    "isEmphasized": false
+  },
+  {
+    "text": "payments",
+    "startMs": 19563,
+    "endMs": 20004,
+    "isEmphasized": false
+  },
+  {
+    "text": "alone",
+    "startMs": 20004,
+    "endMs": 21049,
+    "isEmphasized": false
+  },
+  {
+    "text": "eat",
+    "startMs": 21049,
+    "endMs": 21328,
+    "isEmphasized": false
+  },
+  {
+    "text": "up",
+    "startMs": 21328,
+    "endMs": 21583,
+    "isEmphasized": false
+  },
+  {
+    "text": "over",
+    "startMs": 21583,
+    "endMs": 21943,
+    "isEmphasized": false
+  },
+  {
+    "text": "one",
+    "startMs": 21943,
+    "endMs": 22303,
+    "isEmphasized": false
+  },
+  {
+    "text": "trillion",
+    "startMs": 22303,
+    "endMs": 22814,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollars",
+    "startMs": 22814,
+    "endMs": 23673,
+    "isEmphasized": false
+  },
+  {
+    "text": "every",
+    "startMs": 23673,
+    "endMs": 24021,
+    "isEmphasized": false
+  },
+  {
+    "text": "single",
+    "startMs": 24021,
+    "endMs": 24405,
+    "isEmphasized": false
+  },
+  {
+    "text": "year—costing",
+    "startMs": 24405,
+    "endMs": 25554,
+    "isEmphasized": false
+  },
+  {
+    "text": "more",
+    "startMs": 25554,
+    "endMs": 25879,
+    "isEmphasized": false
+  },
+  {
+    "text": "than",
+    "startMs": 25879,
+    "endMs": 26053,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 26053,
+    "endMs": 26204,
+    "isEmphasized": false
+  },
+  {
+    "text": "entire",
+    "startMs": 26204,
+    "endMs": 26761,
+    "isEmphasized": false
+  },
+  {
+    "text": "defense",
+    "startMs": 26761,
+    "endMs": 27203,
+    "isEmphasized": false
+  },
+  {
+    "text": "budget.",
+    "startMs": 27203,
+    "endMs": 28178,
+    "isEmphasized": false
+  },
+  {
+    "text": "So",
+    "startMs": 28178,
+    "endMs": 28387,
+    "isEmphasized": false
+  },
+  {
+    "text": "who",
+    "startMs": 28387,
+    "endMs": 28607,
+    "isEmphasized": false
+  },
+  {
+    "text": "actually",
+    "startMs": 28607,
+    "endMs": 29130,
+    "isEmphasized": false
+  },
+  {
+    "text": "lent",
+    "startMs": 29130,
+    "endMs": 29432,
+    "isEmphasized": false
+  },
+  {
+    "text": "all",
+    "startMs": 29432,
+    "endMs": 29664,
+    "isEmphasized": false
+  },
+  {
+    "text": "this",
+    "startMs": 29664,
+    "endMs": 29884,
+    "isEmphasized": false
+  },
+  {
+    "text": "money?",
+    "startMs": 29884,
+    "endMs": 30802,
+    "isEmphasized": false
+  },
+  {
+    "text": "China",
+    "startMs": 30802,
+    "endMs": 31243,
+    "isEmphasized": false
+  },
+  {
+    "text": "and",
+    "startMs": 31243,
+    "endMs": 31417,
+    "isEmphasized": false
+  },
+  {
+    "text": "Japan",
+    "startMs": 31417,
+    "endMs": 31951,
+    "isEmphasized": false
+  },
+  {
+    "text": "own",
+    "startMs": 31951,
+    "endMs": 32206,
+    "isEmphasized": false
+  },
+  {
+    "text": "about",
+    "startMs": 32206,
+    "endMs": 32590,
+    "isEmphasized": false
+  },
+  {
+    "text": "eight",
+    "startMs": 32590,
+    "endMs": 32857,
+    "isEmphasized": false
+  },
+  {
+    "text": "trillion.",
+    "startMs": 32857,
+    "endMs": 34064,
+    "isEmphasized": false
+  },
+  {
+    "text": "The",
+    "startMs": 34064,
+    "endMs": 34238,
+    "isEmphasized": false
+  },
+  {
+    "text": "Federal",
+    "startMs": 34238,
+    "endMs": 34598,
+    "isEmphasized": false
+  },
+  {
+    "text": "Reserve",
+    "startMs": 34598,
+    "endMs": 35353,
+    "isEmphasized": false
+  },
+  {
+    "text": "holds",
+    "startMs": 35353,
+    "endMs": 35690,
+    "isEmphasized": false
+  },
+  {
+    "text": "five",
+    "startMs": 35690,
+    "endMs": 36038,
+    "isEmphasized": false
+  },
+  {
+    "text": "trillion.",
+    "startMs": 36038,
+    "endMs": 37071,
+    "isEmphasized": false
+  },
+  {
+    "text": "But",
+    "startMs": 37071,
+    "endMs": 37245,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 37245,
+    "endMs": 37385,
+    "isEmphasized": false
+  },
+  {
+    "text": "single",
+    "startMs": 37385,
+    "endMs": 37814,
+    "isEmphasized": false
+  },
+  {
+    "text": "biggest",
+    "startMs": 37814,
+    "endMs": 38163,
+    "isEmphasized": false
+  },
+  {
+    "text": "lender?",
+    "startMs": 38163,
+    "endMs": 38987,
+    "isEmphasized": false
+  },
+  {
+    "text": "It's",
+    "startMs": 38987,
+    "endMs": 39277,
+    "isEmphasized": false
+  },
+  {
+    "text": "you...",
+    "startMs": 39277,
+    "endMs": 40090,
+    "isEmphasized": false
+  },
+  {
+    "text": "Your",
+    "startMs": 40090,
+    "endMs": 40345,
+    "isEmphasized": false
+  },
+  {
+    "text": "pension,",
+    "startMs": 40345,
+    "endMs": 41111,
+    "isEmphasized": false
+  },
+  {
+    "text": "your",
+    "startMs": 41111,
+    "endMs": 41320,
+    "isEmphasized": false
+  },
+  {
+    "text": "bank",
+    "startMs": 41320,
+    "endMs": 41576,
+    "isEmphasized": false
+  },
+  {
+    "text": "deposits,",
+    "startMs": 41576,
+    "endMs": 42389,
+    "isEmphasized": false
+  },
+  {
+    "text": "and",
+    "startMs": 42389,
+    "endMs": 42609,
+    "isEmphasized": false
+  },
+  {
+    "text": "your",
+    "startMs": 42609,
+    "endMs": 42841,
+    "isEmphasized": false
+  },
+  {
+    "text": "social",
+    "startMs": 42841,
+    "endMs": 43259,
+    "isEmphasized": false
+  },
+  {
+    "text": "security.",
+    "startMs": 43259,
+    "endMs": 44513,
+    "isEmphasized": false
+  },
+  {
+    "text": "The",
+    "startMs": 44513,
+    "endMs": 44676,
+    "isEmphasized": false
+  },
+  {
+    "text": "danger",
+    "startMs": 44676,
+    "endMs": 45082,
+    "isEmphasized": false
+  },
+  {
+    "text": "isn't",
+    "startMs": 45082,
+    "endMs": 45372,
+    "isEmphasized": false
+  },
+  {
+    "text": "that",
+    "startMs": 45372,
+    "endMs": 45535,
+    "isEmphasized": false
+  },
+  {
+    "text": "America",
+    "startMs": 45535,
+    "endMs": 45964,
+    "isEmphasized": false
+  },
+  {
+    "text": "can't",
+    "startMs": 45964,
+    "endMs": 46336,
+    "isEmphasized": false
+  },
+  {
+    "text": "pay.",
+    "startMs": 46336,
+    "endMs": 47195,
+    "isEmphasized": false
+  },
+  {
+    "text": "It's",
+    "startMs": 47195,
+    "endMs": 47451,
+    "isEmphasized": false
+  },
+  {
+    "text": "how",
+    "startMs": 47451,
+    "endMs": 47787,
+    "isEmphasized": false
+  },
+  {
+    "text": "they",
+    "startMs": 47787,
+    "endMs": 47985,
+    "isEmphasized": false
+  },
+  {
+    "text": "pay.",
+    "startMs": 47985,
+    "endMs": 48902,
+    "isEmphasized": false
+  },
+  {
+    "text": "They",
+    "startMs": 48902,
+    "endMs": 49134,
+    "isEmphasized": false
+  },
+  {
+    "text": "quietly",
+    "startMs": 49134,
+    "endMs": 49714,
+    "isEmphasized": false
+  },
+  {
+    "text": "print",
+    "startMs": 49714,
+    "endMs": 49981,
+    "isEmphasized": false
+  },
+  {
+    "text": "more",
+    "startMs": 49981,
+    "endMs": 50202,
+    "isEmphasized": false
+  },
+  {
+    "text": "currency—eroding",
+    "startMs": 50202,
+    "endMs": 51955,
+    "isEmphasized": false
+  },
+  {
+    "text": "the",
+    "startMs": 51955,
+    "endMs": 52083,
+    "isEmphasized": false
+  },
+  {
+    "text": "purchasing",
+    "startMs": 52083,
+    "endMs": 52651,
+    "isEmphasized": false
+  },
+  {
+    "text": "power",
+    "startMs": 52651,
+    "endMs": 53290,
+    "isEmphasized": false
+  },
+  {
+    "text": "of",
+    "startMs": 53290,
+    "endMs": 53569,
+    "isEmphasized": false
+  },
+  {
+    "text": "every",
+    "startMs": 53569,
+    "endMs": 54033,
+    "isEmphasized": false
+  },
+  {
+    "text": "dollar",
+    "startMs": 54033,
+    "endMs": 54370,
+    "isEmphasized": false
+  },
+  {
+    "text": "you",
+    "startMs": 54370,
+    "endMs": 54590,
+    "isEmphasized": false
+  },
+  {
+    "text": "save.",
+    "startMs": 54590,
+    "endMs": 55891,
+    "isEmphasized": false
+  },
+  {
+    "text": "When",
+    "startMs": 55891,
+    "endMs": 56193,
+    "isEmphasized": false
+  },
+  {
+    "text": "debt",
+    "startMs": 56193,
+    "endMs": 56483,
+    "isEmphasized": false
+  },
+  {
+    "text": "grows",
+    "startMs": 56483,
+    "endMs": 56843,
+    "isEmphasized": false
+  },
+  {
+    "text": "faster",
+    "startMs": 56843,
+    "endMs": 57295,
+    "isEmphasized": false
+  },
+  {
+    "text": "than",
+    "startMs": 57295,
+    "endMs": 57481,
+    "isEmphasized": false
+  },
+  {
+    "text": "real",
+    "startMs": 57481,
+    "endMs": 57760,
+    "isEmphasized": false
+  },
+  {
+    "text": "value,",
+    "startMs": 57760,
+    "endMs": 58584,
+    "isEmphasized": false
+  },
+  {
+    "text": "it's",
+    "startMs": 58584,
+    "endMs": 58851,
+    "isEmphasized": false
+  },
+  {
+    "text": "not",
+    "startMs": 58851,
+    "endMs": 59049,
+    "isEmphasized": false
+  },
+  {
+    "text": "a",
+    "startMs": 59049,
+    "endMs": 59165,
+    "isEmphasized": false
+  },
+  {
+    "text": "loan",
+    "startMs": 59165,
+    "endMs": 59501,
+    "isEmphasized": false
+  },
+  {
+    "text": "anymore...",
+    "startMs": 59501,
+    "endMs": 60802,
+    "isEmphasized": false
+  },
+  {
+    "text": "It's",
+    "startMs": 60802,
+    "endMs": 61034,
+    "isEmphasized": false
+  },
+  {
+    "text": "a",
+    "startMs": 61034,
+    "endMs": 61138,
+    "isEmphasized": false
+  },
+  {
+    "text": "stealth",
+    "startMs": 61138,
+    "endMs": 61568,
+    "isEmphasized": false
+  },
+  {
+    "text": "tax",
+    "startMs": 61568,
+    "endMs": 62102,
+    "isEmphasized": false
+  },
+  {
+    "text": "on",
+    "startMs": 62102,
+    "endMs": 62323,
+    "isEmphasized": false
+  },
+  {
+    "text": "your",
+    "startMs": 62323,
+    "endMs": 62543,
+    "isEmphasized": false
+  },
+  {
+    "text": "time.",
+    "startMs": 62543,
+    "endMs": 63391,
+    "isEmphasized": false
+  }
+]

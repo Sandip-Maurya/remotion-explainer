@@ -69,10 +69,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
 
       <Series>
         {/* ==================================================================== */}
-        {/* Beat 1: Hook (Frames 0 - 360 = 12.0s)                                */}
+        {/* Beat 1: Hook (Frames 0 - 390 = 13.0s)                                */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={360}>
-          <CameraDrift durationInFrames={360} scaleFrom={1.0} scaleTo={1.045} origin="center 40%">
+        <Series.Sequence durationInFrames={390}>
+          <CameraDrift durationInFrames={390} scaleFrom={1.0} scaleTo={1.045} origin="center 40%">
             <CameraMicroBump triggerFrame={0} intensity={6} durationFrames={8}>
               <SceneLayout
                 header={{
@@ -91,7 +91,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                     text="$104,000 PER CITIZEN"
                     subtext="Every man, woman, and child owes this today"
                     startFrame={35}
-                    durationFrames={325}
+                    durationFrames={350}
                     accentColor={THEME.colors.accentAmber}
                     badgeTag="UNPAYABLE BURDEN"
                     inFlow={true}
@@ -121,10 +121,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         </Series.Sequence>
 
         {/* ==================================================================== */}
-        {/* Beat 2: Agitation (Frames 360 - 735 = 12.5s)                         */}
+        {/* Beat 2: Agitation (Frames 390 - 845 = 15.2s)                         */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={375}>
-          <CameraDrift durationInFrames={375} scaleFrom={1.0} scaleTo={1.04} origin="center 50%">
+        <Series.Sequence durationInFrames={455}>
+          <CameraDrift durationInFrames={455} scaleFrom={1.0} scaleTo={1.04} origin="center 50%">
             <SceneLayout
               header={{
                 title: 'EXPONENTIAL ACCELERATION',
@@ -137,7 +137,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                   text="OVER $1.1 TRILLION / YR"
                   subtext="Interest alone consumes more than defense"
                   startFrame={40}
-                  durationFrames={335}
+                  durationFrames={410}
                   accentColor={THEME.colors.accentRed}
                   badgeTag="RECORD INTEREST"
                   inFlow={true}
@@ -168,10 +168,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         </Series.Sequence>
 
         {/* ==================================================================== */}
-        {/* Beat 3A: Mechanism - Tall Line Chart (Frames 735 - 985 = 8.3s)       */}
+        {/* Beat 3A: Mechanism - Line Chart (Frames 845 - 1020 = 5.8s)           */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={250}>
-          <CameraDrift durationInFrames={250} scaleFrom={1.0} scaleTo={1.045} origin="right bottom">
+        <Series.Sequence durationInFrames={175}>
+          <CameraDrift durationInFrames={175} scaleFrom={1.0} scaleTo={1.045} origin="right bottom">
             <SceneLayout
               mode="centered"
               gap={36}
@@ -180,7 +180,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                   text="PARABOLIC EXPLOSION"
                   subtext="From linear growth to exponential surge"
                   startFrame={25}
-                  durationFrames={225}
+                  durationFrames={145}
                   accentColor={THEME.colors.accentBlue}
                   badgeTag="EXPONENTIAL SPIKE"
                   inFlow={true}
@@ -203,10 +203,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         </Series.Sequence>
 
         {/* ==================================================================== */}
-        {/* Beat 3B: Mechanism - Tall Bar Chart (Frames 985 - 1251 = 8.9s)       */}
+        {/* Beat 3B: Mechanism - Bar Chart (Frames 1020 - 1335 = 10.5s)          */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={266}>
-          <CameraDrift durationInFrames={266} scaleFrom={1.0} scaleTo={1.04} origin="center 60%">
+        <Series.Sequence durationInFrames={315}>
+          <CameraDrift durationInFrames={315} scaleFrom={1.0} scaleTo={1.04} origin="center 60%">
             <SceneLayout
               mode="centered"
               gap={36}
@@ -215,7 +215,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                   text="YOU ARE THE BIGGEST CREDITOR"
                   subtext="Held inside your 401(k), pensions, and savings"
                   startFrame={25}
-                  durationFrames={241}
+                  durationFrames={285}
                   accentColor={THEME.colors.accentEmerald}
                   badgeTag="THE REVELATION"
                   inFlow={true}
@@ -237,9 +237,9 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         </Series.Sequence>
 
         {/* ==================================================================== */}
-        {/* Beat 4: Climax (Frames 1251 - 1579 = 10.9s)                          */}
+        {/* Beat 4: Climax (Frames 1335 - 1675 = 11.3s)                          */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={328}>
+        <Series.Sequence durationInFrames={340}>
           <CameraMicroBump triggerFrame={130} intensity={8} durationFrames={10}>
             <SceneLayout
               mode="centered"
@@ -260,7 +260,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                   text="THE STEALTH DEBASEMENT"
                   subtext="Quietly diluting every dollar you work for"
                   startFrame={35}
-                  durationFrames={293}
+                  durationFrames={300}
                   accentColor={THEME.colors.accentRed}
                   badgeTag="HIDDEN MECHANISM"
                   inFlow={true}
@@ -283,10 +283,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         </Series.Sequence>
 
         {/* ==================================================================== */}
-        {/* Beat 5: Payoff (Frames 1579 - 1770 = 6.4s)                           */}
+        {/* Beat 5: Payoff (Frames 1675 - 1902 = 7.6s)                           */}
         {/* ==================================================================== */}
-        <Series.Sequence durationInFrames={191}>
-          <CameraDrift durationInFrames={191} scaleFrom={1.0} scaleTo={1.03}>
+        <Series.Sequence durationInFrames={227}>
+          <CameraDrift durationInFrames={227} scaleFrom={1.0} scaleTo={1.03}>
             <SceneLayout
               mode="centered"
               gap={36}
