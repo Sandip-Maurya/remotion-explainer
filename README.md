@@ -68,6 +68,27 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
 
 ---
 
+## 🚦 Current Status: Phase 2.5 — Living Canvas & Visual Polish Engine 🟡
+
+**Current Focus:** **Phase 2.5: Living Canvas & Visual Polish Engine**
+- [ ] **Subtask 2.5.1: Canvas Reclaim & Editorial Keyword Callouts**
+  - Deprecate permanent bottom subtitle bar; build `<EditorialCallout />` for contextual floating shock-words
+  - Reclaim full `880 × 1420 px` vertical canvas for majestic data visualizations
+- [ ] **Subtask 2.5.2: Living Canvas & Idle Motion Engine (`src/components/motion/`)**
+  - `CameraDrift.tsx`: Subtle continuous Ken Burns push (`1.0` -> `1.04` scale)
+  - `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY: Math.sin(frame * 0.05) * 4px`)
+  - `LightSheen.tsx`: Specular diagonal light sweep traversing glass cards every 90–120 frames
+  - `LiveTicker.tsx`: High-velocity secondary counter cycling frame-by-frame (`+$45,000 / sec`)
+  - `RipplePing.tsx`: Concentric beacon pulse rings expanding and fading from key data vertices
+  - `CameraMicroBump.tsx`: Damped 2–3 frame camera shake when massive numbers drop onto screen
+- [ ] **Subtask 2.5.3: Tall Chart Architecture & Film-Grade Aesthetics**
+  - Expand `LineChart` and `BarChart` heights to 850–900px for dramatic exponential curves
+  - Multi-layered ambient lighting and subtle film grain overlay (`<feTurbulence>`)
+- [ ] **Subtask 2.5.4: Episode 002 Visual Remaster & Quality Gate**
+  - Re-render `out/002-debt-clock-remastered.mp4` and benchmark against the initial POC
+
+---
+
 ## 🎯 Next Phase: Phase 3 — Production Voice Acting & Automated Pipeline
 - [ ] Subtask 3.1: ElevenLabs synthesis script with emotional parameters & word alignment
 - [ ] Subtask 3.2: Automated end-to-end CLI wrapper (`scripts/build-episode.ts`)

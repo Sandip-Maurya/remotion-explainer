@@ -187,7 +187,40 @@ This roadmap serves as the **living operational execution tracker** for building
 
 ---
 
-## 4. Phase 3: Production Voice Acting & Automated Pipeline
+## 4. Phase 2.5: Living Canvas & Visual Polish Engine
+
+> **Objective:** Eliminate visual static freezes, reclaim the full vertical canvas from bottom subtitles, and introduce organic idle motion (camera drift, light sheens, live tickers, ripple pings, and camera micro-bumps) for genuine "wow" factor.
+
+### Subtask Breakdown & Checklist
+- [ ] **2.5.1 Canvas Reclaim & Editorial Keyword Callouts:**
+  * Remove distracting permanent bottom subtitle track.
+  * Implement `src/components/captions/EditorialCallout.tsx`: Contextual, floating motion graphic punch-phrases (e.g. `+$1.1 TRILLION / YR`, `THE STEALTH TRAP`) that punch in beside active graphics for 1.2–1.8 seconds.
+  * Reclaim the full vertical safe space (`880 × 1420 px`) for majestic, tall data visualizations.
+- [ ] **2.5.2 Living Canvas & Idle Motion Engine (`src/components/motion/`):**
+  * `CameraDrift.tsx`: Subtle forward Ken Burns push container (`scale: 1.0` $\to$ `1.04` across scene duration).
+  * `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY = Math.sin(frame * 0.05 + offset) * 4px`) for cards and badges.
+  * `LightSheen.tsx`: Specular diagonal light sweep (115deg) traversing glass cards every 90–120 frames.
+  * `LiveTicker.tsx`: High-velocity secondary counter rapidly cycling frame-by-frame (`+$45,000 / sec`) to convey relentless compounding momentum.
+  * `RipplePing.tsx`: Concentric beacon pulse rings expanding and fading from key data vertices.
+  * `CameraMicroBump.tsx`: Damped 2–3 frame camera shake when massive numbers or punchlines drop onto screen.
+- [ ] **2.5.3 Tall Chart Architecture & Film-Grade Aesthetics:**
+  * Expand `LineChart` and `BarChart` heights to 850–900px, dramatically increasing the slope and visual tension of exponential curves.
+  * Add multi-layered moving ambient radial lighting behind focal charts.
+  * Add subtle SVG film grain texture overlay (`<feTurbulence>`) to eliminate flat sterile vectors.
+- [ ] **2.5.4 Episode 002 Visual Remaster & Quality Gate:**
+  * Re-architect `TheDebtClock.tsx` with the Living Canvas engine, tall charts, and Editorial Callouts.
+  * Render `out/002-debt-clock-remastered.mp4` and benchmark against the initial POC.
+
+### Phase 2.5 Exit Criteria (Acceptance Gate)
+- [ ] Zero static freezes: Every element maintains subtle breathing, floating, or camera drift throughout its on-screen duration.
+- [ ] No persistent subtitle bar: Clean, immersive visual space with only high-impact editorial punchouts.
+- [ ] Charts utilize the expanded 850–900px height for exponential drama.
+- [ ] Micro-impact screen shake adds physical weight to key data drops.
+- [ ] 100% TypeScript compile pass and clean Remotion render.
+
+---
+
+## 5. Phase 3: Production Voice Acting & Automated Pipeline
 
 > **Objective:** Integrate studio-grade ElevenLabs voice generation with word alignment, build an end-to-end automation CLI, and enforce automated schema validation.
 
@@ -213,7 +246,7 @@ This roadmap serves as the **living operational execution tracker** for building
 
 ---
 
-## 5. Phase 4: Channel Scaling, Analytics & Template Presets
+## 6. Phase 4: Channel Scaling, Analytics & Template Presets
 
 > **Objective:** Optimize video retention based on YouTube Shorts analytics, create genre-specific visual templates, and enable optional cloud batch rendering.
 

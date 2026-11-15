@@ -182,20 +182,24 @@ export const ShortsSafeZone: React.FC<{ visible?: boolean }> = ({ visible = true
       {/* Bottom Danger Buffer */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 320, background: 'rgba(239, 68, 68, 0.25)', borderTop: '2px dashed #ef4444' }}>
         <span style={{ color: '#ef4444', fontSize: 24, fontWeight: 'bold', padding: 16, display: 'block' }}>
-          BOTTOM DANGER ZONE (320px) — Avatar, Subscribe, Title & Captions
-        </span>
-      </div>
-
-      {/* Recommended Captions Safe Region (Upper portion of lower third) */}
-      <div style={{ position: 'absolute', bottom: 330, left: 80, right: 160, height: 160, border: '2px dotted #38bdf8', borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ color: '#38bdf8', fontSize: 22, fontWeight: 'bold' }}>
-          RECOMMENDED CAPTIONS REGION (Bottom: 330px - 490px)
+          BOTTOM DANGER ZONE (320px) — Avatar, Subscribe, Title & Native Controls
         </span>
       </div>
     </AbsoluteFill>
   );
 };
 ```
+
+### 4.1 Reclaiming the Canvas: From Continuous Subtitles to Editorial Keyword Punchouts
+
+In early prototypes, a continuous word-by-word subtitle track occupied the lower third (`bottom: 330px - 490px`). While functional, continuous subtitles introduce major creative drawbacks:
+1. **Viewer Attention Hijack:** The audience’s eyes are locked to the bottom 25% of the screen reading words, completely missing the data visualizations and motion graphics.
+2. **Severe Vertical Constraint:** Reserving 400px for subtitles crushed charts and cards into a cramped 500px vertical space, blunting the visual impact of steep exponential curves.
+
+#### The Editorial Architecture:
+* **Zero Teleprompter Subtitles:** 85–90% of speech runs cleanly without any bottom subtitle bars.
+* **Reclaimed Safe Area:** The full `880 × 1420 px` vertical canvas is unlocked for taller, majestic charts (**850–900px height**) or a dual-tier macro/micro vertical layout.
+* **`<EditorialCallout />` (Contextual Floating Stamps):** Only 3 to 5 critical emotional or statistical shock-phrases per short appear on screen. They do NOT sit in a fixed bottom box; they punch in directly adjacent to the relevant chart or metric in bold kinetic typography, hold for 1.2–1.8 seconds, and dissolve.
 
 ---
 
@@ -356,6 +360,52 @@ export const LineChart: React.FC<{
   );
 };
 ```
+
+---
+
+## 5.5 The Living Canvas & Idle Motion Engine
+
+A fundamental flaw in amateur motion design is the **"Static Freeze"**: elements spring onto the screen in the first 15–20 frames, and then sit completely frozen as a motionless graphic for 5–7 seconds while the voiceover finishes. This causes viewer drop-off and feels like a slide presentation rather than a dynamic film.
+
+To achieve broadcast-grade visual quality (Vox, Magnates Media, Apple Keynotes), every scene must implement the **Idle Motion Engine**: continuous, subtle, non-distracting kinetic energy that runs continuously throughout each element's lifetime.
+
+```
+Living Canvas Motion Architecture
+├── 1. Cinematic Camera Drift (Continuous Ken Burns)
+│      scale: interpolate(frame, [0, duration], [1.0, 1.04])
+│      Gives the viewer a subconscious sense of forward camera momentum.
+│
+├── 2. Organic Card Hover (Physics Float)
+│      translateY: Math.sin(frame * 0.05 + phaseOffset) * 4px
+│      Ensures cards feel suspended in space rather than glued to a rigid grid.
+│
+├── 3. Specular Light Sheen Sweeps
+│      Diagonal gradient (115deg) of 20% opacity white that sweeps across
+│      glassmorphic cards every 90–120 frames, highlighting glass materials.
+│
+├── 4. Never-Ending Micro-Counters (Live Velocity)
+│      Key statistics feature a secondary live ticker (e.g. "+$45,000 / sec")
+│      cycling numbers frame-by-frame to represent unstoppable real-time velocity.
+│
+├── 5. Concentric Ripple Pings (Beacon Effect)
+│      The tip of evolving line charts or the highest bar continuously emits
+│      concentric rings that expand and fade every 45 frames (1.5s).
+│
+└── 6. Camera Micro-Impact Bump (Physical Weight)
+       When monumental numbers ($35T) or punchlines land, a rapid 2–3 frame
+       damped screen shake (2–4px offset) gives the data tactile, physical gravity.
+```
+
+### Motion Primitive Formulas & Timing Constraints
+
+| Primitive | Mathematical Formula / Transform | Frequency / Duration | Visual Purpose |
+| :--- | :--- | :--- | :--- |
+| **`CameraDrift`** | `scale: 1.0 + (frame / durationInFrames) * 0.04` | Full scene duration | Prevents camera from feeling locked or frozen |
+| **`OrganicHover`** | `translateY: Math.sin((frame / 30) * Math.PI * 1.5) * 4` | Continuous (1.33s period) | Gives cards physical buoyancy |
+| **`LightSheen`** | `translateX: interpolate(sheenFrame, [0, 24], [-120, 220])` | 24 frames active every 90 frames | Creates high-end glass specularity |
+| **`LiveTicker`** | `baseValue + (frame * incrementPerFrame)` | Continuous at 30 fps | Demonstrates relentless compounding momentum |
+| **`RipplePing`** | `radius: 6 + (pingCycle * 20), opacity: 1 - pingCycle` | 45-frame cycle (1.5s) | Draws viewer eye to focal data point |
+| **`MicroBump`** | `translate(dx * exp(-decay * t), dy * exp(-decay * t))` | 4–6 frames on impact | Gives numbers visceral weight and impact |
 
 ---
 
