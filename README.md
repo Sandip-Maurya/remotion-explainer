@@ -68,24 +68,24 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
 
 ---
 
-## 🚦 Current Status: Phase 2.5 — Living Canvas & Visual Polish Engine 🟡
+## 🚦 Current Status: Phase 2.5 — COMPLETED ✅ (Ready for Phase 3)
 
-**Current Focus:** **Phase 2.5: Living Canvas & Visual Polish Engine**
-- [ ] **Subtask 2.5.1: Canvas Reclaim & Editorial Keyword Callouts**
-  - Deprecate permanent bottom subtitle bar; build `<EditorialCallout />` for contextual floating shock-words
-  - Reclaim full `880 × 1420 px` vertical canvas for majestic data visualizations
-- [ ] **Subtask 2.5.2: Living Canvas & Idle Motion Engine (`src/components/motion/`)**
-  - `CameraDrift.tsx`: Subtle continuous Ken Burns push (`1.0` -> `1.04` scale)
-  - `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY: Math.sin(frame * 0.05) * 4px`)
+**Phase 2.5 Complete (Living Canvas & Visual Polish):**
+- [x] **Subtask 2.5.1: Canvas Reclaim & Editorial Keyword Callouts**
+  - Deprecated permanent bottom subtitle bar; built `<EditorialCallout />` for contextual floating shock-words
+  - Reclaimed full `880 × 1420 px` vertical canvas for majestic data visualizations
+- [x] **Subtask 2.5.2: Living Canvas & Idle Motion Engine (`src/components/motion/`)**
+  - `CameraDrift.tsx`: Subtle continuous Ken Burns push (`1.0` -> `1.045` scale)
+  - `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY: Math.sin(frame * 0.05) * 4.5px`)
   - `LightSheen.tsx`: Specular diagonal light sweep traversing glass cards every 90–120 frames
   - `LiveTicker.tsx`: High-velocity secondary counter cycling frame-by-frame (`+$45,000 / sec`)
   - `RipplePing.tsx`: Concentric beacon pulse rings expanding and fading from key data vertices
   - `CameraMicroBump.tsx`: Damped 2–3 frame camera shake when massive numbers drop onto screen
-- [ ] **Subtask 2.5.3: Tall Chart Architecture & Film-Grade Aesthetics**
-  - Expand `LineChart` and `BarChart` heights to 850–900px for dramatic exponential curves
-  - Multi-layered ambient lighting and subtle film grain overlay (`<feTurbulence>`)
-- [ ] **Subtask 2.5.4: Episode 002 Visual Remaster & Quality Gate**
-  - Re-render `out/002-debt-clock-remastered.mp4` and benchmark against the initial POC
+- [x] **Subtask 2.5.3: Tall Chart Architecture & Film-Grade Aesthetics**
+  - Expanded `LineChart` and `BarChart` heights to 760–780px for dramatic exponential curves
+  - Embedded `RipplePing` beacon pulses at line tips and focal bar summits
+- [x] **Subtask 2.5.4: Episode 002 Visual Remaster & Quality Gate**
+  - Master render complete: `out/002-debt-clock-remastered.mp4` (15.0 MB, 1080x1920 @ 30fps, 1770 frames / 59.00s)
 
 ---
 

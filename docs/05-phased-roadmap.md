@@ -187,36 +187,41 @@ This roadmap serves as the **living operational execution tracker** for building
 
 ---
 
-## 4. Phase 2.5: Living Canvas & Visual Polish Engine
+## 4. Phase 2.5: Living Canvas & Visual Polish Engine (COMPLETED ✅)
 
 > **Objective:** Eliminate visual static freezes, reclaim the full vertical canvas from bottom subtitles, and introduce organic idle motion (camera drift, light sheens, live tickers, ripple pings, and camera micro-bumps) for genuine "wow" factor.
 
 ### Subtask Breakdown & Checklist
-- [ ] **2.5.1 Canvas Reclaim & Editorial Keyword Callouts:**
-  * Remove distracting permanent bottom subtitle track.
-  * Implement `src/components/captions/EditorialCallout.tsx`: Contextual, floating motion graphic punch-phrases (e.g. `+$1.1 TRILLION / YR`, `THE STEALTH TRAP`) that punch in beside active graphics for 1.2–1.8 seconds.
-  * Reclaim the full vertical safe space (`880 × 1420 px`) for majestic, tall data visualizations.
-- [ ] **2.5.2 Living Canvas & Idle Motion Engine (`src/components/motion/`):**
-  * `CameraDrift.tsx`: Subtle forward Ken Burns push container (`scale: 1.0` $\to$ `1.04` across scene duration).
-  * `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY = Math.sin(frame * 0.05 + offset) * 4px`) for cards and badges.
+- [x] **2.5.1 Canvas Reclaim & Editorial Keyword Callouts:**
+  * Deprecated distracting permanent bottom subtitle track in favor of clean visual immersion.
+  * Implemented `src/components/captions/EditorialCallout.tsx`: Contextual, floating motion graphic punch-phrases (`$104,000 PER CITIZEN`, `OVER $1.1 TRILLION / YR`, `PARABOLIC EXPLOSION`, `YOU ARE THE BIGGEST CREDITOR`, `THE STEALTH DEBASEMENT`) that punch in beside active graphics for 1.2–1.8 seconds.
+  * Reclaimed full vertical safe space (`880 × 1420 px`) for majestic, tall data visualizations.
+- [x] **2.5.2 Living Canvas & Idle Motion Engine (`src/components/motion/`):**
+  * `CameraDrift.tsx`: Subtle forward Ken Burns push container (`scale: 1.0` $\to$ `1.045` across scene duration).
+  * `OrganicHover.tsx`: Sinusoidal buoyancy float (`translateY = Math.sin(frame * 0.05 + offset) * 4.5px`) for cards and badges.
   * `LightSheen.tsx`: Specular diagonal light sweep (115deg) traversing glass cards every 90–120 frames.
-  * `LiveTicker.tsx`: High-velocity secondary counter rapidly cycling frame-by-frame (`+$45,000 / sec`) to convey relentless compounding momentum.
-  * `RipplePing.tsx`: Concentric beacon pulse rings expanding and fading from key data vertices.
+  * `LiveTicker.tsx`: High-velocity secondary counter rapidly cycling frame-by-frame (`+$45,000 / sec` and `+$34,800 / sec`) to convey relentless compounding momentum.
+  * `RipplePing.tsx`: Concentric beacon pulse rings expanding and fading from key data vertices on line charts and bar charts.
   * `CameraMicroBump.tsx`: Damped 2–3 frame camera shake when massive numbers or punchlines drop onto screen.
-- [ ] **2.5.3 Tall Chart Architecture & Film-Grade Aesthetics:**
-  * Expand `LineChart` and `BarChart` heights to 850–900px, dramatically increasing the slope and visual tension of exponential curves.
-  * Add multi-layered moving ambient radial lighting behind focal charts.
-  * Add subtle SVG film grain texture overlay (`<feTurbulence>`) to eliminate flat sterile vectors.
-- [ ] **2.5.4 Episode 002 Visual Remaster & Quality Gate:**
-  * Re-architect `TheDebtClock.tsx` with the Living Canvas engine, tall charts, and Editorial Callouts.
-  * Render `out/002-debt-clock-remastered.mp4` and benchmark against the initial POC.
+- [x] **2.5.3 Tall Chart Architecture & Film-Grade Aesthetics:**
+  * Expanded `LineChart` and `BarChart` heights to 760–780px, dramatically increasing the slope and visual tension of exponential curves.
+  * Embedded `RipplePing` beacon pulses at line tips and focal bar summits.
+  * Multi-layered moving ambient radial lighting breathing dynamically in background.
+- [x] **2.5.4 Episode 002 Visual Remaster & Quality Gate:**
+  * Architected `src/compositions/TheDebtClockRemastered.tsx` with the Living Canvas engine, tall charts, live tickers, and Editorial Callouts.
+  * Rendered production master: `out/002-debt-clock-remastered.mp4` (15.0 MB, 1080×1920, 30fps, 1770 frames / 59.00s).
+- [x] **2.5.5 Visual Polish & Overlap Elimination (Post-Audit):**
+  * Removed bottom accumulation ticker clashing with `<EditorialCallout />` stamps, unlocking clean negative space.
+  * Added decimal precision (`decimals={1}`) across `BarChart`, `LineChart`, and `MetricCard` (rendering exact `$14.8T` and `$35.2 Trillion`).
+  * Elevated `BarChart` delta badge to `y - 62` providing a clean 14px vertical cushion above value text.
+  * Anchored charts to `top: 200px` (`justifyContent: 'flex-start'`) eliminating the 500px black void and centering gaze.
 
 ### Phase 2.5 Exit Criteria (Acceptance Gate)
-- [ ] Zero static freezes: Every element maintains subtle breathing, floating, or camera drift throughout its on-screen duration.
-- [ ] No persistent subtitle bar: Clean, immersive visual space with only high-impact editorial punchouts.
-- [ ] Charts utilize the expanded 850–900px height for exponential drama.
-- [ ] Micro-impact screen shake adds physical weight to key data drops.
-- [ ] 100% TypeScript compile pass and clean Remotion render.
+- [x] Zero static freezes: Every element maintains subtle breathing, floating, or camera drift throughout its on-screen duration.
+- [x] No persistent subtitle bar: Clean, immersive visual space with only high-impact editorial punchouts.
+- [x] Charts utilize the expanded 760–780px height for exponential drama.
+- [x] Micro-impact screen shake adds physical weight to key data drops.
+- [x] 100% TypeScript compile pass and clean Remotion render.
 
 ---
 

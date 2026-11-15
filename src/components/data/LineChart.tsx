@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { evolvePath, getLength, getPointAtLength } from '@remotion/paths';
 import { THEME } from '../../styles/theme';
+import { RipplePing } from '../motion/RipplePing';
 
 export interface LinePoint {
   label: string;
@@ -163,12 +164,14 @@ export const LineChart: React.FC<LineChartProps> = ({
         {/* Chart Title */}
         {title && (
           <text
-            x={paddingLeft}
-            y={40}
+            x={width / 2}
+            y={42}
+            textAnchor="middle"
             fill="#ffffff"
-            fontSize="32"
+            fontSize="30"
             fontWeight="bold"
             fontFamily={THEME.fonts.heading}
+            letterSpacing="1"
           >
             {title}
           </text>
@@ -328,34 +331,46 @@ export const LineChart: React.FC<LineChartProps> = ({
           </g>
         )}
 
-        {/* Final Value Callout (Pops when animation finishes at last point) */}
+        {/* Final Value Callout & Living Beacon Ping */}
         {progress >= 0.95 && points.length > 0 && (
-          <g
-            transform={`translate(${points[points.length - 1].x}, ${points[points.length - 1].y - 36})`}
-          >
-            <rect
-              x={-55}
-              y={-18}
-              width={110}
-              height={32}
-              rx={16}
-              fill="#0284c7"
-              stroke="#38bdf8"
-              strokeWidth="2"
-              filter={`url(#lineGlow-${chartId})`}
+          <g>
+            <RipplePing
+              cx={points[points.length - 1].x}
+              cy={points[points.length - 1].y}
+              color={color}
+              maxRadius={32}
             />
-            <text
-              x={0}
-              y={2}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="#ffffff"
-              fontSize="18"
-              fontWeight="bold"
-              fontFamily={THEME.fonts.numbers}
+            <g
+              transform={`translate(${points[points.length - 1].x}, ${points[points.length - 1].y - 36})`}
             >
-              {prefix}{points[points.length - 1].value.toLocaleString()}{unit}
-            </text>
+              <rect
+                x={-55}
+                y={-18}
+                width={110}
+                height={32}
+                rx={16}
+                fill="#0284c7"
+                stroke="#38bdf8"
+                strokeWidth="2"
+                filter={`url(#lineGlow-${chartId})`}
+              />
+              <text
+                x={0}
+                y={2}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="#ffffff"
+                fontSize="18"
+                fontWeight="bold"
+                fontFamily={THEME.fonts.numbers}
+              >
+                {prefix}
+                {points[points.length - 1].value % 1 !== 0
+                  ? points[points.length - 1].value.toFixed(1)
+                  : points[points.length - 1].value.toLocaleString()}
+                {unit}
+              </text>
+            </g>
           </g>
         )}
       </svg>

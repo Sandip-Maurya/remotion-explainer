@@ -2,6 +2,7 @@
 import React from 'react';
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { THEME } from '../../styles/theme';
+import { RipplePing } from '../motion/RipplePing';
 
 export interface BarData {
   label: string;
@@ -20,6 +21,7 @@ export interface BarChartProps {
   height?: number;
   showGrid?: boolean;
   title?: string;
+  decimals?: number;
 }
 
 export const BarChart: React.FC<BarChartProps> = ({
@@ -27,28 +29,31 @@ export const BarChart: React.FC<BarChartProps> = ({
   unit = '',
   prefix = '',
   highlightIndex,
-  width = 860,
+  width = 880,
   height = 540,
   showGrid = true,
   title,
+  decimals,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
   const maxValue = Math.max(...data.map((d) => d.value), 1);
-  // Round up max for clean grid ticks
   const gridMax = Math.ceil(maxValue * 1.15);
   const barCount = data.length;
 
-  const paddingLeft = 60;
-  const paddingRight = 40;
-  const bottomLabelHeight = 80;
-  const topHeaderHeight = title ? 70 : 50;
+  const hasDecimals = decimals !== undefined ? decimals > 0 : data.some((d) => d.value % 1 !== 0);
+
+  const paddingLeft = 65;
+  const paddingRight = 45;
+  const bottomLabelHeight = 90;
+  // Generous top buffer for delta badges and titles
+  const topHeaderHeight = title ? 110 : 80;
   const usableHeight = height - bottomLabelHeight - topHeaderHeight;
   const usableWidth = width - paddingLeft - paddingRight;
 
-  const gap = barCount <= 3 ? 40 : barCount <= 5 ? 24 : 16;
-  const barWidth = Math.min(140, Math.max(50, (usableWidth - (barCount - 1) * gap) / barCount));
+  const gap = barCount <= 3 ? 44 : barCount <= 5 ? 28 : 18;
+  const barWidth = Math.min(145, Math.max(50, (usableWidth - (barCount - 1) * gap) / barCount));
 
   // Grid steps (4 horizontal guidelines)
   const gridSteps = [0.25, 0.5, 0.75, 1];
@@ -89,12 +94,14 @@ export const BarChart: React.FC<BarChartProps> = ({
         {/* Optional Title */}
         {title && (
           <text
-            x={paddingLeft}
-            y={36}
+            x={width / 2}
+            y={42}
+            textAnchor="middle"
             fill="#ffffff"
             fontSize="30"
             fontWeight="bold"
             fontFamily={THEME.fonts.heading}
+            letterSpacing="1"
           >
             {title}
           </text>
@@ -104,7 +111,7 @@ export const BarChart: React.FC<BarChartProps> = ({
         {showGrid &&
           gridSteps.map((stepFraction, i) => {
             const gridY = topHeaderHeight + (usableHeight - usableHeight * stepFraction);
-            const gridVal = Math.round(gridMax * stepFraction);
+            const gridVal = (gridMax * stepFraction).toFixed(hasDecimals ? 1 : 0);
             const gridEntrance = spring({
               frame: frame - i * 3,
               fps,
@@ -112,7 +119,7 @@ export const BarChart: React.FC<BarChartProps> = ({
             });
 
             return (
-              <g key={stepFraction} opacity={gridEntrance * 0.4}>
+              <g key={stepFraction} opacity={gridEntrance * 0.35}>
                 <line
                   x1={paddingLeft}
                   y1={gridY}
@@ -162,7 +169,10 @@ export const BarChart: React.FC<BarChartProps> = ({
           const x = paddingLeft + index * (barWidth + gap);
           const y = topHeaderHeight + (usableHeight - currentHeight);
 
-          const displayedValue = Math.round(interpolate(entrance, [0, 1], [0, item.value]));
+          const rawInterpolated = interpolate(entrance, [0, 1], [0, item.value]);
+          const displayedValue = hasDecimals
+            ? rawInterpolated.toFixed(decimals ?? 1)
+            : Math.round(rawInterpolated).toLocaleString();
 
           // Fill source
           const barFill = item.color
@@ -173,17 +183,48 @@ export const BarChart: React.FC<BarChartProps> = ({
 
           // Delta tag entrance (pops in when bar finishes growing)
           const deltaEntrance = spring({
-            frame: frame - (index * 5 + 12),
+            frame: frame - (index * 5 + 14),
             fps,
             config: THEME.springs.snappy,
           });
 
           return (
             <g key={item.label}>
+              {/* Delta Badge (Cleanly elevated to y - 62 to prevent any overlap with value text) */}
+              {item.delta && (
+                <g
+                  transform={`translate(${x + barWidth / 2}, ${y - 62}) scale(${deltaEntrance})`}
+                  opacity={deltaEntrance}
+                >
+                  <rect
+                    x={-48}
+                    y={-16}
+                    width={96}
+                    height={28}
+                    rx={14}
+                    fill={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#065f46' : '#7f1d1d'}
+                    stroke={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#10b981' : '#ef4444'}
+                    strokeWidth="1.5"
+                  />
+                  <text
+                    x={0}
+                    y={2}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fill={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#34d399' : '#f87171'}
+                    fontSize="15"
+                    fontWeight="bold"
+                    fontFamily={THEME.fonts.numbers}
+                  >
+                    {item.delta}
+                  </text>
+                </g>
+              )}
+
               {/* Animated Value Counter */}
               <text
                 x={x + barWidth / 2}
-                y={y - 12}
+                y={y - 14}
                 textAnchor="middle"
                 fill={isHighlighted ? '#ffffff' : '#94a3b8'}
                 fontSize={isHighlighted ? '28' : '24'}
@@ -192,39 +233,18 @@ export const BarChart: React.FC<BarChartProps> = ({
                 opacity={Math.min(1, entrance * 1.5)}
               >
                 {prefix}
-                {displayedValue.toLocaleString()}
+                {displayedValue}
                 {unit}
               </text>
 
-              {/* Delta Badge (if present, e.g. "+35%") */}
-              {item.delta && (
-                <g
-                  transform={`translate(${x + barWidth / 2}, ${y - 44}) scale(${deltaEntrance})`}
-                  opacity={deltaEntrance}
-                >
-                  <rect
-                    x={-45}
-                    y={-18}
-                    width={90}
-                    height={28}
-                    rx={14}
-                    fill={item.delta.startsWith('+') ? '#065f46' : '#7f1d1d'}
-                    stroke={item.delta.startsWith('+') ? '#10b981' : '#ef4444'}
-                    strokeWidth="1.5"
-                  />
-                  <text
-                    x={0}
-                    y={2}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill={item.delta.startsWith('+') ? '#34d399' : '#f87171'}
-                    fontSize="16"
-                    fontWeight="bold"
-                    fontFamily={THEME.fonts.numbers}
-                  >
-                    {item.delta}
-                  </text>
-                </g>
+              {/* Ripple Beacon for focal bar */}
+              {isHighlighted && entrance > 0.95 && (
+                <RipplePing
+                  cx={x + barWidth / 2}
+                  cy={y}
+                  color="#38bdf8"
+                  maxRadius={24}
+                />
               )}
 
               {/* SVG Animated Rounded Bar */}
@@ -255,11 +275,11 @@ export const BarChart: React.FC<BarChartProps> = ({
               {/* X-Axis Main Label */}
               <text
                 x={x + barWidth / 2}
-                y={topHeaderHeight + usableHeight + 30}
+                y={topHeaderHeight + usableHeight + 32}
                 textAnchor="middle"
                 fill={isHighlighted ? '#ffffff' : '#94a3b8'}
                 fontSize="22"
-                fontWeight="600"
+                fontWeight="700"
                 fontFamily={THEME.fonts.body}
               >
                 {item.label}
@@ -269,10 +289,11 @@ export const BarChart: React.FC<BarChartProps> = ({
               {item.sublabel && (
                 <text
                   x={x + barWidth / 2}
-                  y={topHeaderHeight + usableHeight + 52}
+                  y={topHeaderHeight + usableHeight + 56}
                   textAnchor="middle"
-                  fill="#64748b"
+                  fill={isHighlighted ? '#cbd5e1' : '#64748b'}
                   fontSize="16"
+                  fontWeight="500"
                   fontFamily={THEME.fonts.body}
                 >
                   {item.sublabel}

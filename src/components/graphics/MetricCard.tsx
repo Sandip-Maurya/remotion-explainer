@@ -2,6 +2,7 @@
 import React from 'react';
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { THEME } from '../../styles/theme';
+import { LightSheen } from '../motion/LightSheen';
 
 export interface MetricCardProps {
   label: string;
@@ -49,8 +50,14 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 
   // Numerical counter animation if value is a number
   const isNumeric = typeof value === 'number';
+  const hasDecimals = isNumeric && (value as number) % 1 !== 0;
+  const rawInterpolated = isNumeric
+    ? interpolate(entrance, [0, 1], [0, value as number])
+    : 0;
   const displayedValue = isNumeric
-    ? Math.round(interpolate(entrance, [0, 1], [0, value as number]))
+    ? hasDecimals
+      ? rawInterpolated.toFixed(1)
+      : Math.round(rawInterpolated).toLocaleString()
     : value;
 
   const trendColor =
@@ -79,6 +86,9 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         overflow: 'hidden',
       }}
     >
+      {/* Specular Glass Sheen Sweep */}
+      <LightSheen delayFrames={delayFrames + 12} />
+
       {/* Top ambient highlight line */}
       <div
         style={{

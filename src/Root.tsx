@@ -4,6 +4,7 @@ import { Composition } from 'remotion';
 import { WhyInflationHurts } from './compositions/WhyInflationHurts';
 import { ChartShowcase } from './compositions/ChartShowcase';
 import { TheDebtClock } from './compositions/TheDebtClock';
+import { TheDebtClockRemastered } from './compositions/TheDebtClockRemastered';
 import { initFonts } from './styles/fonts';
 import './styles/global.css';
 
@@ -80,6 +81,31 @@ export const Root: React.FC = () => {
       <Composition
         id="TheDebtClock-SafeZone"
         component={TheDebtClock}
+        durationInFrames={1770}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          showSafeZone: true,
+        }}
+      />
+
+      {/* Phase 2.5: Episode 002 Remastered with Living Canvas & Editorial Callouts */}
+      <Composition
+        id="TheDebtClockRemastered"
+        component={TheDebtClockRemastered}
+        durationInFrames={1770}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          showSafeZone: false,
+        }}
+      />
+
+      <Composition
+        id="TheDebtClockRemastered-SafeZone"
+        component={TheDebtClockRemastered}
         durationInFrames={1770}
         fps={30}
         width={1080}
