@@ -179,9 +179,9 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         <div
           style={{
             fontFamily: THEME.fonts.body,
-            fontSize: 24,
-            color: '#cbd5e1',
-            lineHeight: 1.4,
+            fontSize: 26,
+            color: '#e2e8f0',
+            lineHeight: 1.35,
           }}
         >
           {subtext}
@@ -196,9 +196,9 @@ export const MetricCard: React.FC<MetricCardProps> = ({
             justifyContent: 'space-between',
             alignItems: 'center',
             gap: 16,
-            marginTop: 10,
+            marginTop: 12,
             paddingTop: 20,
-            borderTop: '1px solid rgba(255,255,255,0.08)',
+            borderTop: '1px solid rgba(255,255,255,0.1)',
           }}
         >
           {stats.map((st) => (
@@ -207,15 +207,15 @@ export const MetricCard: React.FC<MetricCardProps> = ({
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 4,
+                gap: 6,
               }}
             >
               <span
                 style={{
                   fontFamily: THEME.fonts.heading,
-                  fontSize: 14,
+                  fontSize: 19,
                   fontWeight: 800,
-                  color: '#64748b',
+                  color: '#94a3b8',
                   textTransform: 'uppercase',
                   letterSpacing: 0.5,
                 }}
@@ -225,8 +225,8 @@ export const MetricCard: React.FC<MetricCardProps> = ({
               <span
                 style={{
                   fontFamily: THEME.fonts.numbers,
-                  fontSize: 22,
-                  fontWeight: 800,
+                  fontSize: 28,
+                  fontWeight: 900,
                   color: '#ffffff',
                 }}
               >

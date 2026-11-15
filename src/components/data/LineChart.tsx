@@ -42,8 +42,8 @@ export const LineChart: React.FC<LineChartProps> = ({
 
   const paddingLeft = 70;
   const paddingRight = 50;
-  const bottomLabelHeight = 80;
-  const topHeaderHeight = title ? 80 : 50;
+  const bottomLabelHeight = 88;
+  const topHeaderHeight = title ? 85 : 55;
 
   const usableWidth = width - paddingLeft - paddingRight;
   const usableHeight = height - bottomLabelHeight - topHeaderHeight;
@@ -201,10 +201,10 @@ export const LineChart: React.FC<LineChartProps> = ({
                 />
                 <text
                   x={paddingLeft - 14}
-                  y={gridY + 5}
+                  y={gridY + 6}
                   textAnchor="end"
-                  fill="#64748b"
-                  fontSize="18"
+                  fill="#94a3b8"
+                  fontSize="20"
                   fontFamily={THEME.fonts.numbers}
                 >
                   {prefix}{gridVal.toLocaleString()}{unit}
@@ -282,11 +282,11 @@ export const LineChart: React.FC<LineChartProps> = ({
               {/* X Axis Label */}
               <text
                 x={pt.x}
-                y={baselineY + 34}
+                y={baselineY + 36}
                 textAnchor="middle"
-                fill={hasReached ? '#ffffff' : '#64748b'}
-                fontSize="22"
-                fontWeight="600"
+                fill={hasReached ? '#ffffff' : '#94a3b8'}
+                fontSize="25"
+                fontWeight="700"
                 fontFamily={THEME.fonts.body}
               >
                 {pt.label}
@@ -304,13 +304,13 @@ export const LineChart: React.FC<LineChartProps> = ({
             <circle r={4} fill="#ffffff" />
 
             {/* Floating Live Value Badge */}
-            <g transform="translate(0, -32)">
+            <g transform="translate(0, -34)">
               <rect
-                x={-44}
-                y={-14}
-                width={88}
-                height={26}
-                rx={13}
+                x={-50}
+                y={-16}
+                width={100}
+                height={30}
+                rx={15}
                 fill="#0f172a"
                 stroke={color}
                 strokeWidth="1.5"
@@ -321,7 +321,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="#ffffff"
-                fontSize="15"
+                fontSize="18"
                 fontWeight="bold"
                 fontFamily={THEME.fonts.numbers}
               >
@@ -341,14 +341,14 @@ export const LineChart: React.FC<LineChartProps> = ({
               maxRadius={32}
             />
             <g
-              transform={`translate(${points[points.length - 1].x}, ${points[points.length - 1].y - 36})`}
+              transform={`translate(${points[points.length - 1].x}, ${points[points.length - 1].y - 38})`}
             >
               <rect
-                x={-55}
-                y={-18}
-                width={110}
-                height={32}
-                rx={16}
+                x={-62}
+                y={-20}
+                width={124}
+                height={38}
+                rx={19}
                 fill="#0284c7"
                 stroke="#38bdf8"
                 strokeWidth="2"
@@ -360,7 +360,7 @@ export const LineChart: React.FC<LineChartProps> = ({
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="#ffffff"
-                fontSize="18"
+                fontSize="22"
                 fontWeight="bold"
                 fontFamily={THEME.fonts.numbers}
               >

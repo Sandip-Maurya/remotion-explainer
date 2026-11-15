@@ -99,7 +99,7 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
           <span
             style={{
               fontFamily: THEME.fonts.heading,
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: 800,
               letterSpacing: 2,
               color: accentColor,
@@ -113,7 +113,7 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
         <span
           style={{
             fontFamily: THEME.fonts.heading,
-            fontSize: 34,
+            fontSize: 38,
             fontWeight: 900,
             color: '#ffffff',
             letterSpacing: 0.5,
@@ -127,10 +127,11 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
           <span
             style={{
               fontFamily: THEME.fonts.body,
-              fontSize: 22,
-              fontWeight: 500,
-              color: '#cbd5e1',
-              marginTop: 4,
+              fontSize: 26,
+              fontWeight: 600,
+              color: '#e2e8f0',
+              marginTop: 6,
+              lineHeight: 1.3,
             }}
           >
             {subtext}

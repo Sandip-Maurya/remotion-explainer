@@ -107,11 +107,11 @@ export const AnimatedArrow: React.FC<AnimatedArrowProps> = ({
         <div
           style={{
             fontFamily: THEME.fonts.heading,
-            fontSize: 22,
+            fontSize: 26,
             fontWeight: 800,
             color: resolvedColor,
             textShadow: `0 0 12px ${resolvedColor}60`,
-            letterSpacing: 1,
+            letterSpacing: 1.5,
             textTransform: 'uppercase',
           }}
         >

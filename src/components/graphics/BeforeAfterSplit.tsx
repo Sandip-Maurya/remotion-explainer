@@ -76,9 +76,9 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
             <span
               style={{
                 fontFamily: THEME.fonts.heading,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 800,
-                padding: '6px 14px',
+                padding: '6px 16px',
                 borderRadius: 14,
                 backgroundColor: `${beforeColor}20`,
                 color: beforeColor,
@@ -93,11 +93,11 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
               {before.value}
             </span>
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 28, fontWeight: 800, color: '#e2e8f0' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 30, fontWeight: 800, color: '#e2e8f0' }}>
             {before.label}
           </div>
           {before.subtext && (
-            <div style={{ fontFamily: THEME.fonts.body, fontSize: 22, color: '#94a3b8', marginTop: 6, lineHeight: 1.35 }}>
+            <div style={{ fontFamily: THEME.fonts.body, fontSize: 25, color: '#cbd5e1', marginTop: 8, lineHeight: 1.35 }}>
               {before.subtext}
             </div>
           )}
@@ -111,7 +111,7 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
             justifyContent: 'center',
             position: 'relative',
             width: '100%',
-            height: connectorBadge ? 36 : 4,
+            height: connectorBadge ? 42 : 4,
             opacity: dividerSpring,
           }}
         >
@@ -146,13 +146,13 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
               style={{
                 position: 'relative',
                 zIndex: 2,
-                padding: '6px 18px',
+                padding: '7px 20px',
                 borderRadius: 16,
                 backgroundColor: 'rgba(15, 23, 42, 0.95)',
                 border: '1.5px solid #f43f5e',
                 boxShadow: '0 0 20px rgba(244, 63, 94, 0.4)',
                 fontFamily: THEME.fonts.heading,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 900,
                 color: '#f43f5e',
                 letterSpacing: 1,
@@ -182,9 +182,9 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
             <span
               style={{
                 fontFamily: THEME.fonts.heading,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 800,
-                padding: '6px 14px',
+                padding: '6px 16px',
                 borderRadius: 14,
                 backgroundColor: `${afterColor}25`,
                 color: afterColor,
@@ -199,11 +199,11 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
               {after.value}
             </span>
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 28, fontWeight: 800, color: '#ffffff' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 30, fontWeight: 800, color: '#ffffff' }}>
             {after.label}
           </div>
           {after.subtext && (
-            <div style={{ fontFamily: THEME.fonts.body, fontSize: 22, color: '#cbd5e1', marginTop: 6, lineHeight: 1.35 }}>
+            <div style={{ fontFamily: THEME.fonts.body, fontSize: 25, color: '#f1f5f9', marginTop: 8, lineHeight: 1.35 }}>
               {after.subtext}
             </div>
           )}
@@ -237,9 +237,9 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
           <span
             style={{
               fontFamily: THEME.fonts.heading,
-              fontSize: 15,
+              fontSize: 18,
               fontWeight: 800,
-              padding: '4px 12px',
+              padding: '4px 14px',
               borderRadius: 10,
               backgroundColor: `${beforeColor}20`,
               color: beforeColor,
@@ -260,12 +260,12 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
           >
             {before.value}
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 22, fontWeight: 700, color: '#cbd5e1' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 24, fontWeight: 700, color: '#cbd5e1' }}>
             {before.label}
           </div>
         </div>
         {before.subtext && (
-          <div style={{ fontFamily: THEME.fonts.body, fontSize: 16, color: '#64748b', marginTop: 14 }}>
+          <div style={{ fontFamily: THEME.fonts.body, fontSize: 20, color: '#94a3b8', marginTop: 14 }}>
             {before.subtext}
           </div>
         )}
@@ -292,9 +292,9 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
           <span
             style={{
               fontFamily: THEME.fonts.heading,
-              fontSize: 15,
+              fontSize: 18,
               fontWeight: 800,
-              padding: '4px 12px',
+              padding: '4px 14px',
               borderRadius: 10,
               backgroundColor: `${afterColor}25`,
               color: afterColor,
@@ -316,12 +316,12 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
           >
             {after.value}
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 22, fontWeight: 700, color: '#ffffff' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 24, fontWeight: 700, color: '#ffffff' }}>
             {after.label}
           </div>
         </div>
         {after.subtext && (
-          <div style={{ fontFamily: THEME.fonts.body, fontSize: 16, color: '#cbd5e1', marginTop: 14 }}>
+          <div style={{ fontFamily: THEME.fonts.body, fontSize: 20, color: '#cbd5e1', marginTop: 14 }}>
             {after.subtext}
           </div>
         )}

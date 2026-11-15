@@ -195,7 +195,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                 color="#38bdf8"
                 curved={true}
                 showArea={true}
-                height={730}
+                height={660}
                 width={THEME.dimensions.standardCardWidth}
               />
             </SceneLayout>
@@ -228,7 +228,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                 prefix="$"
                 unit="T"
                 highlightIndex={3}
-                height={710}
+                height={660}
                 width={THEME.dimensions.standardCardWidth}
                 decimals={1}
               />

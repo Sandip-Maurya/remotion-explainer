@@ -46,9 +46,9 @@ export const BarChart: React.FC<BarChartProps> = ({
 
   const paddingLeft = 65;
   const paddingRight = 45;
-  const bottomLabelHeight = 90;
+  const bottomLabelHeight = 105;
   // Generous top buffer for delta badges and titles
-  const topHeaderHeight = title ? 110 : 80;
+  const topHeaderHeight = title ? 115 : 85;
   const usableHeight = height - bottomLabelHeight - topHeaderHeight;
   const usableWidth = width - paddingLeft - paddingRight;
 
@@ -131,10 +131,10 @@ export const BarChart: React.FC<BarChartProps> = ({
                 />
                 <text
                   x={paddingLeft - 12}
-                  y={gridY + 5}
+                  y={gridY + 6}
                   textAnchor="end"
-                  fill="#64748b"
-                  fontSize="18"
+                  fill="#94a3b8"
+                  fontSize="20"
                   fontFamily={THEME.fonts.numbers}
                 >
                   {prefix}{gridVal}{unit}
@@ -197,11 +197,11 @@ export const BarChart: React.FC<BarChartProps> = ({
                   opacity={deltaEntrance}
                 >
                   <rect
-                    x={-48}
-                    y={-16}
-                    width={96}
-                    height={28}
-                    rx={14}
+                    x={-52}
+                    y={-17}
+                    width={104}
+                    height={32}
+                    rx={16}
                     fill={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#065f46' : '#7f1d1d'}
                     stroke={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#10b981' : '#ef4444'}
                     strokeWidth="1.5"
@@ -212,7 +212,7 @@ export const BarChart: React.FC<BarChartProps> = ({
                     textAnchor="middle"
                     dominantBaseline="middle"
                     fill={item.delta.startsWith('+') || item.delta === 'Biggest' ? '#34d399' : '#f87171'}
-                    fontSize="15"
+                    fontSize="18"
                     fontWeight="bold"
                     fontFamily={THEME.fonts.numbers}
                   >
@@ -227,8 +227,8 @@ export const BarChart: React.FC<BarChartProps> = ({
                 y={y - 14}
                 textAnchor="middle"
                 fill={isHighlighted ? '#ffffff' : '#94a3b8'}
-                fontSize={isHighlighted ? '28' : '24'}
-                fontWeight="bold"
+                fontSize={isHighlighted ? '30' : '26'}
+                fontWeight="900"
                 fontFamily={THEME.fonts.numbers}
                 opacity={Math.min(1, entrance * 1.5)}
               >
@@ -275,11 +275,11 @@ export const BarChart: React.FC<BarChartProps> = ({
               {/* X-Axis Main Label */}
               <text
                 x={x + barWidth / 2}
-                y={topHeaderHeight + usableHeight + 32}
+                y={topHeaderHeight + usableHeight + 36}
                 textAnchor="middle"
                 fill={isHighlighted ? '#ffffff' : '#94a3b8'}
-                fontSize="22"
-                fontWeight="700"
+                fontSize="25"
+                fontWeight="800"
                 fontFamily={THEME.fonts.body}
               >
                 {item.label}
@@ -289,11 +289,11 @@ export const BarChart: React.FC<BarChartProps> = ({
               {item.sublabel && (
                 <text
                   x={x + barWidth / 2}
-                  y={topHeaderHeight + usableHeight + 56}
+                  y={topHeaderHeight + usableHeight + 68}
                   textAnchor="middle"
-                  fill={isHighlighted ? '#cbd5e1' : '#64748b'}
-                  fontSize="16"
-                  fontWeight="500"
+                  fill={isHighlighted ? '#e2e8f0' : '#94a3b8'}
+                  fontSize="20"
+                  fontWeight="600"
                   fontFamily={THEME.fonts.body}
                 >
                   {item.sublabel}
