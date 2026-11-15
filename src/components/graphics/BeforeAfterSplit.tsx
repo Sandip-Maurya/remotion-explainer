@@ -18,14 +18,16 @@ export interface BeforeAfterSplitProps {
   width?: number;
   layout?: 'side-by-side' | 'stacked';
   staggerDelay?: number;
+  connectorBadge?: string;
 }
 
 export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
   before,
   after,
-  width = 860,
+  width = THEME.dimensions.standardCardWidth,
   layout = 'side-by-side',
   staggerDelay = 14,
+  connectorBadge,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -56,112 +58,152 @@ export const BeforeAfterSplit: React.FC<BeforeAfterSplitProps> = ({
 
   if (layout === 'stacked') {
     return (
-      <div style={{ width, display: 'flex', flexDirection: 'column', gap: 20, position: 'relative' }}>
+      <div style={{ width, display: 'flex', flexDirection: 'column', gap: 24, position: 'relative' }}>
         {/* Top (Before) Card */}
         <div
           style={{
-            backgroundColor: 'rgba(15, 23, 42, 0.75)',
+            backgroundColor: 'rgba(15, 23, 42, 0.82)',
             border: `2px solid ${beforeColor}40`,
-            borderRadius: 20,
-            padding: '24px 32px',
+            borderRadius: 22,
+            padding: '30px 38px',
             transform: `translateY(${interpolate(beforeSpring, [0, 1], [-30, 0])}px) scale(${beforeSpring})`,
             opacity: beforeSpring,
-            backdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 12px 35px rgba(0,0,0,0.5)',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <span
               style={{
                 fontFamily: THEME.fonts.heading,
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 800,
-                padding: '4px 12px',
-                borderRadius: 12,
+                padding: '6px 14px',
+                borderRadius: 14,
                 backgroundColor: `${beforeColor}20`,
                 color: beforeColor,
                 border: `1px solid ${beforeColor}50`,
                 textTransform: 'uppercase',
+                letterSpacing: 1,
               }}
             >
               {before.tag}
             </span>
-            <span style={{ fontFamily: THEME.fonts.numbers, fontSize: 44, fontWeight: 900, color: '#ffffff' }}>
+            <span style={{ fontFamily: THEME.fonts.numbers, fontSize: 64, fontWeight: 900, color: '#ffffff', letterSpacing: -1 }}>
               {before.value}
             </span>
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 24, fontWeight: 700, color: '#cbd5e1' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 28, fontWeight: 800, color: '#e2e8f0' }}>
             {before.label}
           </div>
           {before.subtext && (
-            <div style={{ fontFamily: THEME.fonts.body, fontSize: 18, color: '#64748b', marginTop: 4 }}>
+            <div style={{ fontFamily: THEME.fonts.body, fontSize: 22, color: '#94a3b8', marginTop: 6, lineHeight: 1.35 }}>
               {before.subtext}
             </div>
           )}
         </div>
 
-        {/* Animated Divider Laser */}
+        {/* Animated Divider Laser with Optional Connector Badge */}
         <div
           style={{
-            height: 3,
-            width: '100%',
-            backgroundColor: '#334155',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             position: 'relative',
-            overflow: 'hidden',
-            borderRadius: 2,
+            width: '100%',
+            height: connectorBadge ? 36 : 4,
             opacity: dividerSpring,
           }}
         >
           <div
             style={{
               position: 'absolute',
-              top: 0,
+              top: '50%',
               left: 0,
-              width: `${dividerSpring * 100}%`,
-              height: '100%',
-              backgroundColor: '#38bdf8',
-              boxShadow: '0 0 12px #38bdf8',
+              right: 0,
+              height: 3,
+              backgroundColor: '#334155',
+              transform: 'translateY(-50%)',
+              borderRadius: 2,
+              overflow: 'hidden',
             }}
-          />
+          >
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: `${dividerSpring * 100}%`,
+                height: '100%',
+                backgroundColor: '#38bdf8',
+                boxShadow: '0 0 12px #38bdf8',
+              }}
+            />
+          </div>
+
+          {connectorBadge && (
+            <div
+              style={{
+                position: 'relative',
+                zIndex: 2,
+                padding: '6px 18px',
+                borderRadius: 16,
+                backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                border: '1.5px solid #f43f5e',
+                boxShadow: '0 0 20px rgba(244, 63, 94, 0.4)',
+                fontFamily: THEME.fonts.heading,
+                fontSize: 18,
+                fontWeight: 900,
+                color: '#f43f5e',
+                letterSpacing: 1,
+                textTransform: 'uppercase',
+                transform: `scale(${dividerSpring})`,
+              }}
+            >
+              {connectorBadge}
+            </div>
+          )}
         </div>
 
         {/* Bottom (After) Card */}
         <div
           style={{
-            backgroundColor: after.isShock ? 'rgba(69, 10, 10, 0.45)' : 'rgba(15, 23, 42, 0.75)',
+            backgroundColor: after.isShock ? 'rgba(69, 10, 10, 0.55)' : 'rgba(15, 23, 42, 0.82)',
             border: `2px solid ${afterColor}`,
-            boxShadow: `0 0 35px ${afterColor}30`,
-            borderRadius: 20,
-            padding: '24px 32px',
+            boxShadow: `0 0 40px ${afterColor}35`,
+            borderRadius: 22,
+            padding: '30px 38px',
             transform: `translateY(${interpolate(afterSpring, [0, 1], [30, 0])}px) scale(${afterSpring})`,
             opacity: afterSpring,
-            backdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(10px)',
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <span
               style={{
                 fontFamily: THEME.fonts.heading,
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: 800,
-                padding: '4px 12px',
-                borderRadius: 12,
+                padding: '6px 14px',
+                borderRadius: 14,
                 backgroundColor: `${afterColor}25`,
                 color: afterColor,
                 border: `1px solid ${afterColor}60`,
                 textTransform: 'uppercase',
+                letterSpacing: 1,
               }}
             >
               {after.tag}
             </span>
-            <span style={{ fontFamily: THEME.fonts.numbers, fontSize: 44, fontWeight: 900, color: afterColor }}>
+            <span style={{ fontFamily: THEME.fonts.numbers, fontSize: 64, fontWeight: 900, color: afterColor, letterSpacing: -1 }}>
               {after.value}
             </span>
           </div>
-          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 24, fontWeight: 700, color: '#ffffff' }}>
+          <div style={{ fontFamily: THEME.fonts.heading, fontSize: 28, fontWeight: 800, color: '#ffffff' }}>
             {after.label}
           </div>
           {after.subtext && (
-            <div style={{ fontFamily: THEME.fonts.body, fontSize: 18, color: '#94a3b8', marginTop: 4 }}>
+            <div style={{ fontFamily: THEME.fonts.body, fontSize: 22, color: '#cbd5e1', marginTop: 6, lineHeight: 1.35 }}>
               {after.subtext}
             </div>
           )}

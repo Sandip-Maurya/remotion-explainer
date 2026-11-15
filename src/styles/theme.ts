@@ -50,8 +50,9 @@ export const THEME = {
 
   // Font Sizes calibrated for 1080 x 1920 mobile viewport
   fontSizes: {
+    heroNumber: 88, // Giant statistical hero numbers
     hero: 72,      // Major 1-2 word hook headlines
-    h1: 56,        // Scene titles
+    h1: 58,        // Scene titles
     h2: 44,        // Card headers / Big callouts
     h3: 36,        // Subheaders
     bodyLg: 28,    // Primary narrative body text
@@ -64,6 +65,7 @@ export const THEME = {
     width: 1080,
     height: 1920,
     fps: 30,
+    standardCardWidth: 920, // Authoritative standard card & chart width
 
     // Safe Zone Cutouts (Mobile UI Obstructions)
     safeZone: {

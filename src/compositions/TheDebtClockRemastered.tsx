@@ -17,6 +17,7 @@ import { AnimatedArrow } from '../components/graphics/AnimatedArrow';
 import { TensionVignette } from '../components/storytelling/TensionVignette';
 import { EndCard } from '../components/core/EndCard';
 import { EditorialCallout } from '../components/captions/EditorialCallout';
+import { SceneLayout } from '../components/layout/SceneLayout';
 import { CameraDrift } from '../components/motion/CameraDrift';
 import { OrganicHover } from '../components/motion/OrganicHover';
 import { CameraMicroBump } from '../components/motion/CameraMicroBump';
@@ -73,58 +74,48 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         <Series.Sequence durationInFrames={360}>
           <CameraDrift durationInFrames={360} scaleFrom={1.0} scaleTo={1.045} origin="center 40%">
             <CameraMicroBump triggerFrame={0} intensity={6} durationFrames={8}>
-              <AbsoluteFill
-                style={{
-                  padding: '210px 100px 340px 80px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
+              <SceneLayout
+                header={{
+                  eyebrow: 'THE NATIONAL DEBT CLOCK',
+                  eyebrowColor: THEME.colors.accentAmber,
+                  title: (
+                    <>
+                      35 MILLION <span style={{ color: THEME.colors.accentBlue }}>MILLIONS</span>
+                    </>
+                  ),
                 }}
+                gap={48}
+                mode="centered"
+                footer={
+                  <EditorialCallout
+                    text="$104,000 PER CITIZEN"
+                    subtext="Every man, woman, and child owes this today"
+                    startFrame={35}
+                    durationFrames={325}
+                    accentColor={THEME.colors.accentAmber}
+                    badgeTag="UNPAYABLE BURDEN"
+                    inFlow={true}
+                  />
+                }
               >
-                {/* Scene Header */}
-                <div style={{ textAlign: 'center', marginBottom: 50 }}>
-                  <div
-                    style={{
-                      fontFamily: THEME.fonts.heading,
-                      fontSize: 26,
-                      fontWeight: 800,
-                      color: THEME.colors.accentAmber,
-                      letterSpacing: 2,
-                      textTransform: 'uppercase',
-                      marginBottom: 10,
-                    }}
-                  >
-                    THE NATIONAL DEBT CLOCK
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: THEME.fonts.heading,
-                      fontSize: 54,
-                      fontWeight: 900,
-                      color: '#ffffff',
-                      lineHeight: 1.15,
-                    }}
-                  >
-                    35 MILLION <span style={{ color: THEME.colors.accentBlue }}>MILLIONS</span>
-                  </div>
-                </div>
-
-                {/* Living Metric Card (Positioned in Prime Focal Area) */}
-                <div style={{ marginTop: 20 }}>
-                  <OrganicHover amplitude={5} speed={0.05}>
-                    <MetricCard
-                      label="US National Debt"
-                      value={35.2}
-                      prefix="$"
-                      suffix=" Trillion"
-                      delta="+312%"
-                      trend="up"
-                      subtext="Every single American citizen now owes over $104,000 of federal debt."
-                      color={THEME.colors.accentBlue}
-                    />
-                  </OrganicHover>
-                </div>
-              </AbsoluteFill>
+                <OrganicHover amplitude={5} speed={0.05}>
+                  <MetricCard
+                    label="US National Debt"
+                    value={35.2}
+                    prefix="$"
+                    suffix=" Trillion"
+                    delta="+312%"
+                    trend="up"
+                    subtext="Every single American citizen now owes over $104,000 of federal debt."
+                    stats={[
+                      { label: 'Per Citizen', value: '$104,200' },
+                      { label: 'Debt to GDP', value: '124%' },
+                      { label: 'Daily Surge', value: '+$3.8B/day' },
+                    ]}
+                    color={THEME.colors.accentBlue}
+                  />
+                </OrganicHover>
+              </SceneLayout>
             </CameraMicroBump>
           </CameraDrift>
         </Series.Sequence>
@@ -134,58 +125,45 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         {/* ==================================================================== */}
         <Series.Sequence durationInFrames={375}>
           <CameraDrift durationInFrames={375} scaleFrom={1.0} scaleTo={1.04} origin="center 50%">
-            <AbsoluteFill
-              style={{
-                padding: '210px 100px 340px 80px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+            <SceneLayout
+              header={{
+                title: 'EXPONENTIAL ACCELERATION',
+                subtitle: 'Interest payments now consume more than defense.',
               }}
+              gap={40}
+              mode="centered"
+              footer={
+                <EditorialCallout
+                  text="OVER $1.1 TRILLION / YR"
+                  subtext="Interest alone consumes more than defense"
+                  startFrame={40}
+                  durationFrames={335}
+                  accentColor={THEME.colors.accentRed}
+                  badgeTag="RECORD INTEREST"
+                  inFlow={true}
+                />
+              }
             >
-              <div style={{ textAlign: 'center', marginBottom: 40 }}>
-                <div
-                  style={{
-                    fontFamily: THEME.fonts.heading,
-                    fontSize: 40,
-                    fontWeight: 900,
-                    color: '#ffffff',
+              <OrganicHover amplitude={4} speed={0.06}>
+                <BeforeAfterSplit
+                  before={{
+                    tag: 'Year 2000',
+                    value: '$5.6T',
+                    label: '56% of US GDP',
+                    subtext: 'Manageable interest burden ($200B/yr)',
                   }}
-                >
-                  EXPONENTIAL ACCELERATION
-                </div>
-                <div
-                  style={{
-                    fontFamily: THEME.fonts.body,
-                    fontSize: 22,
-                    color: '#94a3b8',
-                    marginTop: 8,
+                  after={{
+                    tag: 'Today',
+                    value: '$35.2T',
+                    label: '124% of US GDP',
+                    subtext: 'Interest exceeds $1.1 Trillion/year',
+                    isShock: true,
                   }}
-                >
-                  Interest payments now consume more than defense.
-                </div>
-              </div>
-
-              <div style={{ marginTop: 10 }}>
-                <OrganicHover amplitude={4} speed={0.06}>
-                  <BeforeAfterSplit
-                    before={{
-                      tag: 'Year 2000',
-                      value: '$5.6T',
-                      label: '56% of US GDP',
-                      subtext: 'Manageable interest burden ($200B/yr)',
-                    }}
-                    after={{
-                      tag: 'Today',
-                      value: '$35.2T',
-                      label: '124% of US GDP',
-                      subtext: 'Interest exceeds $1.1 Trillion/year',
-                      isShock: true,
-                    }}
-                    layout="stacked"
-                  />
-                </OrganicHover>
-              </div>
-            </AbsoluteFill>
+                  connectorBadge="▲ 6.3x SURGE"
+                  layout="stacked"
+                />
+              </OrganicHover>
+            </SceneLayout>
           </CameraDrift>
         </Series.Sequence>
 
@@ -194,16 +172,21 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         {/* ==================================================================== */}
         <Series.Sequence durationInFrames={250}>
           <CameraDrift durationInFrames={250} scaleFrom={1.0} scaleTo={1.045} origin="right bottom">
-            <AbsoluteFill
-              style={{
-                padding: '200px 80px 340px 60px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
+            <SceneLayout
+              mode="centered"
+              gap={36}
+              footer={
+                <EditorialCallout
+                  text="PARABOLIC EXPLOSION"
+                  subtext="From linear growth to exponential surge"
+                  startFrame={25}
+                  durationFrames={225}
+                  accentColor={THEME.colors.accentBlue}
+                  badgeTag="EXPONENTIAL SPIKE"
+                  inFlow={true}
+                />
+              }
             >
-              {/* TALL Majestic SVG Line Chart (720px Height anchored high) */}
               <LineChart
                 title="34-YEAR NATIONAL DEBT TRAJECTORY"
                 data={debtHistory}
@@ -212,10 +195,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                 color="#38bdf8"
                 curved={true}
                 showArea={true}
-                height={720}
-                width={920}
+                height={730}
+                width={THEME.dimensions.standardCardWidth}
               />
-            </AbsoluteFill>
+            </SceneLayout>
           </CameraDrift>
         </Series.Sequence>
 
@@ -224,27 +207,32 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         {/* ==================================================================== */}
         <Series.Sequence durationInFrames={266}>
           <CameraDrift durationInFrames={266} scaleFrom={1.0} scaleTo={1.04} origin="center 60%">
-            <AbsoluteFill
-              style={{
-                padding: '200px 80px 340px 60px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
+            <SceneLayout
+              mode="centered"
+              gap={36}
+              footer={
+                <EditorialCallout
+                  text="YOU ARE THE BIGGEST CREDITOR"
+                  subtext="Held inside your 401(k), pensions, and savings"
+                  startFrame={25}
+                  durationFrames={241}
+                  accentColor={THEME.colors.accentEmerald}
+                  badgeTag="THE REVELATION"
+                  inFlow={true}
+                />
+              }
             >
-              {/* TALL Majestic SVG Bar Chart (700px Height anchored high) */}
               <BarChart
                 title="WHO ACTUALLY OWNS THE $35 TRILLION?"
                 data={debtHolders}
                 prefix="$"
                 unit="T"
                 highlightIndex={3}
-                height={700}
-                width={920}
+                height={710}
+                width={THEME.dimensions.standardCardWidth}
                 decimals={1}
               />
-            </AbsoluteFill>
+            </SceneLayout>
           </CameraDrift>
         </Series.Sequence>
 
@@ -253,59 +241,44 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         {/* ==================================================================== */}
         <Series.Sequence durationInFrames={328}>
           <CameraMicroBump triggerFrame={130} intensity={8} durationFrames={10}>
-            <AbsoluteFill
-              style={{
-                padding: '210px 100px 340px 80px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 50,
-                backgroundColor: THEME.colors.bgPitch,
+            <SceneLayout
+              mode="centered"
+              gap={42}
+              header={{
+                eyebrow: 'THE STEALTH TRAP',
+                eyebrowColor: THEME.colors.accentRed,
+                title: (
+                  <>
+                    THEY DON'T RAISE TAXES.
+                    <br />
+                    <span style={{ color: THEME.colors.accentAmber }}>THEY DILUTE THE DOLLAR.</span>
+                  </>
+                ),
               }}
+              footer={
+                <EditorialCallout
+                  text="THE STEALTH DEBASEMENT"
+                  subtext="Quietly diluting every dollar you work for"
+                  startFrame={35}
+                  durationFrames={293}
+                  accentColor={THEME.colors.accentRed}
+                  badgeTag="HIDDEN MECHANISM"
+                  inFlow={true}
+                />
+              }
+              style={{ backgroundColor: THEME.colors.bgPitch }}
             >
               <TensionVignette color={THEME.colors.accentRed} intensity={0.45} />
-
-              <div
-                style={{
-                  fontFamily: THEME.fonts.heading,
-                  fontSize: 28,
-                  fontWeight: 800,
-                  color: THEME.colors.accentRed,
-                  letterSpacing: 3,
-                  textTransform: 'uppercase',
-                }}
-              >
-                THE STEALTH TRAP
-              </div>
-
-              <div
-                style={{
-                  fontFamily: THEME.fonts.heading,
-                  fontSize: 54,
-                  fontWeight: 900,
-                  color: '#ffffff',
-                  textAlign: 'center',
-                  lineHeight: 1.2,
-                  maxWidth: 900,
-                  letterSpacing: -0.5,
-                }}
-              >
-                THEY DON'T RAISE TAXES.
-                <br />
-                <span style={{ color: THEME.colors.accentAmber }}>THEY DILUTE THE DOLLAR.</span>
-              </div>
-
               <AnimatedArrow
                 direction="down"
                 label="PURCHASING POWER"
                 color={THEME.colors.accentRed}
-                length={175}
-                headWidth={95}
-                shaftWidth={36}
+                length={185}
+                headWidth={100}
+                shaftWidth={38}
                 pulse={true}
               />
-            </AbsoluteFill>
+            </SceneLayout>
           </CameraMicroBump>
         </Series.Sequence>
 
@@ -314,16 +287,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
         {/* ==================================================================== */}
         <Series.Sequence durationInFrames={191}>
           <CameraDrift durationInFrames={191} scaleFrom={1.0} scaleTo={1.03}>
-            <AbsoluteFill
-              style={{
-                padding: '210px 100px 340px 80px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 36,
-                backgroundColor: THEME.colors.bgEmerald,
-              }}
+            <SceneLayout
+              mode="centered"
+              gap={36}
+              style={{ backgroundColor: THEME.colors.bgEmerald }}
             >
               <div
                 style={{
@@ -333,6 +300,7 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                   padding: '36px 32px',
                   textAlign: 'center',
                   boxShadow: '0 0 45px rgba(16, 185, 129, 0.3)',
+                  maxWidth: THEME.dimensions.standardCardWidth,
                 }}
               >
                 <div
@@ -365,68 +333,10 @@ export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({
                 callToAction="Subscribe to see through the financial illusion"
                 loopBridge="Thirty-five trillion dollars..."
               />
-            </AbsoluteFill>
+            </SceneLayout>
           </CameraDrift>
         </Series.Sequence>
       </Series>
-
-      {/* ==================================================================== */}
-      {/* Contextual Editorial Keyword Punchouts (Replaces continuous subtitles)*/}
-      {/* ==================================================================== */}
-      {/* Beat 1 Callout: Personal burden punch */}
-      <EditorialCallout
-        text="$104,000 PER CITIZEN"
-        subtext="Every man, woman, and child owes this today"
-        startFrame={190}
-        durationFrames={50}
-        position="bottom"
-        accentColor={THEME.colors.accentAmber}
-        badgeTag="UNPAYABLE BURDEN"
-      />
-
-      {/* Beat 2 Callout: Record interest punch */}
-      <EditorialCallout
-        text="OVER $1.1 TRILLION / YR"
-        subtext="Interest alone consumes more than defense"
-        startFrame={510}
-        durationFrames={52}
-        position="bottom"
-        accentColor={THEME.colors.accentRed}
-        badgeTag="RECORD INTEREST"
-      />
-
-      {/* Beat 3A Callout: Parabolic line punch */}
-      <EditorialCallout
-        text="PARABOLIC EXPLOSION"
-        subtext="From linear growth to exponential surge"
-        startFrame={840}
-        durationFrames={46}
-        position="bottom"
-        accentColor={THEME.colors.accentBlue}
-        badgeTag="EXPONENTIAL SPIKE"
-      />
-
-      {/* Beat 3B Callout: Revelation punch */}
-      <EditorialCallout
-        text="YOU ARE THE BIGGEST CREDITOR"
-        subtext="Held inside your 401(k), pensions, and savings"
-        startFrame={1090}
-        durationFrames={52}
-        position="bottom"
-        accentColor={THEME.colors.accentEmerald}
-        badgeTag="THE REVELATION"
-      />
-
-      {/* Beat 4 Callout: Stealth debasement punch */}
-      <EditorialCallout
-        text="THE STEALTH DEBASEMENT"
-        subtext="Quietly diluting every dollar you work for"
-        startFrame={1440}
-        durationFrames={50}
-        position="bottom"
-        accentColor={THEME.colors.accentRed}
-        badgeTag="HIDDEN MECHANISM"
-      />
 
       {/* Persistent Retention Progress Bar */}
       <ProgressBar color={THEME.colors.accentBlue} height={5} />

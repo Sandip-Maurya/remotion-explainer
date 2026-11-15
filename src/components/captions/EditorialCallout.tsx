@@ -6,26 +6,28 @@ import { THEME } from '../../styles/theme';
 export interface EditorialCalloutProps {
   text: string;
   subtext?: string;
-  startFrame: number;
+  startFrame?: number;
   durationFrames?: number;
   position?: 'top' | 'center' | 'bottom';
   accentColor?: string;
   badgeTag?: string;
+  inFlow?: boolean;
 }
 
 /**
  * Editorial Keyword Punchout component.
  * Replaces permanent bottom subtitles with dynamic, contextual shock-word stamps.
- * Punches in with high velocity, holds for 1.2-1.8s, and fades out cleanly.
+ * Punches in with high velocity, holds for 1.2-1.8s (or scene duration), and fades out cleanly.
  */
 export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
   text,
   subtext,
-  startFrame,
+  startFrame = 0,
   durationFrames = 48,
   position = 'bottom',
   accentColor = THEME.colors.accentAmber,
   badgeTag,
+  inFlow = false,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -55,19 +57,17 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
   const translateY = interpolate(entrance, [0, 1], [30, 0]);
 
   // Position alignment
-  const positionStyle: React.CSSProperties =
-    position === 'top'
-      ? { top: 220 }
-      : position === 'center'
-      ? { top: '50%', transform: `translateY(-50%) translateY(${translateY}px)` }
-      : { bottom: 350 };
+  const positionStyle: React.CSSProperties = inFlow
+    ? { position: 'relative' }
+    : position === 'top'
+    ? { position: 'absolute', top: 220, left: 80, right: 80 }
+    : position === 'center'
+    ? { position: 'absolute', top: '50%', left: 80, right: 80, transform: `translateY(-50%) translateY(${translateY}px)` }
+    : { position: 'absolute', bottom: 350, left: 80, right: 80 };
 
   return (
     <div
       style={{
-        position: 'absolute',
-        left: 80,
-        right: 80,
         ...positionStyle,
         display: 'flex',
         flexDirection: 'column',
@@ -75,7 +75,7 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
         justifyContent: 'center',
         textAlign: 'center',
         opacity: finalOpacity,
-        transform: position !== 'center' ? `translateY(${translateY}px) scale(${entrance})` : undefined,
+        transform: !inFlow && position === 'center' ? undefined : `translateY(${translateY}px) scale(${entrance})`,
         pointerEvents: 'none',
         zIndex: 50,
       }}
@@ -85,56 +85,56 @@ export const EditorialCallout: React.FC<EditorialCalloutProps> = ({
           display: 'inline-flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 6,
-          padding: '16px 28px',
-          borderRadius: 20,
-          backgroundColor: 'rgba(7, 10, 19, 0.92)',
+          gap: 8,
+          padding: '20px 34px',
+          borderRadius: 22,
+          backgroundColor: 'rgba(7, 10, 19, 0.94)',
           border: `2px solid ${accentColor}`,
-          boxShadow: `0 12px 35px rgba(0,0,0,0.8), 0 0 25px ${accentColor}40`,
-          backdropFilter: 'blur(12px)',
+          boxShadow: `0 14px 40px rgba(0,0,0,0.85), 0 0 30px ${accentColor}40`,
+          backdropFilter: 'blur(14px)',
+          maxWidth: THEME.dimensions.standardCardWidth,
         }}
       >
         {badgeTag && (
           <span
             style={{
               fontFamily: THEME.fonts.heading,
-              fontSize: 14,
-              fontWeight: 900,
+              fontSize: 16,
+              fontWeight: 800,
               letterSpacing: 2,
               color: accentColor,
               textTransform: 'uppercase',
-              marginBottom: 2,
             }}
           >
             {badgeTag}
           </span>
         )}
 
-        <div
+        <span
           style={{
             fontFamily: THEME.fonts.heading,
-            fontSize: 32,
+            fontSize: 34,
             fontWeight: 900,
             color: '#ffffff',
-            letterSpacing: -0.5,
-            textShadow: `0 0 20px ${accentColor}80`,
-            textTransform: 'uppercase',
+            letterSpacing: 0.5,
+            lineHeight: 1.2,
           }}
         >
           {text}
-        </div>
+        </span>
 
         {subtext && (
-          <div
+          <span
             style={{
               fontFamily: THEME.fonts.body,
-              fontSize: 18,
-              color: '#cbd5e1',
+              fontSize: 22,
               fontWeight: 500,
+              color: '#cbd5e1',
+              marginTop: 4,
             }}
           >
             {subtext}
-          </div>
+          </span>
         )}
       </div>
     </div>

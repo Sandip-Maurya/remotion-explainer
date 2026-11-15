@@ -4,6 +4,11 @@ import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { THEME } from '../../styles/theme';
 import { LightSheen } from '../motion/LightSheen';
 
+export interface MetricStat {
+  label: string;
+  value: string;
+}
+
 export interface MetricCardProps {
   label: string;
   value: number | string;
@@ -12,6 +17,7 @@ export interface MetricCardProps {
   delta?: string;
   trend?: 'up' | 'down' | 'neutral';
   subtext?: string;
+  stats?: MetricStat[];
   color?: string;
   width?: number;
   delayFrames?: number;
@@ -25,8 +31,9 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   delta,
   trend = 'neutral',
   subtext,
+  stats,
   color,
-  width = 860,
+  width = THEME.dimensions.standardCardWidth,
   delayFrames = 0,
 }) => {
   const frame = useCurrentFrame();
@@ -71,17 +78,17 @@ export const MetricCard: React.FC<MetricCardProps> = ({
     <div
       style={{
         width,
-        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+        backgroundColor: 'rgba(15, 23, 42, 0.85)',
         border: `2px solid ${resolvedColor}50`,
         borderRadius: 24,
-        padding: '32px 36px',
-        boxShadow: `0 12px 40px rgba(0,0,0,0.6), 0 0 30px ${resolvedColor}20`,
+        padding: '38px 44px',
+        boxShadow: `0 16px 48px rgba(0,0,0,0.65), 0 0 35px ${resolvedColor}20`,
         backdropFilter: 'blur(12px)',
         transform: `scale(${entrance})`,
         opacity: entrance,
         display: 'flex',
         flexDirection: 'column',
-        gap: 14,
+        gap: 18,
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -106,7 +113,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         <span
           style={{
             fontFamily: THEME.fonts.heading,
-            fontSize: 22,
+            fontSize: 24,
             fontWeight: 700,
             color: '#94a3b8',
             letterSpacing: 0.5,
@@ -122,7 +129,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
               display: 'flex',
               alignItems: 'center',
               gap: 6,
-              padding: '6px 14px',
+              padding: '6px 16px',
               borderRadius: 14,
               backgroundColor: `${trendColor}20`,
               border: `1.5px solid ${trendColor}60`,
@@ -148,19 +155,20 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       <div
         style={{
           fontFamily: THEME.fonts.numbers,
-          fontSize: 64,
+          fontSize: 88,
           fontWeight: 900,
           color: '#ffffff',
-          letterSpacing: -1,
+          letterSpacing: -2,
           display: 'flex',
           alignItems: 'baseline',
-          gap: 6,
+          gap: 8,
+          lineHeight: 1.05,
         }}
       >
         <span style={{ color: resolvedColor }}>{prefix}</span>
         <span>{displayedValue.toLocaleString()}</span>
         {suffix && (
-          <span style={{ fontSize: 32, fontWeight: 700, color: '#94a3b8', marginLeft: 4 }}>
+          <span style={{ fontSize: 40, fontWeight: 700, color: '#94a3b8', marginLeft: 4 }}>
             {suffix}
           </span>
         )}
@@ -171,12 +179,61 @@ export const MetricCard: React.FC<MetricCardProps> = ({
         <div
           style={{
             fontFamily: THEME.fonts.body,
-            fontSize: 20,
-            color: '#64748b',
+            fontSize: 24,
+            color: '#cbd5e1',
             lineHeight: 1.4,
           }}
         >
           {subtext}
+        </div>
+      )}
+
+      {/* Optional Equivalence / Secondary Micro-Stats Row */}
+      {stats && stats.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 16,
+            marginTop: 10,
+            paddingTop: 20,
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
+          {stats.map((st) => (
+            <div
+              key={st.label}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 4,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: THEME.fonts.heading,
+                  fontSize: 14,
+                  fontWeight: 800,
+                  color: '#64748b',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                }}
+              >
+                {st.label}
+              </span>
+              <span
+                style={{
+                  fontFamily: THEME.fonts.numbers,
+                  fontSize: 22,
+                  fontWeight: 800,
+                  color: '#ffffff',
+                }}
+              >
+                {st.value}
+              </span>
+            </div>
+          ))}
         </div>
       )}
     </div>
