@@ -1,524 +1,536 @@
 [
   {
     "text": "Somebody",
-    "startMs": 100,
-    "endMs": 612,
+    "startMs": 0,
+    "endMs": 476,
     "isEmphasized": false
   },
   {
     "text": "is",
-    "startMs": 625,
-    "endMs": 750,
+    "startMs": 476,
+    "endMs": 650,
     "isEmphasized": false
   },
   {
     "text": "quietly",
-    "startMs": 762,
-    "endMs": 1250,
+    "startMs": 650,
+    "endMs": 1207,
     "isEmphasized": false
   },
   {
     "text": "taking",
-    "startMs": 1262,
-    "endMs": 1625,
+    "startMs": 1207,
+    "endMs": 1718,
     "isEmphasized": false
   },
   {
-    "text": "4 hours",
-    "startMs": 1638,
-    "endMs": 2300,
+    "text": "4",
+    "startMs": 1718,
+    "endMs": 2125,
+    "isEmphasized": true
+  },
+  {
+    "text": "hours",
+    "startMs": 2125,
+    "endMs": 2543,
     "isEmphasized": false
   },
   {
     "text": "of",
-    "startMs": 2312,
-    "endMs": 2375,
+    "startMs": 2543,
+    "endMs": 2659,
     "isEmphasized": false
   },
   {
     "text": "your",
-    "startMs": 2388,
-    "endMs": 2538,
+    "startMs": 2659,
+    "endMs": 2868,
     "isEmphasized": false
   },
   {
     "text": "work",
-    "startMs": 2550,
-    "endMs": 2800,
+    "startMs": 2868,
+    "endMs": 3379,
     "isEmphasized": false
   },
   {
     "text": "every",
-    "startMs": 2812,
-    "endMs": 3062,
+    "startMs": 3379,
+    "endMs": 3855,
     "isEmphasized": false
   },
   {
     "text": "single",
-    "startMs": 3075,
-    "endMs": 3450,
+    "startMs": 3855,
+    "endMs": 4272,
     "isEmphasized": false
   },
   {
-    "text": "week",
-    "startMs": 3462,
-    "endMs": 3850,
+    "text": "week.",
+    "startMs": 4272,
+    "endMs": 5248,
     "isEmphasized": false
   },
   {
     "text": "Sounds",
-    "startMs": 4712,
-    "endMs": 5112,
+    "startMs": 5248,
+    "endMs": 5642,
     "isEmphasized": false
   },
   {
-    "text": "crazy",
-    "startMs": 5125,
-    "endMs": 5662,
+    "text": "crazy,",
+    "startMs": 5642,
+    "endMs": 6072,
     "isEmphasized": false
   },
   {
-    "text": "right",
-    "startMs": 5938,
-    "endMs": 6325,
+    "text": "right?",
+    "startMs": 6072,
+    "endMs": 6908,
     "isEmphasized": false
   },
   {
     "text": "You",
-    "startMs": 7188,
-    "endMs": 7338,
+    "startMs": 6908,
+    "endMs": 7105,
     "isEmphasized": false
   },
   {
     "text": "never",
-    "startMs": 7350,
-    "endMs": 7638,
+    "startMs": 7105,
+    "endMs": 7349,
     "isEmphasized": false
   },
   {
     "text": "signed",
-    "startMs": 7650,
-    "endMs": 7950,
+    "startMs": 7349,
+    "endMs": 7686,
     "isEmphasized": false
   },
   {
     "text": "up",
-    "startMs": 7962,
-    "endMs": 8100,
+    "startMs": 7686,
+    "endMs": 7837,
     "isEmphasized": false
   },
   {
     "text": "for",
-    "startMs": 8112,
-    "endMs": 8375,
+    "startMs": 7837,
+    "endMs": 8022,
     "isEmphasized": false
   },
   {
-    "text": "it",
-    "startMs": 8388,
-    "endMs": 8562,
+    "text": "it.",
+    "startMs": 8022,
+    "endMs": 8707,
     "isEmphasized": false
   },
   {
     "text": "Look",
-    "startMs": 9425,
-    "endMs": 9688,
+    "startMs": 8707,
+    "endMs": 8940,
     "isEmphasized": false
   },
   {
     "text": "at",
-    "startMs": 9700,
-    "endMs": 9775,
+    "startMs": 8940,
+    "endMs": 9033,
     "isEmphasized": false
   },
   {
     "text": "this",
-    "startMs": 9788,
-    "endMs": 9975,
+    "startMs": 9033,
+    "endMs": 9300,
     "isEmphasized": false
   },
   {
     "text": "grocery",
-    "startMs": 9988,
-    "endMs": 10412,
+    "startMs": 9300,
+    "endMs": 9834,
     "isEmphasized": false
   },
   {
     "text": "cart",
-    "startMs": 10425,
-    "endMs": 10712,
+    "startMs": 9834,
+    "endMs": 10170,
     "isEmphasized": false
   },
   {
-    "text": "from 2020",
-    "startMs": 10725,
-    "endMs": 11688,
+    "text": "from",
+    "startMs": 10170,
+    "endMs": 10449,
     "isEmphasized": false
+  },
+  {
+    "text": "2020.",
+    "startMs": 10449,
+    "endMs": 12144,
+    "isEmphasized": true
   },
   {
     "text": "One",
-    "startMs": 12550,
-    "endMs": 12788,
+    "startMs": 12144,
+    "endMs": 12446,
     "isEmphasized": false
   },
   {
     "text": "hundred",
-    "startMs": 12800,
-    "endMs": 13112,
+    "startMs": 12446,
+    "endMs": 12817,
     "isEmphasized": false
   },
   {
     "text": "dollars",
-    "startMs": 13125,
-    "endMs": 13550,
+    "startMs": 12817,
+    "endMs": 13340,
     "isEmphasized": false
   },
   {
     "text": "filled",
-    "startMs": 13562,
-    "endMs": 13850,
+    "startMs": 13340,
+    "endMs": 13700,
     "isEmphasized": false
   },
   {
     "text": "it",
-    "startMs": 13862,
-    "endMs": 13950,
+    "startMs": 13700,
+    "endMs": 13851,
     "isEmphasized": false
   },
   {
     "text": "to",
-    "startMs": 13962,
-    "endMs": 14050,
+    "startMs": 13851,
+    "endMs": 14048,
     "isEmphasized": false
   },
   {
     "text": "the",
-    "startMs": 14062,
-    "endMs": 14162,
+    "startMs": 14048,
+    "endMs": 14187,
     "isEmphasized": false
   },
   {
-    "text": "brim",
-    "startMs": 14175,
-    "endMs": 14575,
+    "text": "brim.",
+    "startMs": 14187,
+    "endMs": 15116,
     "isEmphasized": false
   },
   {
-    "text": "Today",
-    "startMs": 15438,
-    "endMs": 15925,
+    "text": "Today?",
+    "startMs": 15116,
+    "endMs": 16289,
     "isEmphasized": false
   },
   {
     "text": "That",
-    "startMs": 16775,
-    "endMs": 17025,
+    "startMs": 16289,
+    "endMs": 16695,
     "isEmphasized": false
   },
   {
     "text": "same",
-    "startMs": 17038,
-    "endMs": 17312,
+    "startMs": 16695,
+    "endMs": 17101,
     "isEmphasized": false
   },
   {
     "text": "hundred",
-    "startMs": 17325,
-    "endMs": 17612,
+    "startMs": 17101,
+    "endMs": 17427,
     "isEmphasized": false
   },
   {
     "text": "dollars",
-    "startMs": 17625,
-    "endMs": 18038,
+    "startMs": 17427,
+    "endMs": 18251,
     "isEmphasized": false
   },
   {
     "text": "leaves",
-    "startMs": 18050,
-    "endMs": 18300,
+    "startMs": 18251,
+    "endMs": 18588,
     "isEmphasized": false
   },
   {
     "text": "it",
-    "startMs": 18312,
-    "endMs": 18388,
+    "startMs": 18588,
+    "endMs": 18750,
     "isEmphasized": false
   },
   {
     "text": "half",
-    "startMs": 18400,
-    "endMs": 18688,
+    "startMs": 18750,
+    "endMs": 19052,
     "isEmphasized": false
   },
   {
-    "text": "empty",
-    "startMs": 18700,
-    "endMs": 19125,
+    "text": "empty.",
+    "startMs": 19052,
+    "endMs": 20050,
     "isEmphasized": false
   },
   {
     "text": "You",
-    "startMs": 19988,
-    "endMs": 20138,
+    "startMs": 20050,
+    "endMs": 20248,
     "isEmphasized": false
   },
   {
     "text": "didn't",
-    "startMs": 20150,
-    "endMs": 20388,
+    "startMs": 20248,
+    "endMs": 20526,
     "isEmphasized": false
   },
   {
     "text": "work",
-    "startMs": 20400,
-    "endMs": 20662,
+    "startMs": 20526,
+    "endMs": 20828,
     "isEmphasized": false
   },
   {
     "text": "any",
-    "startMs": 20675,
-    "endMs": 20850,
+    "startMs": 20828,
+    "endMs": 21060,
     "isEmphasized": false
   },
   {
-    "text": "less",
-    "startMs": 20862,
-    "endMs": 21375,
+    "text": "less.",
+    "startMs": 21060,
+    "endMs": 21954,
     "isEmphasized": false
   },
   {
     "text": "The",
-    "startMs": 22238,
-    "endMs": 22375,
+    "startMs": 21954,
+    "endMs": 22140,
     "isEmphasized": false
   },
   {
     "text": "farmer",
-    "startMs": 22388,
-    "endMs": 22775,
+    "startMs": 22140,
+    "endMs": 22477,
     "isEmphasized": false
   },
   {
     "text": "didn't",
-    "startMs": 22788,
-    "endMs": 23012,
+    "startMs": 22477,
+    "endMs": 22732,
     "isEmphasized": false
   },
   {
     "text": "work",
-    "startMs": 23025,
-    "endMs": 23288,
+    "startMs": 22732,
+    "endMs": 23011,
     "isEmphasized": false
   },
   {
     "text": "any",
-    "startMs": 23300,
-    "endMs": 23475,
+    "startMs": 23011,
+    "endMs": 23243,
     "isEmphasized": false
   },
   {
-    "text": "less",
-    "startMs": 23488,
-    "endMs": 23988,
+    "text": "less.",
+    "startMs": 23243,
+    "endMs": 24091,
     "isEmphasized": false
   },
   {
     "text": "So",
-    "startMs": 24850,
-    "endMs": 25112,
+    "startMs": 24091,
+    "endMs": 24323,
     "isEmphasized": false
   },
   {
     "text": "where",
-    "startMs": 25125,
-    "endMs": 25288,
+    "startMs": 24323,
+    "endMs": 24578,
     "isEmphasized": false
   },
   {
     "text": "did",
-    "startMs": 25300,
-    "endMs": 25400,
+    "startMs": 24578,
+    "endMs": 24718,
     "isEmphasized": false
   },
   {
     "text": "the",
-    "startMs": 25412,
-    "endMs": 25462,
+    "startMs": 24718,
+    "endMs": 24822,
     "isEmphasized": false
   },
   {
     "text": "missing",
-    "startMs": 25475,
-    "endMs": 25825,
+    "startMs": 24822,
+    "endMs": 25147,
     "isEmphasized": false
   },
   {
     "text": "value",
-    "startMs": 25838,
-    "endMs": 26162,
+    "startMs": 25147,
+    "endMs": 25519,
     "isEmphasized": false
   },
   {
-    "text": "go",
-    "startMs": 26175,
-    "endMs": 26512,
+    "text": "go?",
+    "startMs": 25519,
+    "endMs": 26506,
     "isEmphasized": false
   },
   {
     "text": "Inflation",
-    "startMs": 27375,
-    "endMs": 28075,
+    "startMs": 26506,
+    "endMs": 27132,
     "isEmphasized": false
   },
   {
     "text": "isn't",
-    "startMs": 28088,
-    "endMs": 28325,
+    "startMs": 27132,
+    "endMs": 27376,
     "isEmphasized": false
   },
   {
     "text": "prices",
-    "startMs": 28338,
-    "endMs": 28775,
+    "startMs": 27376,
+    "endMs": 27876,
     "isEmphasized": false
   },
   {
-    "text": "rising",
-    "startMs": 28788,
-    "endMs": 29350,
+    "text": "rising.",
+    "startMs": 27876,
+    "endMs": 28897,
     "isEmphasized": false
   },
   {
     "text": "It",
-    "startMs": 30212,
-    "endMs": 30350,
+    "startMs": 28897,
+    "endMs": 29095,
     "isEmphasized": false
   },
   {
     "text": "is",
-    "startMs": 30362,
-    "endMs": 30488,
+    "startMs": 29095,
+    "endMs": 29222,
     "isEmphasized": false
   },
   {
     "text": "your",
-    "startMs": 30500,
-    "endMs": 30625,
+    "startMs": 29222,
+    "endMs": 29420,
     "isEmphasized": false
   },
   {
     "text": "life",
-    "startMs": 30638,
-    "endMs": 30925,
+    "startMs": 29420,
+    "endMs": 29698,
     "isEmphasized": false
   },
   {
     "text": "energy",
-    "startMs": 30938,
-    "endMs": 31325,
+    "startMs": 29698,
+    "endMs": 30139,
     "isEmphasized": false
   },
   {
     "text": "being",
-    "startMs": 31338,
-    "endMs": 31600,
+    "startMs": 30139,
+    "endMs": 30453,
     "isEmphasized": false
   },
   {
     "text": "quietly",
-    "startMs": 31612,
-    "endMs": 32100,
+    "startMs": 30453,
+    "endMs": 30952,
     "isEmphasized": false
   },
   {
-    "text": "diluted",
-    "startMs": 32112,
-    "endMs": 32662,
+    "text": "diluted.",
+    "startMs": 30952,
+    "endMs": 32160,
     "isEmphasized": false
   },
   {
     "text": "Don't",
-    "startMs": 33525,
-    "endMs": 33788,
+    "startMs": 32160,
+    "endMs": 32508,
     "isEmphasized": false
   },
   {
     "text": "save",
-    "startMs": 33800,
-    "endMs": 34138,
+    "startMs": 32508,
+    "endMs": 32879,
     "isEmphasized": false
   },
   {
     "text": "currency",
-    "startMs": 34150,
-    "endMs": 34638,
+    "startMs": 32879,
+    "endMs": 33472,
     "isEmphasized": false
   },
   {
     "text": "that",
-    "startMs": 34650,
-    "endMs": 34800,
+    "startMs": 33472,
+    "endMs": 33622,
     "isEmphasized": false
   },
   {
     "text": "can",
-    "startMs": 34812,
-    "endMs": 34938,
+    "startMs": 33622,
+    "endMs": 33785,
     "isEmphasized": false
   },
   {
     "text": "be",
-    "startMs": 34950,
-    "endMs": 35038,
+    "startMs": 33785,
+    "endMs": 33924,
     "isEmphasized": false
   },
   {
-    "text": "printed",
-    "startMs": 35050,
-    "endMs": 35550,
+    "text": "printed.",
+    "startMs": 33924,
+    "endMs": 35016,
     "isEmphasized": false
   },
   {
     "text": "Own",
-    "startMs": 36412,
-    "endMs": 36738,
+    "startMs": 35016,
+    "endMs": 35434,
     "isEmphasized": false
   },
   {
     "text": "real",
-    "startMs": 36750,
-    "endMs": 37012,
+    "startMs": 35434,
+    "endMs": 35840,
     "isEmphasized": false
   },
   {
-    "text": "assets",
-    "startMs": 37025,
-    "endMs": 37738,
+    "text": "assets.",
+    "startMs": 35840,
+    "endMs": 36989,
     "isEmphasized": false
   },
   {
     "text": "Because",
-    "startMs": 38600,
-    "endMs": 39000,
+    "startMs": 36989,
+    "endMs": 37419,
     "isEmphasized": false
   },
   {
     "text": "every",
-    "startMs": 39012,
-    "endMs": 39275,
+    "startMs": 37419,
+    "endMs": 37872,
     "isEmphasized": false
   },
   {
     "text": "single",
-    "startMs": 39288,
-    "endMs": 39688,
+    "startMs": 37872,
+    "endMs": 38336,
     "isEmphasized": false
   },
   {
-    "text": "week",
-    "startMs": 39700,
-    "endMs": 40112,
+    "text": "week...",
+    "startMs": 38336,
+    "endMs": 39009,
     "isEmphasized": false
   }
 ]

@@ -4,31 +4,54 @@
   "topic": "Economics",
   "aspectRatio": "9:16",
   "fps": 30,
-  "totalDurationInFrames": 1204,
+  "totalDurationInFrames": 1171,
   "templateId": "data-explainer",
   "templateVersion": 1,
   "narrativeMood": "tension-to-clarity",
   "narration": {
-    "engine": "edge-tts",
-    "voiceId": "en-US-ChristopherNeural",
+    "engine": "elevenlabs",
+    "voiceId": "Daniel (British Broadcaster)",
     "audioFile": "001-why-inflation-hurts/narration.mp3",
-    "durationInSeconds": 40.11
+    "durationInSeconds": 39.01
   },
   "sfxEvents": [
-    { "frame": 8, "soundId": "sub-drop", "volume": 0.7 },
-    { "frame": 126, "soundId": "whoosh", "volume": 0.45 },
-    { "frame": 360, "soundId": "pop", "volume": 0.55 },
-    { "frame": 735, "soundId": "sub-drop", "volume": 0.8 },
-    { "frame": 1020, "soundId": "chime", "volume": 0.6 }
+    {
+      "frame": 8,
+      "soundId": "sub-drop",
+      "volume": 0.7
+    },
+    {
+      "frame": 123,
+      "soundId": "whoosh",
+      "volume": 0.45
+    },
+    {
+      "frame": 351,
+      "soundId": "pop",
+      "volume": 0.55
+    },
+    {
+      "frame": 715,
+      "soundId": "sub-drop",
+      "volume": 0.8
+    },
+    {
+      "frame": 992,
+      "soundId": "chime",
+      "volume": 0.6
+    }
   ],
   "beats": [
     {
       "id": "b1-metric-hook",
       "slot": "metric-hook",
-      "durationInFrames": 126,
+      "durationInFrames": 123,
       "props": {
         "eyebrow": "THE QUIET THEFT",
-        "title": { "prefix": "4 HOURS", "accent": "GONE" },
+        "title": {
+          "prefix": "4 HOURS",
+          "accent": "GONE"
+        },
         "metric": {
           "label": "Stolen Work Every Week",
           "value": 4,
@@ -37,9 +60,18 @@
           "trend": "down",
           "subtext": "Somebody is quietly taking 4 hours of your work every week.",
           "stats": [
-            { "label": "You Signed Up?", "value": "No" },
-            { "label": "You See It?", "value": "Rarely" },
-            { "label": "It Compounds", "value": "Weekly" }
+            {
+              "label": "You Signed Up?",
+              "value": "No"
+            },
+            {
+              "label": "You See It?",
+              "value": "Rarely"
+            },
+            {
+              "label": "It Compounds",
+              "value": "Weekly"
+            }
           ],
           "color": "#f59e0b"
         },
@@ -49,14 +81,14 @@
           "badgeTag": "HOOK",
           "accentColor": "#f59e0b",
           "startFrame": 25,
-          "durationFrames": 90
+          "durationFrames": 85
         }
       }
     },
     {
       "id": "b2-before-after",
       "slot": "before-after",
-      "durationInFrames": 234,
+      "durationInFrames": 228,
       "props": {
         "eyebrow": "YOUR GROCERY CART",
         "title": "SAME $100. HALF THE FOOD.",
@@ -82,21 +114,34 @@
           "badgeTag": "STAKES",
           "accentColor": "#ef4444",
           "startFrame": 35,
-          "durationFrames": 180
+          "durationFrames": 175
         }
       }
     },
     {
       "id": "b3-bar-mechanism",
       "slot": "bar-mechanism",
-      "durationInFrames": 375,
+      "durationInFrames": 364,
       "props": {
         "title": "PURCHASING POWER OF THE DOLLAR",
         "data": [
-          { "label": "2020", "value": 100 },
-          { "label": "2022", "value": 85 },
-          { "label": "2024", "value": 72 },
-          { "label": "2026", "value": 61, "delta": "-39%" }
+          {
+            "label": "2020",
+            "value": 100
+          },
+          {
+            "label": "2022",
+            "value": 85
+          },
+          {
+            "label": "2024",
+            "value": 72
+          },
+          {
+            "label": "2026",
+            "value": 61,
+            "delta": "-39%"
+          }
         ],
         "unit": "%",
         "highlightIndex": 3,
@@ -108,14 +153,14 @@
           "badgeTag": "MECHANISM",
           "accentColor": "#38bdf8",
           "startFrame": 40,
-          "durationFrames": 310
+          "durationFrames": 300
         }
       }
     },
     {
       "id": "b4-climax-drop",
       "slot": "climax-drop",
-      "durationInFrames": 285,
+      "durationInFrames": 277,
       "props": {
         "eyebrow": "THE REAL DEFINITION",
         "title": "INFLATION ISN'T PRICES RISING.",
@@ -129,14 +174,14 @@
           "badgeTag": "EPIPHANY",
           "accentColor": "#ef4444",
           "startFrame": 50,
-          "durationFrames": 210
+          "durationFrames": 200
         }
       }
     },
     {
       "id": "b5-payoff-end",
       "slot": "payoff-end",
-      "durationInFrames": 184,
+      "durationInFrames": 179,
       "props": {
         "bannerEyebrow": "PROTECT YOUR TIME",
         "bannerText": "Don't save currency that can be printed.",
