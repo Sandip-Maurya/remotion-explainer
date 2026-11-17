@@ -285,10 +285,17 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
   * `src/templates/registry.ts` stub (planned slots for I2)
   * validate / scaffold / ElevenLabs resolve `episodes/` first
   * Legacy compositions still render via updated imports
-- [ ] **M2:** Extract `templates/decision-compare` (from Ep 003) + `templates/data-explainer` (from Ep 002 remaster)
-- [ ] **M3:** Migrate Ep 002 + 003 `content.json` → `templateId` + `beats[]`; thin/remove legacy compositions
-- [ ] **M4:** `build --slug` CLI (validate → render; TTS only if audio missing)
-- [ ] **M5 Validation gate:**
+- [x] **M2 (Iteration I2):** Extract `templates/decision-compare` + `templates/data-explainer` ✅
+  * `src/templates/decision-compare/` + `data-explainer/` (schema + render)
+  * Registry status `ready`; `EpisodePlayer` resolves `templateId`
+  * `AudioMixer` / `EpisodeShell` accept Schema v1 `beats[]` (climax pause from props)
+- [x] **M3 (Iteration I2):** Migrate Ep 002 + 003 → `templateId` + `beats[]` ✅
+  * `episodes/002-debt-clock/content.json` → `data-explainer`
+  * `episodes/003-python-vs-javascript/content.json` → `decision-compare`
+  * Thin adapters: `PythonVsJavascript`, `TheDebtClockRemastered`
+  * Root registers slug ids `002-debt-clock` / `003-python-vs-javascript` (+ Studio aliases)
+- [ ] **M4 (Iteration I3):** `build --slug` CLI (validate → render; TTS only if audio missing)
+- [ ] **M5 Validation gate (Iteration I3):**
   - [ ] Re-render `002-debt-clock` from `data-explainer` + episode data
   - [ ] Re-render `003-python-vs-javascript` from `decision-compare` + episode data
   - [ ] Invariants pass; visual parity vs current masters; JSON-only smoke tweak on 003
@@ -333,7 +340,8 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
 | **2026-11-16** | Phase 3.5 | Episode 003 Python vs JS produced + master render (`out/003-python-vs-javascript.mp4`). | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Template engine design locked; audio stays in git; pre-refactor checkpoint committed. | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Docs: created Doc 06 + template catalogs; updated 02–05 + README. | ✅ COMPLETED |
-| **2026-11-17** | Phase 3.6 / I1 | M1 foundation: `episodes/`, Schema v1 types, discovery, registry stub; compositions still legacy. **Next: I2 (M2+M3).** | 🔵 ACTIVE |
+| **2026-11-17** | Phase 3.6 / I1 | M1 foundation: `episodes/`, Schema v1 types, discovery, registry stub; compositions still legacy. | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 / I2 | M2+M3: `decision-compare` + `data-explainer` templates; Ep 002/003 on beats; thin adapters. **Next: I3 (M4+M5 re-render gate).** | 🔵 ACTIVE |
 
 ---
 

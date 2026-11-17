@@ -5,6 +5,8 @@
   "aspectRatio": "9:16",
   "fps": 30,
   "totalDurationInFrames": 1902,
+  "templateId": "data-explainer",
+  "templateVersion": 1,
   "narrativeMood": "urgent-escalation",
   "narration": {
     "engine": "elevenlabs",
@@ -13,131 +15,173 @@
     "durationInSeconds": 63.39
   },
   "sfxEvents": [
-    {
-      "frame": 0,
-      "soundId": "sub-drop",
-      "volume": 0.8
-    },
-    {
-      "frame": 15,
-      "soundId": "cash-register",
-      "volume": 0.65
-    },
-    {
-      "frame": 360,
-      "soundId": "whoosh",
-      "volume": 0.5
-    },
-    {
-      "frame": 400,
-      "soundId": "pop",
-      "volume": 0.65
-    },
-    {
-      "frame": 735,
-      "soundId": "whoosh",
-      "volume": 0.5
-    },
-    {
-      "frame": 760,
-      "soundId": "pop",
-      "volume": 0.6
-    },
-    {
-      "frame": 960,
-      "soundId": "pop",
-      "volume": 0.6
-    },
-    {
-      "frame": 1251,
-      "soundId": "sub-drop",
-      "volume": 0.85
-    },
-    {
-      "frame": 1579,
-      "soundId": "whoosh",
-      "volume": 0.5
-    },
-    {
-      "frame": 1620,
-      "soundId": "chime",
-      "volume": 0.65
-    }
+    { "frame": 0, "soundId": "sub-drop", "volume": 0.8 },
+    { "frame": 15, "soundId": "cash-register", "volume": 0.65 },
+    { "frame": 360, "soundId": "whoosh", "volume": 0.5 },
+    { "frame": 400, "soundId": "pop", "volume": 0.65 },
+    { "frame": 735, "soundId": "whoosh", "volume": 0.5 },
+    { "frame": 760, "soundId": "pop", "volume": 0.6 },
+    { "frame": 960, "soundId": "pop", "volume": 0.6 },
+    { "frame": 1251, "soundId": "sub-drop", "volume": 0.85 },
+    { "frame": 1579, "soundId": "whoosh", "volume": 0.5 },
+    { "frame": 1620, "soundId": "chime", "volume": 0.65 }
   ],
-  "scenes": [
+  "beats": [
     {
-      "id": "scene-1-hook",
-      "type": "hook",
+      "id": "b1-metric-hook",
+      "slot": "metric-hook",
       "durationInFrames": 390,
-      "headline": "$35 TRILLION",
-      "subtext": "Every American citizen owes over $100,000.",
-      "highlightWord": "TRILLION",
-      "metaphor": "clock"
-    },
-    {
-      "id": "scene-2-agitation",
-      "type": "human-stakes",
-      "durationInFrames": 455,
-      "personaLabel": "US National Debt Explosion",
-      "comparison": {
-        "pastLabel": "Year 2000",
-        "pastValue": "$5.6T",
-        "presentLabel": "Today",
-        "presentValue": "$35.2T"
-      },
-      "impactStatement": "Interest payments alone now exceed $1 Trillion per year—more than the entire defense budget."
-    },
-    {
-      "id": "scene-3-mechanism",
-      "type": "chart-explanation",
-      "durationInFrames": 490,
-      "chartType": "line",
-      "chartTitle": "National Debt Trajectory & Major Holders",
-      "data": [
-        {
-          "label": "1990",
-          "value": 3.2
+      "props": {
+        "eyebrow": "THE NATIONAL DEBT CLOCK",
+        "title": { "prefix": "35 MILLION", "accent": "MILLIONS" },
+        "metric": {
+          "label": "US National Debt",
+          "value": 35.2,
+          "prefix": "$",
+          "suffix": " Trillion",
+          "delta": "+312%",
+          "trend": "up",
+          "subtext": "Every single American citizen now owes over $104,000 of federal debt.",
+          "stats": [
+            { "label": "Per Citizen", "value": "$104,200" },
+            { "label": "Debt to GDP", "value": "124%" },
+            { "label": "Daily Surge", "value": "+$3.8B/day" }
+          ],
+          "color": "#38bdf8"
         },
-        {
-          "label": "2000",
-          "value": 5.6
-        },
-        {
-          "label": "2008",
-          "value": 10.0
-        },
-        {
-          "label": "2016",
-          "value": 19.5
-        },
-        {
-          "label": "2020",
-          "value": 27.7
-        },
-        {
-          "label": "2024",
-          "value": 35.2
+        "callout": {
+          "text": "$104,000 PER CITIZEN",
+          "subtext": "Every man, woman, and child owes this today",
+          "badgeTag": "UNPAYABLE BURDEN",
+          "accentColor": "#f59e0b",
+          "startFrame": 35,
+          "durationFrames": 350
         }
-      ],
-      "unit": "T",
-      "keyTakeaway": "Foreign nations own $8T. The Fed owns $5T. But the single biggest creditor is American citizens via pensions and retirement funds."
+      }
     },
     {
-      "id": "scene-4-climax",
-      "type": "dramatic-climax",
+      "id": "b2-before-after",
+      "slot": "before-after",
+      "durationInFrames": 455,
+      "props": {
+        "title": "EXPONENTIAL ACCELERATION",
+        "subtitle": "Interest payments now consume more than defense.",
+        "before": {
+          "tag": "Year 2000",
+          "value": "$5.6T",
+          "label": "56% of US GDP",
+          "subtext": "Manageable interest burden ($200B/yr)"
+        },
+        "after": {
+          "tag": "Today",
+          "value": "$35.2T",
+          "label": "124% of US GDP",
+          "subtext": "Interest exceeds $1.1 Trillion/year",
+          "isShock": true
+        },
+        "connectorBadge": "▲ 6.3x SURGE",
+        "layout": "stacked",
+        "callout": {
+          "text": "OVER $1.1 TRILLION / YR",
+          "subtext": "Interest alone consumes more than defense",
+          "badgeTag": "RECORD INTEREST",
+          "accentColor": "#ef4444",
+          "startFrame": 40,
+          "durationFrames": 410
+        }
+      }
+    },
+    {
+      "id": "b3a-line-mechanism",
+      "slot": "line-mechanism",
+      "durationInFrames": 175,
+      "props": {
+        "title": "34-YEAR NATIONAL DEBT TRAJECTORY",
+        "data": [
+          { "label": "1990", "value": 3.2 },
+          { "label": "2000", "value": 5.6 },
+          { "label": "2008", "value": 10.0 },
+          { "label": "2016", "value": 19.5 },
+          { "label": "2020", "value": 27.7 },
+          { "label": "2024", "value": 35.2 }
+        ],
+        "prefix": "$",
+        "unit": "T",
+        "height": 660,
+        "callout": {
+          "text": "PARABOLIC EXPLOSION",
+          "subtext": "From linear growth to exponential surge",
+          "badgeTag": "EXPONENTIAL SPIKE",
+          "accentColor": "#38bdf8",
+          "startFrame": 25,
+          "durationFrames": 145
+        }
+      }
+    },
+    {
+      "id": "b3b-bar-mechanism",
+      "slot": "bar-mechanism",
+      "durationInFrames": 315,
+      "props": {
+        "title": "WHO ACTUALLY OWNS THE $35 TRILLION?",
+        "data": [
+          { "label": "Foreign", "value": 8.5, "sublabel": "Japan & China" },
+          { "label": "Fed", "value": 4.8, "sublabel": "Central Bank" },
+          { "label": "Intragov", "value": 7.1, "sublabel": "Social Security" },
+          {
+            "label": "You (Public)",
+            "value": 14.8,
+            "delta": "Biggest",
+            "sublabel": "Pensions & Banks"
+          }
+        ],
+        "prefix": "$",
+        "unit": "T",
+        "highlightIndex": 3,
+        "decimals": 1,
+        "height": 660,
+        "callout": {
+          "text": "YOU ARE THE BIGGEST CREDITOR",
+          "subtext": "Held inside your 401(k), pensions, and savings",
+          "badgeTag": "THE REVELATION",
+          "accentColor": "#10b981",
+          "startFrame": 25,
+          "durationFrames": 285
+        }
+      }
+    },
+    {
+      "id": "b4-climax-drop",
+      "slot": "climax-drop",
       "durationInFrames": 340,
-      "epiphanyHeadline": "THE STEALTH TRAP",
-      "punchline": "They don't raise taxes. They quietly print more currency, eroding the purchasing power of every dollar you save.",
-      "dramaticPauseFrames": 45,
-      "subBassHit": true
+      "props": {
+        "eyebrow": "THE STEALTH TRAP",
+        "title": "THEY DON'T RAISE TAXES.",
+        "titleAccent": "THEY DILUTE THE DOLLAR.",
+        "arrowLabel": "PURCHASING POWER",
+        "dramaticPauseFrames": 45,
+        "subBassHit": true,
+        "callout": {
+          "text": "THE STEALTH DEBASEMENT",
+          "subtext": "Quietly diluting every dollar you work for",
+          "badgeTag": "HIDDEN MECHANISM",
+          "accentColor": "#ef4444",
+          "startFrame": 35,
+          "durationFrames": 300
+        }
+      }
     },
     {
-      "id": "scene-5-payoff",
-      "type": "empowerment-payoff",
+      "id": "b5-payoff-end",
+      "slot": "payoff-end",
       "durationInFrames": 227,
-      "coreLesson": "When debt grows faster than real value, it's not a loan. It's a stealth tax on your time.",
-      "callToAction": "Subscribe to understand the real money machine.",
-      "loopTransitionPhrase": "Thirty-five trillion dollars."
+      "props": {
+        "bannerEyebrow": "THE BRUTAL REALITY",
+        "bannerText": "\"When debt grows faster than real value, it's not a loan anymore.\"",
+        "coreLesson": "It quietly dilutes every single hour you work.",
+        "callToAction": "Subscribe to see through the financial illusion",
+        "loopBridge": "Thirty-five trillion dollars..."
+      }
     }
   ]
 }

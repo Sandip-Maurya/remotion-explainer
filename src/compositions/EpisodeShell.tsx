@@ -7,10 +7,10 @@ import { ProgressBar } from '../components/core/ProgressBar';
 import { AudioMixer } from '../audio/AudioMixer';
 import { CameraDrift } from '../components/motion/CameraDrift';
 import { CameraMicroBump } from '../components/motion/CameraMicroBump';
-import { VideoContent } from '../types/content.types';
+import type { AnyEpisodeContent } from '../types/content.types';
 
 export interface EpisodeShellProps {
-  content: VideoContent;
+  content: AnyEpisodeContent;
   showSafeZone?: boolean;
   progressColor?: string;
   backgroundColor?: string;

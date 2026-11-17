@@ -6,3 +6,5 @@ export {
   LEGACY_VIDEOS_DIR_NAME,
 } from './discoverEpisodes';
 export type { DiscoveredEpisode } from './discoverEpisodes';
+export { EpisodePlayer } from './EpisodePlayer';
+export type { EpisodePlayerProps } from './EpisodePlayer';

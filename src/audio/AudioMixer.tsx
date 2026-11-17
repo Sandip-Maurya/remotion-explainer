@@ -1,11 +1,42 @@
 // src/audio/AudioMixer.tsx
 import React from 'react';
 import { Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
-import { VideoContent } from '../types/content.types';
+import type { AnyEpisodeContent, EpisodeBeatV1, SceneData } from '../types/content.types';
 import { resolveSfxPath, getSfxDefaultVolume } from './sfxLibrary';
 
 export interface AudioMixerProps {
-  content: VideoContent;
+  content: AnyEpisodeContent;
+}
+
+function findClimaxSilence(content: AnyEpisodeContent): {
+  startFrame: number;
+  pauseDuration: number;
+} {
+  let accumulated = 0;
+
+  if ('beats' in content && content.beats && content.beats.length > 0) {
+    for (const beat of content.beats as EpisodeBeatV1[]) {
+      const pause = beat.props?.dramaticPauseFrames;
+      if (typeof pause === 'number' && pause > 0) {
+        return { startFrame: accumulated, pauseDuration: pause };
+      }
+      accumulated += beat.durationInFrames;
+    }
+    return { startFrame: 0, pauseDuration: 0 };
+  }
+
+  accumulated = 0;
+  for (const scene of (content as { scenes?: SceneData[] }).scenes ?? []) {
+    if (scene.type === 'dramatic-climax') {
+      return {
+        startFrame: accumulated,
+        pauseDuration: scene.dramaticPauseFrames,
+      };
+    }
+    accumulated += scene.durationInFrames;
+  }
+
+  return { startFrame: 0, pauseDuration: 0 };
 }
 
 /**
@@ -14,42 +45,24 @@ export interface AudioMixerProps {
  */
 export const AudioMixer: React.FC<AudioMixerProps> = ({ content }) => {
   const { fps } = useVideoConfig();
-
-  // Find climax scene for dramatic silence window
-  let climaxStartFrame = 0;
-  let climaxPauseDuration = 0;
-  let accumulatedFrames = 0;
-
-  for (const scene of content.scenes) {
-    if (scene.type === 'dramatic-climax') {
-      climaxStartFrame = accumulatedFrames;
-      climaxPauseDuration = scene.dramaticPauseFrames;
-      break;
-    }
-    accumulatedFrames += scene.durationInFrames;
-  }
+  const { startFrame: climaxStartFrame, pauseDuration: climaxPauseDuration } =
+    findClimaxSilence(content);
 
   const musicFile = content.backgroundMusic?.file;
-  const baseVolume = content.backgroundMusic?.baseVolume ?? 0.10;
+  const baseVolume = content.backgroundMusic?.baseVolume ?? 0.1;
   const duckedVolume = content.backgroundMusic?.duckedVolume ?? 0.04;
   const narrationDurationFrames = Math.round(content.narration.durationInSeconds * fps);
 
   return (
     <>
-      {/* 1. Main Narration Track */}
       {content.narration.audioFile && (
-        <Audio
-          src={staticFile(content.narration.audioFile)}
-          volume={1.0}
-        />
+        <Audio src={staticFile(content.narration.audioFile)} volume={1.0} />
       )}
 
-      {/* 2. Background Music with Dynamic Ducking & Climax Silence */}
       {musicFile && (
         <Audio
           src={staticFile(musicFile)}
           volume={(frame) => {
-            // Cut music completely during dramatic pause in Climax
             if (
               climaxPauseDuration > 0 &&
               frame >= climaxStartFrame &&
@@ -57,14 +70,12 @@ export const AudioMixer: React.FC<AudioMixerProps> = ({ content }) => {
             ) {
               return 0;
             }
-            // Duck during active narration
             const narrationActive = frame <= narrationDurationFrames;
             return narrationActive ? duckedVolume : baseVolume;
           }}
         />
       )}
 
-      {/* 3. Synchronized SFX Cue Sequence */}
       {content.sfxEvents?.map((cue, idx) => {
         const sfxFile = resolveSfxPath(cue.soundId);
         const volume = cue.volume ?? getSfxDefaultVolume(cue.soundId);
@@ -75,10 +86,7 @@ export const AudioMixer: React.FC<AudioMixerProps> = ({ content }) => {
             from={cue.frame}
             durationInFrames={Math.round(fps * 2)}
           >
-            <Audio
-              src={staticFile(sfxFile)}
-              volume={volume}
-            />
+            <Audio src={staticFile(sfxFile)} volume={volume} />
           </Sequence>
         );
       })}

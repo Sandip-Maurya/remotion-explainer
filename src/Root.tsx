@@ -6,16 +6,24 @@ import { ChartShowcase } from './compositions/ChartShowcase';
 import { TheDebtClock } from './compositions/TheDebtClock';
 import { TheDebtClockRemastered } from './compositions/TheDebtClockRemastered';
 import { PythonVsJavascript } from './compositions/PythonVsJavascript';
+import { EpisodePlayer } from './engine/EpisodePlayer';
+import type { EpisodeContentV1 } from './types/content.types';
 import { initFonts } from './styles/fonts';
 import './styles/global.css';
+
+import content002 from '../episodes/002-debt-clock/content.json';
+import content003 from '../episodes/003-python-vs-javascript/content.json';
 
 // Preload Google Fonts
 initFonts();
 
+const ep002 = content002 as unknown as EpisodeContentV1;
+const ep003 = content003 as unknown as EpisodeContentV1;
+
 export const Root: React.FC = () => {
   return (
     <>
-      {/* Production Episode 001: 1080x1920, 30fps, 1203 frames (40.11 seconds) */}
+      {/* Production Episode 001: legacy composition (not yet templated) */}
       <Composition
         id="WhyInflationHurts"
         component={WhyInflationHurts}
@@ -28,7 +36,6 @@ export const Root: React.FC = () => {
         }}
       />
 
-      {/* Development Composition with Safe Zone Visible */}
       <Composition
         id="WhyInflationHurts-SafeZone"
         component={WhyInflationHurts}
@@ -66,7 +73,7 @@ export const Root: React.FC = () => {
         }}
       />
 
-      {/* Milestone 2: Episode 002 "The $35 Trillion Debt Clock" (1770 frames, 59.0s @ 30fps) */}
+      {/* Legacy Edge-TTS Episode 002 (59s) — historical composition */}
       <Composition
         id="TheDebtClock"
         component={TheDebtClock}
@@ -91,11 +98,25 @@ export const Root: React.FC = () => {
         }}
       />
 
-      {/* Phase 2.5 & 3: Episode 002 Remastered with Living Canvas & ElevenLabs Narration */}
+      {/* Template-driven: 002-debt-clock (data-explainer) */}
+      <Composition
+        id="002-debt-clock"
+        component={EpisodePlayer}
+        durationInFrames={ep002.totalDurationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          content: ep002,
+          showSafeZone: false,
+        }}
+      />
+
+      {/* Alias: Studio / render scripts that still use TheDebtClockRemastered */}
       <Composition
         id="TheDebtClockRemastered"
         component={TheDebtClockRemastered}
-        durationInFrames={1902}
+        durationInFrames={ep002.totalDurationInFrames}
         fps={30}
         width={1080}
         height={1920}
@@ -107,7 +128,7 @@ export const Root: React.FC = () => {
       <Composition
         id="TheDebtClockRemastered-SafeZone"
         component={TheDebtClockRemastered}
-        durationInFrames={1902}
+        durationInFrames={ep002.totalDurationInFrames}
         fps={30}
         width={1080}
         height={1920}
@@ -116,11 +137,25 @@ export const Root: React.FC = () => {
         }}
       />
 
-      {/* Episode 003: Python vs JavaScript (content-first decision Short) */}
+      {/* Template-driven: 003-python-vs-javascript (decision-compare) */}
+      <Composition
+        id="003-python-vs-javascript"
+        component={EpisodePlayer}
+        durationInFrames={ep003.totalDurationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          content: ep003,
+          showSafeZone: false,
+        }}
+      />
+
+      {/* Alias: Studio / render scripts that still use PythonVsJavascript */}
       <Composition
         id="PythonVsJavascript"
         component={PythonVsJavascript}
-        durationInFrames={4942}
+        durationInFrames={ep003.totalDurationInFrames}
         fps={30}
         width={1080}
         height={1920}
@@ -132,7 +167,7 @@ export const Root: React.FC = () => {
       <Composition
         id="PythonVsJavascript-SafeZone"
         component={PythonVsJavascript}
-        durationInFrames={4942}
+        durationInFrames={ep003.totalDurationInFrames}
         fps={30}
         width={1080}
         height={1920}

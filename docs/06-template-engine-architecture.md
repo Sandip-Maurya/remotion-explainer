@@ -108,7 +108,7 @@ explainer-channel/
       └─ assets/
 ```
 
-**Migration note:** **I1 done** — episode products live under `episodes/`; Schema v1 types + discovery + registry stub exist. Legacy `src/compositions/*` still render until I2/I3 extract templates. `videos/` is a pointer-only leftover. Doc 05 tracks the cutover.
+**Migration note:** **I1+I2 done** — episode products under `episodes/`; Schema v1 + discovery; `decision-compare` / `data-explainer` templates ready; Ep 002/003 use `beats[]`. Ep 001 remains a legacy composition until I3. `videos/` is a pointer-only leftover. Doc 05 tracks the cutover.
 
 **Git policy:**
 - ✅ Commit: episode data, narration, captions, templates, engine  

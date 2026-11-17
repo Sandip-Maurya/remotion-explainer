@@ -1,52 +1,33 @@
-// src/templates/registry.ts
 /**
- * Template registry stub (Iteration I1).
- * I2 will register `decision-compare` and `data-explainer` modules here.
+ * Template registry — maps templateId → render module.
  */
 
 import type { TemplateId } from '../types/content.types';
+import { decisionCompareTemplate } from './decision-compare';
+import { dataExplainerTemplate } from './data-explainer';
+import type { VideoTemplate } from './types';
 
-export interface VideoTemplateMeta {
-  id: TemplateId;
-  version: number;
-  slots: readonly string[];
-  /** Filled in I2+ when render modules land */
-  status: 'planned' | 'ready';
-}
+export type { VideoTemplate, TemplateRenderArgs } from './types';
 
-export const TEMPLATE_REGISTRY: Record<Exclude<TemplateId, 'custom'>, VideoTemplateMeta> = {
-  'decision-compare': {
-    id: 'decision-compare',
-    version: 1,
-    status: 'planned',
-    slots: [
-      'hook-faceoff',
-      'paralysis-split',
-      'pros-cons',
-      'goal-paths',
-      'payoff-door',
-    ] as const,
-  },
-  'data-explainer': {
-    id: 'data-explainer',
-    version: 1,
-    status: 'planned',
-    slots: [
-      'metric-hook',
-      'before-after',
-      'line-mechanism',
-      'bar-mechanism',
-      'climax-drop',
-      'payoff-end',
-    ] as const,
-  },
+export const TEMPLATE_REGISTRY: Record<Exclude<TemplateId, 'custom'>, VideoTemplate> = {
+  'decision-compare': decisionCompareTemplate,
+  'data-explainer': dataExplainerTemplate,
 };
 
-export function getTemplateMeta(templateId: TemplateId): VideoTemplateMeta | null {
+export function getTemplate(templateId: TemplateId): VideoTemplate | null {
   if (templateId === 'custom') return null;
   return TEMPLATE_REGISTRY[templateId] ?? null;
 }
 
+/** @deprecated Prefer getTemplate */
+export function getTemplateMeta(templateId: TemplateId): VideoTemplate | null {
+  return getTemplate(templateId);
+}
+
 export function listRegisteredTemplateIds(): TemplateId[] {
   return Object.keys(TEMPLATE_REGISTRY) as TemplateId[];
+}
+
+export function listReadyTemplates(): VideoTemplate[] {
+  return Object.values(TEMPLATE_REGISTRY).filter((t) => t.status === 'ready');
 }

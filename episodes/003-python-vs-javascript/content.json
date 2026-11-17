@@ -5,6 +5,8 @@
   "aspectRatio": "9:16",
   "fps": 30,
   "totalDurationInFrames": 4942,
+  "templateId": "decision-compare",
+  "templateVersion": 1,
   "narrativeMood": "myth-inversion",
   "narration": {
     "engine": "elevenlabs",
@@ -20,61 +22,164 @@
     { "frame": 3365, "soundId": "sub-drop", "volume": 0.82 },
     { "frame": 4184, "soundId": "chime", "volume": 0.65 }
   ],
-  "scenes": [
+  "beats": [
     {
-      "id": "scene-1-hook",
-      "type": "hook",
+      "id": "b1-hook-faceoff",
+      "slot": "hook-faceoff",
       "durationInFrames": 749,
-      "headline": "Python or JavaScript?",
-      "subtext": "You're not coding. You're worrying you're about to waste months.",
-      "highlightWord": "worrying",
-      "metaphor": "clock"
+      "props": {
+        "eyebrow": "BEGINNER TRAP",
+        "title": "Python or JavaScript?",
+        "subtitle": "Two videos. Two answers. Zero progress.",
+        "leftLabel": "PYTHON",
+        "rightLabel": "JAVASCRIPT",
+        "callout": {
+          "text": "WRONG QUESTION",
+          "subtext": "You're not coding — you're worrying",
+          "badgeTag": "PARALYSIS",
+          "accentColor": "#ef4444",
+          "startFrame": 90,
+          "durationFrames": 620
+        }
+      }
     },
     {
-      "id": "scene-2-stakes",
-      "type": "human-stakes",
+      "id": "b2-paralysis-split",
+      "slot": "paralysis-split",
       "durationInFrames": 436,
-      "personaLabel": "The Beginner Freeze",
-      "comparison": {
-        "pastLabel": "What you wanted",
-        "pastValue": "Start building",
-        "presentLabel": "What happens",
-        "presentValue": "Tutorial paralysis"
-      },
-      "impactStatement": "Two gurus. Two languages. Zero progress—because the question itself is the trap."
+      "props": {
+        "eyebrow": "THE BEGINNER FREEZE",
+        "title": "THE REAL COST",
+        "subtitle": "Two gurus. Two languages. Zero progress—because the question itself is the trap.",
+        "before": {
+          "tag": "What you wanted",
+          "value": "Start building",
+          "label": "Ship something",
+          "subtext": "Curiosity → first project",
+          "color": "#10b981"
+        },
+        "after": {
+          "tag": "What happens",
+          "value": "Tutorial paralysis",
+          "label": "Endless switching",
+          "subtext": "Fear of wasting months",
+          "isShock": true
+        },
+        "connectorBadge": "TRAP"
+      }
     },
     {
-      "id": "scene-3-mechanism",
-      "type": "chart-explanation",
-      "durationInFrames": 2126,
-      "chartType": "bar",
-      "chartTitle": "Fit Score by Beginner Goal",
-      "data": [
-        { "label": "Py · AI/Data", "value": 95 },
-        { "label": "Py · Web UI", "value": 35 },
-        { "label": "JS · Web UI", "value": 95 },
-        { "label": "JS · AI/Data", "value": 40 }
-      ],
-      "unit": "",
-      "highlightIndex": 0,
-      "keyTakeaway": "Python = patient teacher for data/AI/automation (weak on rich browser UI). JavaScript = language of the internet for things people click (chaotic first; not the default AI door)."
+      "id": "b3a-pros-python",
+      "slot": "pros-cons",
+      "durationInFrames": 1056,
+      "props": {
+        "eyebrow": "PYTHON",
+        "title": "The patient teacher",
+        "subtitle": "Readable. Calm. Built for data, AI & automation.",
+        "checklist": {
+          "title": "Python",
+          "subtitle": "Where it shines — and where it doesn't",
+          "accentColor": "#38bdf8",
+          "items": [
+            { "text": "Reads almost like English", "tone": "pro" },
+            { "text": "Strong for AI, data, automation, science", "tone": "pro" },
+            { "text": "Gets beginners moving with less panic", "tone": "pro" },
+            { "text": "Not the natural home for rich browser UI", "tone": "con" }
+          ]
+        },
+        "callout": {
+          "text": "FINALLY BREATHE",
+          "subtext": "Fast on-ramp when the goal is numbers & models",
+          "badgeTag": "STRENGTH",
+          "accentColor": "#38bdf8",
+          "startFrame": 40,
+          "durationFrames": 900
+        }
+      }
     },
     {
-      "id": "scene-4-climax",
-      "type": "dramatic-climax",
+      "id": "b3b-pros-javascript",
+      "slot": "pros-cons",
+      "durationInFrames": 1070,
+      "props": {
+        "eyebrow": "JAVASCRIPT",
+        "title": "Language of the internet",
+        "subtitle": "Already inside the sites you use every day.",
+        "backgroundColor": "#0a0e1a",
+        "checklist": {
+          "title": "JavaScript",
+          "subtitle": "Powerful on the web — chaotic at first",
+          "accentColor": "#f59e0b",
+          "delayFrames": 4,
+          "items": [
+            { "text": "Runs in almost every browser", "tone": "pro" },
+            { "text": "Build what people actually touch", "tone": "pro" },
+            { "text": "Browser + server with one language", "tone": "pro" },
+            { "text": "Quirks, async & tool overload early on", "tone": "con" },
+            { "text": "Usually not the first door for AI/data", "tone": "con" }
+          ]
+        },
+        "callout": {
+          "text": "THINGS PEOPLE CLICK",
+          "subtext": "Pages, buttons, dashboards, real products",
+          "badgeTag": "STRENGTH",
+          "accentColor": "#f59e0b",
+          "startFrame": 35,
+          "durationFrames": 900
+        }
+      }
+    },
+    {
+      "id": "b4-goal-paths",
+      "slot": "goal-paths",
       "durationInFrames": 765,
-      "epiphanyHeadline": "DON'T PICK A LANGUAGE",
-      "punchline": "Ask what you'd be proud to show a friend in 30 days—then pick the tool that builds that.",
-      "dramaticPauseFrames": 42,
-      "subBassHit": true
+      "props": {
+        "eyebrow": "THE HUMAN WAY",
+        "title": "DON'T PICK A LANGUAGE",
+        "titleAccent": "PICK A DESTINATION",
+        "paths": [
+          {
+            "ifLabel": "AI · data · automation · research",
+            "thenLabel": "Start with Python",
+            "accentColor": "#38bdf8"
+          },
+          {
+            "ifLabel": "Website · web app · clickable UI",
+            "thenLabel": "Start with JavaScript",
+            "accentColor": "#f59e0b"
+          }
+        ],
+        "dramaticPauseFrames": 42,
+        "callout": {
+          "text": "SHOW A FRIEND IN 30 DAYS",
+          "subtext": "Ask what you'd be proud to show a friend in 30 days—then pick the tool that builds that.",
+          "badgeTag": "DECISION",
+          "accentColor": "#f59e0b",
+          "startFrame": 120,
+          "durationFrames": 580
+        }
+      }
     },
     {
-      "id": "scene-5-payoff",
-      "type": "empowerment-payoff",
+      "id": "b5-payoff-door",
+      "slot": "payoff-door",
       "durationInFrames": 866,
-      "coreLesson": "Your first language is a door, not a prison. You're not behind—and you're not choosing forever.",
-      "callToAction": "Start with the thing you can't stop thinking about building.",
-      "loopTransitionPhrase": "If you're just starting out, you've probably felt this."
+      "props": {
+        "eyebrow": "PERMISSION SLIP",
+        "title": "A door, not a prison",
+        "subtitle": "You're not behind. You're not choosing forever.",
+        "coreLesson": "Your first language is a door, not a prison. You're not behind—and you're not choosing forever.",
+        "callToAction": "Start with the thing you can't stop thinking about building.",
+        "loopBridge": "If you're just starting out, you've probably felt this.",
+        "callout": {
+          "text": "START WITH THE THING",
+          "subtext": "you can't stop thinking about building",
+          "badgeTag": "NEXT STEP",
+          "accentColor": "#10b981",
+          "startFrame": 80,
+          "durationFrames": 650
+        }
+      }
     }
   ]
 }
