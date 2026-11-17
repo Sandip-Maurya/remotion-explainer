@@ -5,6 +5,7 @@ import { WhyInflationHurts } from './compositions/WhyInflationHurts';
 import { ChartShowcase } from './compositions/ChartShowcase';
 import { TheDebtClockRemastered } from './compositions/TheDebtClockRemastered';
 import { PythonVsJavascript } from './compositions/PythonVsJavascript';
+import { CreditCardBlood } from './compositions/CreditCardBlood';
 import { EpisodePlayer } from './engine/EpisodePlayer';
 import type { EpisodeContentV1 } from './types/content.types';
 import { initFonts } from './styles/fonts';
@@ -13,6 +14,7 @@ import './styles/global.css';
 import content001 from '../episodes/001-why-inflation-hurts/content.json';
 import content002 from '../episodes/002-debt-clock/content.json';
 import content003 from '../episodes/003-python-vs-javascript/content.json';
+import content004 from '../episodes/004-credit-card-blood/content.json';
 
 // Preload Google Fonts
 initFonts();
@@ -20,6 +22,7 @@ initFonts();
 const ep001 = content001 as unknown as EpisodeContentV1;
 const ep002 = content002 as unknown as EpisodeContentV1;
 const ep003 = content003 as unknown as EpisodeContentV1;
+const ep004 = content004 as unknown as EpisodeContentV1;
 
 export const Root: React.FC = () => {
   return (
@@ -51,6 +54,15 @@ export const Root: React.FC = () => {
         width={1080}
         height={1920}
         defaultProps={{ content: ep003, showSafeZone: false }}
+      />
+      <Composition
+        id="004-credit-card-blood"
+        component={EpisodePlayer}
+        durationInFrames={ep004.totalDurationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ content: ep004, showSafeZone: false }}
       />
 
       {/* Studio aliases (thin EpisodePlayer adapters) */}
@@ -103,6 +115,24 @@ export const Root: React.FC = () => {
         id="PythonVsJavascript-SafeZone"
         component={PythonVsJavascript}
         durationInFrames={ep003.totalDurationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ showSafeZone: true }}
+      />
+      <Composition
+        id="CreditCardBlood"
+        component={CreditCardBlood}
+        durationInFrames={ep004.totalDurationInFrames}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ showSafeZone: false }}
+      />
+      <Composition
+        id="CreditCardBlood-SafeZone"
+        component={CreditCardBlood}
+        durationInFrames={ep004.totalDurationInFrames}
         fps={30}
         width={1080}
         height={1920}

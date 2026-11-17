@@ -72,6 +72,8 @@ export interface ClimaxDropProps {
   titleAccent?: string;
   arrowLabel?: string;
   dramaticPauseFrames: number;
+  /** Delay silence start within the climax beat (frames from beat start) */
+  dramaticPauseOffsetFrames?: number;
   subBassHit?: boolean;
   callout?: CalloutProps;
 }

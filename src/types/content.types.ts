@@ -140,7 +140,12 @@ export interface VideoContent {
 
 // --- Schema v1: template engine episodes (beats + templateId) ---
 
-export type TemplateId = 'decision-compare' | 'data-explainer' | 'custom';
+export type TemplateId =
+  | 'decision-compare'
+  | 'data-explainer'
+  | 'evidence-explainer'
+  | 'custom';
+
 
 export interface EpisodeBeatV1 {
   id: string;

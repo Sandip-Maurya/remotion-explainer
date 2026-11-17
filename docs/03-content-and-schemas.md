@@ -18,7 +18,7 @@ Under the **template engine model** ([Doc 06](./06-template-engine-architecture.
 Authoritative shape for new and migrated episodes. Slot prop details live in template docs.
 
 ```ts
-export type TemplateId = 'decision-compare' | 'data-explainer' | 'custom';
+export type TemplateId = 'decision-compare' | 'data-explainer' | 'evidence-explainer' | 'custom';
 
 export interface EpisodeBeatV1 {
   id: string;
@@ -56,8 +56,9 @@ export interface EpisodeContentV1 {
 ```
 
 **Template slot catalogs:**
-- [`decision-compare`](./templates/decision-compare.md) — Ep 003 family  
-- [`data-explainer`](./templates/data-explainer.md) — Ep 002 family  
+- [`decision-compare`](./templates/decision-compare.md) — Ep 003 family
+- [`data-explainer`](./templates/data-explainer.md) — Ep 002 family
+- [`evidence-explainer`](./templates/evidence-explainer.md) — Ep 004 family
 
 **Invariants (engine-enforced, unchanged):**
 1. Σ `beats[i].durationInFrames` == `totalDurationInFrames`  

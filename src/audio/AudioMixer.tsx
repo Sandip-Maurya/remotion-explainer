@@ -18,7 +18,11 @@ function findClimaxSilence(content: AnyEpisodeContent): {
     for (const beat of content.beats as EpisodeBeatV1[]) {
       const pause = beat.props?.dramaticPauseFrames;
       if (typeof pause === 'number' && pause > 0) {
-        return { startFrame: accumulated, pauseDuration: pause };
+        const offset =
+          typeof beat.props?.dramaticPauseOffsetFrames === 'number'
+            ? (beat.props.dramaticPauseOffsetFrames as number)
+            : 0;
+        return { startFrame: accumulated + offset, pauseDuration: pause };
       }
       accumulated += beat.durationInFrames;
     }

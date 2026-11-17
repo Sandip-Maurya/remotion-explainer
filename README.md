@@ -29,6 +29,7 @@ Built with **Remotion + React + TypeScript + Tailwind CSS**, powered by a two-ti
 | [**06. Template Engine Architecture**](docs/06-template-engine-architecture.md) | **SSOT for scale:** engine → templates → episodes → `out/` |
 | [**templates/decision-compare**](docs/templates/decision-compare.md) | Ep 003 family slots |
 | [**templates/data-explainer**](docs/templates/data-explainer.md) | Ep 002 family slots |
+| [**templates/evidence-explainer**](docs/templates/evidence-explainer.md) | Ep 004 family slots |
 
 ---
 
@@ -76,7 +77,8 @@ ENGINE (stable) → TEMPLATES (extend) → EPISODES (data + committed audio) →
 ```
 
 Initial templates:
-- `data-explainer` ← Episode 002  
+- `data-explainer` ← Episode 001 / 002  
 - `decision-compare` ← Episode 003  
+- `evidence-explainer` ← Episode 004  
 
 See [docs/06-template-engine-architecture.md](docs/06-template-engine-architecture.md).

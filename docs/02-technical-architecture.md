@@ -8,7 +8,7 @@
 | Layer | Role |
 |---|---|
 | **Engine (`src/`)** | Remotion runtime, shared primitives, AudioMixer, discovery, validate/TTS/render |
-| **Templates (`src/templates/`)** | Versioned layout recipes (`decision-compare`, `data-explainer`) — **extend, don't modify** for new genres |
+| **Templates (`src/templates/`)** | Versioned layout recipes (`decision-compare`, `data-explainer`, `evidence-explainer`) — **extend, don't modify** for new genres |
 | **Episodes (`episodes/`)** | Data products: `content.json`, `script.txt`, committed `narration.mp3` + `captions.json` |
 | **`out/<slug>/`** | Gitignored publish folder (`master.mp4`, optional `thumbnail.*`, `stills/`) |
 

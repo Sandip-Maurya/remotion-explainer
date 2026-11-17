@@ -95,6 +95,7 @@ Data-heavy economic/tech explainers: big number hook → human stakes → chart 
   titleAccent?: string;
   arrowLabel?: string;
   dramaticPauseFrames: number; // 30–60 required
+  dramaticPauseOffsetFrames?: number; // delay silence within the climax beat
   subBassHit?: boolean;
   callout?: { text: string; subtext?: string; badgeTag?: string };
 }

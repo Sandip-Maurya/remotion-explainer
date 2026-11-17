@@ -5,6 +5,7 @@
 import type { TemplateId } from '../types/content.types';
 import { decisionCompareTemplate } from './decision-compare';
 import { dataExplainerTemplate } from './data-explainer';
+import { evidenceExplainerTemplate } from './evidence-explainer';
 import type { VideoTemplate } from './types';
 
 export type { VideoTemplate, TemplateRenderArgs } from './types';
@@ -12,6 +13,7 @@ export type { VideoTemplate, TemplateRenderArgs } from './types';
 export const TEMPLATE_REGISTRY: Record<Exclude<TemplateId, 'custom'>, VideoTemplate> = {
   'decision-compare': decisionCompareTemplate,
   'data-explainer': dataExplainerTemplate,
+  'evidence-explainer': evidenceExplainerTemplate,
 };
 
 export function getTemplate(templateId: TemplateId): VideoTemplate | null {

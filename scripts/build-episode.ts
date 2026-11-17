@@ -71,13 +71,12 @@ function printIssues(slug: string, issues: Issue[]) {
 }
 
 function remotionBin(workspaceRoot: string): string {
-  const local = path.join(
-    workspaceRoot,
-    'node_modules',
-    '.bin',
-    process.platform === 'win32' ? 'remotion.cmd' : 'remotion',
-  );
-  return fs.existsSync(local) ? local : 'remotion';
+  const exts = process.platform === 'win32' ? ['.exe', '.cmd', ''] : [''];
+  for (const ext of exts) {
+    const candidate = path.join(workspaceRoot, 'node_modules', '.bin', `remotion${ext}`);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return 'remotion';
 }
 
 function ensurePublicAssets(
@@ -91,6 +90,18 @@ function ensurePublicAssets(
   if (fs.existsSync(paths.captionsPath)) {
     fs.copyFileSync(paths.captionsPath, paths.publicCaptionsPath);
     console.log(`Mirrored captions → ${path.relative(process.cwd(), paths.publicCaptionsPath)}`);
+  }
+  const epAssetsDir = path.join(paths.episodeDir, 'assets');
+  const pubAssetsDir = path.join(paths.publicDir, 'assets');
+  if (fs.existsSync(epAssetsDir)) {
+    fs.mkdirSync(pubAssetsDir, { recursive: true });
+    for (const file of fs.readdirSync(epAssetsDir)) {
+      const srcFile = path.join(epAssetsDir, file);
+      if (fs.statSync(srcFile).isFile()) {
+        fs.copyFileSync(srcFile, path.join(pubAssetsDir, file));
+      }
+    }
+    console.log(`Mirrored assets → ${path.relative(process.cwd(), pubAssetsDir)}`);
   }
 }
 

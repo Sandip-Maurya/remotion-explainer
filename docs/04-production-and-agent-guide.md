@@ -115,8 +115,8 @@ uv run scripts/tts/generate-elevenlabs.py --slug 003-my-topic --voice nPczCjzI2d
 
 ```text
 [Step 0: Choose template + scaffold]
-  - Pick templateId: decision-compare | data-explainer | (rare) custom
-  - npm run scaffold -- --slug 004-topic --title "Title" --template decision-compare
+  - Pick templateId: decision-compare | data-explainer | evidence-explainer | (rare) custom
+  - npm run scaffold -- --slug 005-topic --title "Title" --template evidence-explainer
   - Creates episodes/<slug>/ with content.json (beats/slots), script stubs, public mirror dirs
   - Does NOT invent a one-off composition in shared engine files
 
@@ -157,7 +157,7 @@ When working inside this codebase, AI coding assistants must obey these directiv
 1. **In-Built Remotion Priority:** Official `@remotion/*` first; no external chart/icon/animation packages without human approval.
 2. **Mandatory `.tsx` Extension:** Visual components/templates as `.tsx` with strict types.
 3. **No Hard-Coded Episode Copy:** Never hardcode script/stats inside templates or shared components — only `content.json` beat props.
-4. **Extend Templates, Don't Patch for One Video:** New genre → new `src/templates/<id>/`. Normal episode → new `episodes/<slug>/` only. Do not modify `decision-compare` / `data-explainer` just to ship one topic.
+4. **Extend Templates, Don't Patch for One Video:** New genre → new `src/templates/<id>/`. Normal episode → new `episodes/<slug>/` only. Do not modify `decision-compare` / `data-explainer` / `evidence-explainer` just to ship one topic.
 5. **Mobile Safe Zone Enforcement:** No focal UI in Top 180 / Bottom 320 / Right 140 / Left 60.
 6. **Human Stakes with Every Stat:** Macro numbers need a lived-consequence callout.
 7. **100% Deterministic Animations:** No unseeded `Math.random()`, `setInterval`, `requestAnimationFrame`, or CSS `transition`.

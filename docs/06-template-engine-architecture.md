@@ -61,7 +61,8 @@ explainer-channel/
 │  ├─ 06-template-engine-architecture.md   # THIS FILE
 │  └─ templates/
 │     ├─ decision-compare.md   # Slot + props contract (Ep 003 family)
-│     └─ data-explainer.md     # Slot + props contract (Ep 002 family)
+│     ├─ data-explainer.md     # Slot + props contract (Ep 002 family)
+│     └─ evidence-explainer.md # Slot + props contract (Ep 004 family)
 │
 ├─ scripts/                    # Engine CLIs (validate, scaffold, TTS, build)
 ├─ public/                     # staticFile() mirrors (sfx, episode audio/captions)
@@ -158,7 +159,7 @@ interface EpisodeContentV1 {
   fps: 30;
   totalDurationInFrames: number;
 
-  templateId: 'decision-compare' | 'data-explainer' | 'custom';
+  templateId: 'decision-compare' | 'data-explainer' | 'evidence-explainer' | 'custom';
   templateVersion: number; // start at 1
 
   narrativeMood: NarrativeMood;
@@ -232,6 +233,7 @@ Rare. 80–90% of channel videos must not use it.
 |---|---|---|---|
 | `decision-compare` | Myth vs Reality / decision helper | `003-python-vs-javascript` | [templates/decision-compare.md](./templates/decision-compare.md) |
 | `data-explainer` | Ticking clock / mechanism explainer | `002-debt-clock` (remaster) | [templates/data-explainer.md](./templates/data-explainer.md) |
+| `evidence-explainer` | Photo / documentary evidence + mechanism | `004-credit-card-blood` | [templates/evidence-explainer.md](./templates/evidence-explainer.md) |
 
 Episode 001 (`why-inflation-hurts`) may remain a thin legacy composition until both templates pass the validation gate.
 
@@ -290,3 +292,4 @@ npm run build -- --slug 003-python-vs-javascript
 * [05. Phased Roadmap](./05-phased-roadmap.md) — Template-engine milestone tracker  
 * [decision-compare template](./templates/decision-compare.md)  
 * [data-explainer template](./templates/data-explainer.md)  
+* [evidence-explainer template](./templates/evidence-explainer.md)  

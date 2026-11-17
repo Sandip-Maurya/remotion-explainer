@@ -350,6 +350,7 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
 | **2026-11-17** | Phase 3.6 | Ep 001 migrated to `data-explainer` + rebuilt `out/001-why-inflation-hurts.mp4`. All 001–003 on templates. | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Deleted legacy `TheDebtClock` + Phase-1 `src/scenes/*` + orphan primitives (pipeline-only codebase). | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | `out/` reorganized to `out/<slug>/{master.mp4,thumbnail.*,stills/}`; build CLI + docs updated. | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 | Ep 004 fixed onto new `evidence-explainer` template; `data-explainer` restored to documented slots. | ✅ COMPLETED |
 
 ---
 
