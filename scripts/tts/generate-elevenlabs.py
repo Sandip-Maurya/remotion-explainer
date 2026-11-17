@@ -220,7 +220,7 @@ def main():
     shutil.copyfile(video_captions, public_captions)
     print(f"Mirrored captions to public: {public_captions}")
 
-    # Update content.json
+    # Update content.json narration + totalDurationInFrames (scene beats still need manual rebalance)
     if content_json_path.exists():
         content = json.loads(content_json_path.read_text(encoding="utf-8"))
         content["narration"] = {
@@ -229,10 +229,22 @@ def main():
             "audioFile": f"{slug}/narration.mp3",
             "durationInSeconds": round(duration_sec, 2),
         }
-        content_json_path.write_text(json.dumps(content, indent=2, ensure_ascii=False), encoding="utf-8")
+        previous_total = content.get("totalDurationInFrames")
+        content["totalDurationInFrames"] = frames
+        content_json_path.write_text(json.dumps(content, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"Updated metadata in: {content_json_path}")
+        if previous_total != frames:
+            print(f"Synced totalDurationInFrames: {previous_total} → {frames}")
+            scene_sum = sum(s.get("durationInFrames", 0) for s in content.get("scenes", []))
+            if scene_sum != frames:
+                print(
+                    f"Warning: scene frame sum ({scene_sum}) != audio frames ({frames}). "
+                    "Rebalance beat durations, then run: npx tsx scripts/validate-episode.ts "
+                    f"--slug {slug}"
+                )
 
     print("\nSynthesis Complete!")
+    print(f"Validate: npx tsx scripts/validate-episode.ts --slug {slug}")
 
 if __name__ == "__main__":
     main()

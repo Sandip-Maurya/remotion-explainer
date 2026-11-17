@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion render",
-    "upgrade": "remotion upgrade"
+    "upgrade": "remotion upgrade",
+    "validate": "tsx scripts/validate-episode.ts",
+    "validate:all": "tsx scripts/validate-episode.ts --all",
+    "scaffold": "tsx scripts/scaffold-episode.ts",
+    "tts:edge": "uv run scripts/tts/generate-edge.py",
+    "tts:elevenlabs": "uv run scripts/tts/generate-elevenlabs.py"
   },
   "dependencies": {
     "@remotion/captions": "^4.0.0",

@@ -9,8 +9,10 @@ This roadmap serves as the **living operational execution tracker** for building
 | Phase | Focus Area | Status | Target Delivery | Key Milestone |
 |---|---|---|---|---|
 | **Phase 1** | **Foundation, Story Primitives & Edge-TTS Prototype** | 🟢 **COMPLETED** | Sprint 1 | First 40s test Short (*"Why $100 Isn't $100 Anymore"*) rendered locally via Remotion CLI (`out/001-why-inflation-hurts.mp4`) |
-| **Phase 2** | **Explainer SVG Charts & Diagram Suite** | 🟡 **NEXT SPRINT** | Sprint 2 | Pure SVG Bar/Line charts, diagram connectors, SFX library & Episode 002 |
-| **Phase 3** | **Production Voice Acting & Automated Pipeline** | ⚪ BACKLOG | Sprint 3 | ElevenLabs studio TTS integration, CLI script-to-video automation |
+| **Phase 2** | **Explainer SVG Charts & Diagram Suite** | 🟢 **COMPLETED** | Sprint 2 | Pure SVG Bar/Line charts, diagram connectors, SFX library & Episode 002 |
+| **Phase 2.5** | **Living Canvas & Visual Polish** | 🟢 **COMPLETED** | Sprint 2.5 | Editorial callouts, idle motion engine, Episode 002 remaster with tall charts |
+| **Phase 3** | **Production Voice Acting & Automated Pipeline** | 🟡 **PARTIAL** — voice done; automation deferred | Sprint 3 | ElevenLabs TTS live on Ep 002; `build-episode` CLI + invariant tests backlog |
+| **Phase 3.5 / Active** | **Content-First Episode Production** | 🔵 **ACTIVE FOCUS** | Ongoing | Ship Episode 003+ by reusing components; prioritize script/story/data over new tooling |
 | **Phase 4** | **Channel Scaling, Analytics & Template Presets** | ⚪ FUTURE | Sprint 4 | Retention curve optimization, genre storytelling presets, cloud batch rendering |
 
 ---
@@ -228,26 +230,50 @@ This roadmap serves as the **living operational execution tracker** for building
 ## 5. Phase 3: Production Voice Acting & Automated Pipeline
 
 > **Objective:** Integrate studio-grade ElevenLabs voice generation with word alignment, build an end-to-end automation CLI, and enforce automated schema validation.
+>
+> **Status:** Voice path is production-ready and already used on Episode 002. Full CLI automation and invariant tests are **deferred** so the channel can scale via content-first episode production.
 
 ### Subtask Breakdown & Checklist
-- [ ] **3.1 ElevenLabs Synthesis Script (`scripts/tts/generate-elevenlabs.ts`):**
-  * Implement ElevenLabs SDK integration with API key management.
-  * Configure emotional voice parameters (`stability: 0.45`, `similarity_boost: 0.85`).
-  * Parse character alignment timestamps into word-level `CaptionToken` objects.
-- [ ] **3.2 Automated Script-to-Video CLI Wrapper (`scripts/build-episode.ts`):**
-  * Single command to:
-    1. Read `videos/<slug>/script.txt`.
-    2. Generate speech and word timestamps via selected TTS engine.
-    3. Calculate exact frame budgets and populate `content.json`.
-    4. Trigger local Remotion render.
-- [ ] **3.3 Schema Invariant Test Suite:**
-  * Add unit tests verifying the 5 mathematical invariants before rendering:
-    * Frame sum equivalence ($\sum \text{scene}_i.\text{duration} == \text{totalDuration}$).
-    * Audio duration synchronization ($\text{totalDuration} == \lceil \text{audioSeconds} \times \text{fps} \rceil$).
-    * Caption boundary containment ($0 \le \text{startMs} < \text{endMs} \le \text{totalDurationMs}$).
-    * Climax silence constraint ($30 \le \text{pauseFrames} \le 60$).
-- [ ] **3.4 Milestone 3 Production:**
-  * Render an automated episode using the single CLI command and ElevenLabs voiceover.
+- [x] **3.1 ElevenLabs Synthesis Script (`scripts/tts/generate-elevenlabs.py`):** ✅ COMPLETED
+  * Python CLI (stdlib + `urllib`) calling ElevenLabs `/with-timestamps` — no Node SDK required.
+  * API key via `ELEVENLABS_API_KEY` env or workspace `.env`.
+  * Emotional voice parameters (`stability: 0.38`, `similarity_boost: 0.85`, `style: 0.15`, speaker boost on).
+  * Character alignments parsed into word-level `CaptionToken` objects (with emphasis heuristics).
+  * Voice registry: Daniel (default British broadcaster), Brian, Adam, George, Antoni, Charlie.
+  * Writes `videos/<slug>/narration.mp3` + `captions.json`, mirrors into `public/<slug>/`, updates `content.json` narration metadata **and** `totalDurationInFrames`.
+  * Voice audition helper: `scripts/11labs/audio_test.py` → `public/audio/test-*.mp3`.
+  * **Verified on Episode 002:** Daniel voice, **63.39s** / **1902 frames**, remaster composition `TheDebtClockRemastered`.
+- [x] **3.3 Schema Invariant + Duration Sync (`scripts/validate-episode.ts`):** ✅ COMPLETED
+  * Shared rules in `scripts/lib/episodeInvariants.ts`.
+  * Checks: frame-sum, audio-duration sync, caption bounds, climax pause 30–60, SFX ids/bounds, asset presence.
+  * `--sync` updates `totalDurationInFrames` from `narration.durationInSeconds` (does **not** auto-rewrite scene beats).
+  * npm: `npm run validate -- --slug <slug>` / `npm run validate:all`.
+- [x] **3.5 Episode Scaffold + Reusable Shell:** ✅ COMPLETED
+  * `scripts/scaffold-episode.ts` creates `videos/<slug>/`, `public/<slug>/`, stub `content.json` / scripts, and a 5-beat composition stub.
+  * `src/compositions/EpisodeShell.tsx` + `BeatSequence` — shared chrome (ambient, progress, AudioMixer, safe zone, camera drift/bump).
+  * npm: `npm run scaffold -- --slug 003-topic --title "Title"`.
+- [ ] **3.2 Automated Script-to-Video CLI Wrapper (`scripts/build-episode.ts`):** ⏸ DEFERRED
+  * Single command to generate speech, fully populate `content.json`, and trigger Remotion render.
+  * *Deferral reason:* compositions still need editorial beat choreography; scaffold + validate cover the high-leverage path.
+- [ ] **3.4 Milestone 3 Production (fully automated):** ⏸ DEFERRED
+  * One-button MP4 from script alone.
+  * *Near-term substitute:* content-first Episode 003+ via scaffold → ElevenLabs → validate → thin composition.
+
+### Content-First Production Workflow (Active Default)
+
+Visual primitives, SFX, Living Canvas motion, and ElevenLabs are ready. New episodes prioritize story and data:
+
+```text
+[1] Scaffold episode        → npm run scaffold -- --slug 003-topic --title "Title"
+[2] Write 5-beat script     → videos/<slug>/script.txt (+ optional script.md with SFX tags)
+[3] ElevenLabs voice        → npm run tts:elevenlabs -- --slug <slug>
+[4] Validate / sync frames  → npm run validate -- --slug <slug> --sync
+[5] Rebalance beats + data  → content.json scenes / SFX / chart numbers
+[6] Thin composition        → edit scaffolded EpisodeShell stub; register in Root.tsx
+[7] Studio scrub + render   → npm run dev → npx remotion render ... --gl=angle
+```
+
+**Known gap (intentional):** Episode compositions still embed some chart series, callout copy, and beat timings in `.tsx`. Fully declarative `content.json` → render stays deferred until 1–2 more episodes prove the pattern.
 
 ---
 
@@ -270,7 +296,7 @@ This roadmap serves as the **living operational execution tracker** for building
 
 ---
 
-## 6. Execution History & Change Log
+## 7. Execution History & Change Log
 
 | Date | Phase | Action / Milestone | Status |
 |---|---|---|---|
@@ -281,11 +307,15 @@ This roadmap serves as the **living operational execution tracker** for building
 | **2026-11-15** | Phase 1 | Subtask 1.4 & 1.5: Implemented core visual primitives (`Title`, `BigNumber`, `ProgressBar`, `EndCard`) & storytelling primitives (`HumanStakesCard`, `DramaticQuote`, `TensionVignette`, `MetaphorIcon`). | ✅ COMPLETED |
 | **2026-11-15** | Phase 1 | Installed all 13 official Remotion Agent Skills in `.agents/skills/`. | ✅ COMPLETED |
 | **2026-11-15** | Phase 1 | Subtask 1.6 & 1.7: Connected 5 narrative scenes, kinetic subtitles, audio mixer & rendered Milestone 1 Short (`out/001-why-inflation-hurts.mp4`). **PHASE 1 COMPLETE!** | 🎉 COMPLETED |
-| **Pending** | Phase 2 | Pure SVG chart suite (`LineChart`), diagram connectors (`StepTimeline`, `AnimatedArrow`), and Episode 002. | ⏳ READY FOR SPRINT 2 |
+| **2026-11-15** | Phase 2 | Steps 2A–2C: SVG chart suite, SFX pack, Episode 002 master (`out/002-debt-clock.mp4`). **PHASE 2 COMPLETE!** | ✅ COMPLETED |
+| **2026-11-15** | Phase 2.5 | Living Canvas motion engine, editorial callouts, tall charts, remaster (`out/002-debt-clock-remastered.mp4`). **PHASE 2.5 COMPLETE!** | ✅ COMPLETED |
+| **2026-11-15** | Phase 3 | Subtask 3.1: `generate-elevenlabs.py` + voice auditions; Episode 002 switched to Daniel ElevenLabs narration (63.39s / 1902 frames). | ✅ COMPLETED |
+| **2026-11-16** | Phase 3 | Docs realigned: full `build-episode` automation deferred; **active focus = content-first Episode 003+**. | 🔵 ACTIVE |
+| **2026-11-16** | Phase 3 | Shipped high-leverage tooling: `validate-episode` (+ `--sync`), `scaffold-episode`, `EpisodeShell`/`BeatSequence`; ElevenLabs now syncs `totalDurationInFrames`. | ✅ COMPLETED |
 
 ---
 
-## 7. Cross-Document Architecture Links
+## 8. Cross-Document Architecture Links
 
 * **[README.md](file:///c:/Users/skmpa/vdo/rm/README.md):** Project mission statement and documentation index.
 * **[01. Storytelling, Narrative & Sensitization Bible](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md):** Narrative arc, emotional sensitization, archetypes, and audio cues.

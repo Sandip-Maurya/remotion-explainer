@@ -26,8 +26,8 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
 | [**01. Storytelling & Creative Bible**](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md) | Creative Direction | 5-beat narrative arc, human stakes sensitization, 4 story archetypes, dynamic mood & color psychology, SFX taxonomy, dramatic silence |
 | [**02. Technical Architecture**](file:///c:/Users/skmpa/vdo/rm/docs/02-technical-architecture.md) | Engineering Spec | Remotion v4 ecosystem, canonical directory tree, mobile safe zones (880×1420), `<ShortsSafeZone />`, pure SVG animated charts, theme tokens, `<TransitionSeries>`, `<KineticCaptions />`, `<AudioMixer />` |
 | [**03. Content Models & Schemas**](file:///c:/Users/skmpa/vdo/rm/docs/03-content-and-schemas.md) | Data Contracts | Master TypeScript schemas (`content.types.ts`, `audio.types.ts`), canonical `content.json` example, frame/duration validation invariants |
-| [**04. Production Runbook & Agent Guide**](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md) | Operations & Rules | Two-tier TTS pipelines (Edge-TTS + ElevenLabs script), 10 strict AI coding agent guardrails, Definition of Done, 14-point pre-publish checklist |
-| [**05. Phased Roadmap & Tracker**](file:///c:/Users/skmpa/vdo/rm/docs/05-phased-roadmap.md) | Execution & Milestones | Active sprint tasks, subtask checklists, acceptance gates, Phase 1 to 4 milestones, execution changelog |
+| [**04. Production Runbook & Agent Guide**](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md) | Operations & Rules | Two-tier TTS (Edge-TTS + live ElevenLabs Python CLI), 10 AI agent guardrails, Definition of Done, 14-point pre-publish checklist |
+| [**05. Phased Roadmap & Tracker**](file:///c:/Users/skmpa/vdo/rm/docs/05-phased-roadmap.md) | Execution & Milestones | Phase status (1–2.5 done, 3 partial), content-first Episode 003+ focus, deferred automation backlog, changelog |
 
 ---
 
@@ -42,11 +42,11 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
 
 ### Voice Pipeline
 * **Development / Prototype:** `uv run scripts/tts/generate-edge.py` (Free, instant, word-level timestamps via `uv`)
-* **Final Production:** `npx tsx scripts/tts/generate-elevenlabs.ts` (Emotional nuance, voice cloning, character/word alignment)
+* **Final Production:** `uv run scripts/tts/generate-elevenlabs.py --slug <episode-slug>` (Emotional nuance, word/character alignment, mirrors audio + captions into `public/`)
 
 ---
 
-## 🚦 Current Status: Phase 2 — COMPLETED ✅ (Ready for Phase 3)
+## 🚦 Current Status: Phase 2 — COMPLETED ✅
 
 **Phase 2 Complete:**
 - [x] **Step 2A: Motion Graphics & SVG Chart Suite** (COMPLETED ✅)
@@ -62,13 +62,13 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
   - [x] Typed registry in `src/audio/sfxLibrary.ts`
   - [x] Upgraded `AudioMixer.tsx` with dynamic cue triggering and sidechain balance
 - [x] **Step 2C: Episode 002 Full Production & Master Render** (COMPLETED ✅)
-  - [x] Synthesized 59.00s narration (`videos/002-debt-clock/narration.mp3`) with 134 word timestamps via `uv run scripts/tts/generate-edge.py`
-  - [x] Choreographed 5-beat scene architecture (`TheDebtClock.tsx`) incorporating LineChart, BarChart, MetricCard, BeforeAfterSplit, and 10 synchronized SFX cues
+  - [x] Edge-TTS prototype pass, then ElevenLabs production narration for Episode 002
+  - [x] Choreographed 5-beat scene architecture (`TheDebtClock.tsx`) incorporating LineChart, BarChart, MetricCard, BeforeAfterSplit, and synchronized SFX cues
   - [x] Master render complete: `out/002-debt-clock.mp4` (7.9 MB, 1080x1920 @ 30fps, 1770 frames / 59.00s)
 
 ---
 
-## 🚦 Current Status: Phase 2.5 — COMPLETED ✅ (Ready for Phase 3)
+## 🚦 Current Status: Phase 2.5 — COMPLETED ✅
 
 **Phase 2.5 Complete (Living Canvas & Visual Polish):**
 - [x] **Subtask 2.5.1: Canvas Reclaim & Editorial Keyword Callouts**
@@ -85,12 +85,32 @@ The five documents in the `docs/` directory serve as the **authoritative Single 
   - Expanded `LineChart` and `BarChart` heights to 760–780px for dramatic exponential curves
   - Embedded `RipplePing` beacon pulses at line tips and focal bar summits
 - [x] **Subtask 2.5.4: Episode 002 Visual Remaster & Quality Gate**
-  - Master render complete: `out/002-debt-clock-remastered.mp4` (15.0 MB, 1080x1920 @ 30fps, 1770 frames / 59.00s)
+  - Master render complete: `out/002-debt-clock-remastered.mp4` (15.0 MB+, 1080x1920 @ 30fps, 1902 frames / 63.39s with ElevenLabs narration)
 
 ---
 
-## 🎯 Next Phase: Phase 3 — Production Voice Acting & Automated Pipeline
-- [ ] Subtask 3.1: ElevenLabs synthesis script with emotional parameters & word alignment
-- [ ] Subtask 3.2: Automated end-to-end CLI wrapper (`scripts/build-episode.ts`)
-- [ ] Subtask 3.3: Automated schema invariant test suite
-- [ ] Subtask 3.4: Milestone 3 Short Render
+## 🚦 Current Status: Phase 3 — PARTIAL ✅ (Voice Done; Automation Deferred)
+
+**Done:**
+- [x] **3.1 ElevenLabs synthesis** (`scripts/tts/generate-elevenlabs.py`) — live on Episode 002 (Daniel)
+- [x] **3.3 Invariant + duration sync** — `npm run validate -- --slug <slug> [--sync]`
+- [x] **3.5 Episode scaffold + shell** — `npm run scaffold -- --slug 003-topic --title "Title"` + `EpisodeShell` / `BeatSequence`
+
+**Deferred (not blocking new episodes):**
+- [ ] 3.2 Full `build-episode.ts` one-command pipeline
+- [ ] 3.4 Fully automated Milestone 3 one-button render
+
+---
+
+## 🎯 Active Focus: Content-First Episode Production
+
+```bash
+npm run scaffold -- --slug 003-topic --title "Episode Title"
+# edit videos/003-topic/script.txt
+npm run tts:elevenlabs -- --slug 003-topic
+npm run validate -- --slug 003-topic --sync
+# rebalance beats in content.json, finish composition stub, register in Root.tsx
+npm run dev
+```
+
+Full `build-episode` automation stays backlog until a couple more episodes harden the pattern.

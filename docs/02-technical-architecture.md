@@ -44,13 +44,22 @@ explainer-channel/
 │  ├─ 01-storytelling-and-creative.md
 │  ├─ 02-technical-architecture.md
 │  ├─ 03-content-and-schemas.md
-│  └─ 04-production-and-agent-guide.md
+│  ├─ 04-production-and-agent-guide.md
+│  └─ 05-phased-roadmap.md
 │
 ├─ scripts/
 │  ├─ tts/
 │  │  ├─ generate-edge.py          # Free Edge-TTS prototype audio & millisecond timestamps
-│  │  └─ generate-elevenlabs.ts    # Production broadcast TTS with character/word alignment
-│  └─ render.ts                    # Local CLI batch render wrapper
+│  │  └─ generate-elevenlabs.py    # Production ElevenLabs TTS with character/word alignment
+│  ├─ 11labs/
+│  │  └─ audio_test.py             # Voice audition clips → public/audio/test-*.mp3
+│  ├─ audio/
+│  │  └─ generate-sfx.py           # Broadcast SFX synthesizer → public/sfx/
+│  ├─ lib/
+│  │  └─ episodeInvariants.ts      # Shared content.json invariant rules
+│  ├─ validate-episode.ts          # Invariant checker + --sync duration helper
+│  ├─ scaffold-episode.ts          # New episode folder + EpisodeShell composition stub
+│  └─ render.ts                    # Local CLI batch render wrapper (optional / backlog)
 │
 ├─ src/
 │  ├─ index.ts                     # Remotion root entrypoint

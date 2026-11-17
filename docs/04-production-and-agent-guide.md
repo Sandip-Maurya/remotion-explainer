@@ -72,122 +72,75 @@ uv run scripts/tts/generate-edge.py --script videos/001-why-inflation-hurts/scri
 
 ---
 
-### Tier 2 (Production Polish): ElevenLabs Integration
+### Tier 2 (Production Polish): ElevenLabs Integration ✅ LIVE
 
-Once the script and animation timings are locked in Remotion Studio, run the ElevenLabs production script to generate studio-grade human-like emotional speech with word alignments.
+Studio-grade emotional speech with word alignments via `scripts/tts/generate-elevenlabs.py` (Python stdlib — no Node ElevenLabs SDK required). Already production-validated on Episode 002 (Daniel voice, 63.39s).
 
-#### TypeScript Implementation (`scripts/tts/generate-elevenlabs.ts`)
+#### Prerequisites
+* Set `ELEVENLABS_API_KEY` in the environment **or** in a workspace-root `.env` as `ELEVENLABS_API_KEY=sk_...`.
+* Episode folder must contain `videos/<slug>/script.txt`.
 
-```bash
-npm install elevenlabs
-```
+#### What the script does
+1. Calls ElevenLabs `POST /v1/text-to-speech/{voice_id}/with-timestamps` (`eleven_multilingual_v2`).
+2. Writes `videos/<slug>/narration.mp3` and word-level `captions.json`.
+3. Mirrors both into `public/<slug>/` for Remotion `staticFile()`.
+4. Updates `videos/<slug>/content.json` narration metadata (`engine`, `voiceId`, `audioFile`, `durationInSeconds`).
 
-```ts
-// scripts/tts/generate-elevenlabs.ts
-import { ElevenLabsClient } from 'elevenlabs';
-import * as fs from 'fs';
-import * as path from 'path';
+#### Default voice settings
+| Setting | Default | Notes |
+|---|---|---|
+| Voice | `onwK4e9ZLuTAKqWW03F9` (Daniel) | Authoritative British broadcaster |
+| Stability | `0.38` | Lower = more dynamic delivery |
+| Similarity boost | `0.85` | Persona preservation |
+| Style | `0.15` | Light dramatic exaggeration |
+| Speaker boost | `true` | Clarity on mobile speakers |
 
-const client = new ElevenLabsClient({
-  apiKey: process.env.ELEVENLABS_API_KEY,
-});
-
-export async function generateProductionAudio(episodeDir: string, voiceId = 'pNInz6obpgDQGcFmaJgB') {
-  const scriptPath = path.join(episodeDir, 'script.txt');
-  const audioOutputPath = path.join(episodeDir, 'narration.mp3');
-  const captionsOutputPath = path.join(episodeDir, 'captions.json');
-
-  const text = fs.readFileSync(scriptPath, 'utf-8').trim();
-
-  console.log(`Generating ElevenLabs audio for: ${scriptPath}`);
-
-  // Request audio with timestamp alignments
-  const response = await client.textToSpeech.convertWithTimestamps(voiceId, {
-    text,
-    model_id: 'eleven_multilingual_v2',
-    voice_settings: {
-      stability: 0.45,        // Higher dynamic emotional range
-      similarity_boost: 0.85, // Crisp persona preservation
-      style: 0.35,            // Subtle dramatic exaggeration
-      use_speaker_boost: true,
-    },
-  });
-
-  // Write MP3 audio
-  const audioBuffer = Buffer.from(response.audio_base64, 'base64');
-  fs.writeFileSync(audioOutputPath, audioBuffer);
-
-  // Normalize character alignments into word-level CaptionTokens
-  const words: { text: string; startMs: number; endMs: number; isEmphasized?: boolean }[] = [];
-  const chars = response.alignment?.characters || [];
-  const startTimes = response.alignment?.character_start_times_seconds || [];
-  const endTimes = response.alignment?.character_end_times_seconds || [];
-
-  let currentWord = '';
-  let wordStartMs = 0;
-
-  for (let i = 0; i < chars.length; i++) {
-    const char = chars[i];
-    if (currentWord === '' && char.trim() !== '') {
-      wordStartMs = Math.round(startTimes[i] * 1000);
-    }
-
-    if (/\s/.test(char) || i === chars.length - 1) {
-      if (char.trim() !== '') currentWord += char;
-      if (currentWord.trim().length > 0) {
-        const cleanWord = currentWord.trim().replace(/^[^\w]+|[^\w]+$/g, '');
-        const wordEndMs = Math.round(endTimes[i] * 1000);
-        words.push({
-          text: cleanWord,
-          startMs: wordStartMs,
-          endMs: wordEndMs,
-        });
-        currentWord = '';
-      }
-    } else {
-      currentWord += char;
-    }
-  }
-
-  fs.writeFileSync(captionsOutputPath, JSON.stringify(words, null, 2), 'utf-8');
-  console.log(`Audio saved: ${audioOutputPath}`);
-  console.log(`Captions saved (${words.length} words): ${captionsOutputPath}`);
-}
-```
+Fallback / audition voices are registered in the script (`Brian`, `Adam`, `George`, `Antoni`, `Charlie`). Use `scripts/11labs/audio_test.py` to generate short A/B clips under `public/audio/`.
 
 #### CLI Command:
 ```bash
-npx tsx scripts/tts/generate-elevenlabs.ts --episode videos/001-why-inflation-hurts
+uv run scripts/tts/generate-elevenlabs.py --slug 002-debt-clock
+
+# Optional overrides:
+uv run scripts/tts/generate-elevenlabs.py --slug 003-my-topic --voice nPczCjzI2devNBz1zQrb --stability 0.40 --style 0.20
 ```
+
+> **Note:** Scene frame budgets in `content.json` / compositions are **not** auto-recalculated yet. After regenerating voice, re-check total duration and beat cut points in Remotion Studio before final render.
 
 ---
 
 ## 2. Step-by-Step Production Protocol
 
 ```text
+[Step 0: Scaffold]
+  - npm run scaffold -- --slug 003-topic --title "Episode Title"
+  - Creates videos/<slug>/, public/<slug>/, content.json stub, and EpisodeShell composition stub.
+
 [Step 1: Topic & Narrative Draft]
   - Formulate the core paradox or dilemma using Doc 01.
   - Write script in `videos/<slug>/script.txt` (130–180 words, 45–80 seconds).
 
 [Step 2: Generate Speech & Timestamps]
-  - Execute `uv run scripts/tts/generate-edge.py --script videos/<slug>/script.txt --audio videos/<slug>/narration.mp3 --captions videos/<slug>/captions.json`.
-  - Check the output audio duration: `durationInFrames = Math.ceil(audioSeconds * 30)`.
+  - Prototype (free): npm run tts:edge -- --script videos/<slug>/script.txt --audio videos/<slug>/narration.mp3 --captions videos/<slug>/captions.json
+  - Production: npm run tts:elevenlabs -- --slug <slug>
+    (writes audio + captions, mirrors to public/, updates narration meta + totalDurationInFrames).
 
-[Step 3: Assemble `content.json`]
-  - Break script into 4–5 scenes: Hook -> Stakes -> Mechanism -> Climax -> Payoff.
-  - Map specific word timestamps to scene cut points.
+[Step 3: Validate & Assemble Beats]
+  - npm run validate -- --slug <slug> --sync
+  - Rebalance scene durations in content.json so scene sum == audio frames.
+  - Map SFX frames and chart/callout copy to the spoken beat map.
 
 [Step 4: Interactive Remotion Studio Review]
-  - Run `npm run dev` to launch Remotion Studio at `http://localhost:3000`.
-  - Enable the `<ShortsSafeZone />` overlay.
+  - Register the scaffolded composition in src/Root.tsx if not already.
+  - Run `npm run dev` to launch Remotion Studio.
+  - Enable the safe-zone overlay composition variant.
   - Scrub timeline to confirm:
     1. Visuals enter precisely on audio keywords.
     2. Numbers count up smoothly with spring physics.
     3. No text touches the top 180px, bottom 320px, right 140px, or left 60px danger zones.
 
 [Step 5: Local CLI Render]
-  - Execute render command:
-    npx remotion render Root <CompositionId> out/<slug>.mp4 --gl=angle
+  - npx remotion render src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
   - Verify exported MP4 visually and auditorily from start to finish.
 ```
 
@@ -246,27 +199,27 @@ Before any exported `.mp4` is published to YouTube Shorts:
 > For the granular, living task tracker, acceptance criteria, and subtask checklists, refer to the authoritative document:  
 > 🔗 [**05. Phased Implementation Roadmap & Milestone Tracker**](file:///c:/Users/skmpa/vdo/rm/docs/05-phased-roadmap.md)
 
-### Phase 1 — Foundation, Story Primitives & Edge-TTS Prototype (Current Active Sprint)
-- [ ] Initialize Remotion project with TypeScript + Tailwind CSS (`1080 x 1920`, 30 fps).
-- [ ] Install first-party packages: `@remotion/transitions`, `@remotion/shapes`, `@remotion/paths`, `@remotion/captions`, `@remotion/media-utils`, `@remotion/google-fonts`.
-- [ ] Implement `<ShortsSafeZone />` overlay guide.
-- [ ] Configure `scripts/tts/generate-edge.py` with `uv` inline metadata for instant local speech & timestamp extraction.
-- [ ] Build Core Visual Primitives: `<Title />`, `<BigNumber />`, `<ProgressBar />`, `<KineticCaptions />`.
-- [ ] Build Storytelling Primitives: `<HumanStakesCard />`, `<DramaticQuote />`, `<TensionVignette />`.
-- [ ] **Milestone 1:** Produce one complete 50–70s test Short (*"Why $100 Isn't $100 Anymore"*) with Edge-TTS, dynamic background mood, and synchronized SFX.
+### Phase 1 — Foundation, Story Primitives & Edge-TTS Prototype ✅ COMPLETED
+- [x] Remotion v4 + TypeScript + Tailwind (`1080 × 1920`, 30 fps), first-party packages, `<ShortsSafeZone />`.
+- [x] Edge-TTS via `uv run scripts/tts/generate-edge.py`; core + storytelling primitives.
+- [x] **Milestone 1:** `out/001-why-inflation-hurts.mp4`.
 
-### Phase 2 — Explainer Charts & Component Suite
-- [ ] Build pure SVG `<BarChart />` and `<LineChart />` using `@remotion/paths`.
-- [ ] Build diagram connectors: `<StepTimeline />`, `<AnimatedArrow />`, `<BeforeAfterSplit />`.
-- [ ] Implement `<AudioMixer />` with dynamic music ducking and SFX library.
-- [ ] **Milestone 2:** Produce a data-heavy economic/tech explainer short using the component suite.
+### Phase 2 / 2.5 — Charts, SFX, Living Canvas ✅ COMPLETED
+- [x] Pure SVG `<BarChart />`, `<LineChart />`, connectors, `<AudioMixer />` + SFX pack.
+- [x] Living Canvas motion engine + `<EditorialCallout />`; Episode 002 remaster.
+- [x] **Milestone 2:** `out/002-debt-clock.mp4` + `out/002-debt-clock-remastered.mp4`.
 
-### Phase 3 — Production Voice Acting & ElevenLabs Integration
-- [ ] Implement `scripts/tts/generate-elevenlabs.ts` with expressive voice parameters.
-- [ ] Integrate automatic character/word timestamping for caption synchronization.
-- [ ] Build automated pipeline where providing `script.txt` automatically generates audio, updates `content.json`, and triggers local render.
+### Phase 3 — Production Voice Acting & Automation 🟡 PARTIAL
+- [x] `scripts/tts/generate-elevenlabs.py` with expressive parameters + word timestamps (live on Ep 002).
+- [x] `scripts/validate-episode.ts` invariant checks + `--sync` duration helper.
+- [x] `scripts/scaffold-episode.ts` + `EpisodeShell` / `BeatSequence` for fast Episode 003+ starts.
+- [ ] Full `build-episode` one-command render (**deferred**).
 
-### Phase 4 — Analytics & Template Scaling
+### Active Focus — Content-First Episode Production 🔵
+- [ ] Ship Episode 003+ via scaffold → script → ElevenLabs → validate → thin composition → render.
+- [ ] Prefer new topics/story/data over new tooling until the episode pattern is boring.
+
+### Phase 4 — Analytics & Template Scaling ⚪ FUTURE
 - [ ] Analyze YouTube Shorts retention drop-offs and refine hook pacing.
 - [ ] Build genre presets (Finance, Tech/AI, Science).
 

@@ -5,6 +5,7 @@ import { WhyInflationHurts } from './compositions/WhyInflationHurts';
 import { ChartShowcase } from './compositions/ChartShowcase';
 import { TheDebtClock } from './compositions/TheDebtClock';
 import { TheDebtClockRemastered } from './compositions/TheDebtClockRemastered';
+import { PythonVsJavascript } from './compositions/PythonVsJavascript';
 import { initFonts } from './styles/fonts';
 import './styles/global.css';
 
@@ -107,6 +108,31 @@ export const Root: React.FC = () => {
         id="TheDebtClockRemastered-SafeZone"
         component={TheDebtClockRemastered}
         durationInFrames={1902}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          showSafeZone: true,
+        }}
+      />
+
+      {/* Episode 003: Python vs JavaScript (content-first decision Short) */}
+      <Composition
+        id="PythonVsJavascript"
+        component={PythonVsJavascript}
+        durationInFrames={4942}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          showSafeZone: false,
+        }}
+      />
+
+      <Composition
+        id="PythonVsJavascript-SafeZone"
+        component={PythonVsJavascript}
+        durationInFrames={4942}
         fps={30}
         width={1080}
         height={1920}

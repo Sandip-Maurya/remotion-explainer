@@ -1,0 +1,80 @@
+{
+  "id": "003-python-vs-javascript",
+  "title": "Python vs JavaScript: Which Should Beginners Learn First?",
+  "topic": "Technology",
+  "aspectRatio": "9:16",
+  "fps": 30,
+  "totalDurationInFrames": 4942,
+  "narrativeMood": "myth-inversion",
+  "narration": {
+    "engine": "elevenlabs",
+    "voiceId": "Daniel (British Broadcaster)",
+    "audioFile": "003-python-vs-javascript/narration.mp3",
+    "durationInSeconds": 164.72
+  },
+  "sfxEvents": [
+    { "frame": 18, "soundId": "sub-drop", "volume": 0.75 },
+    { "frame": 749, "soundId": "whoosh", "volume": 0.5 },
+    { "frame": 1223, "soundId": "pop", "volume": 0.55 },
+    { "frame": 2241, "soundId": "whoosh", "volume": 0.5 },
+    { "frame": 3365, "soundId": "sub-drop", "volume": 0.82 },
+    { "frame": 4184, "soundId": "chime", "volume": 0.65 }
+  ],
+  "scenes": [
+    {
+      "id": "scene-1-hook",
+      "type": "hook",
+      "durationInFrames": 749,
+      "headline": "Python or JavaScript?",
+      "subtext": "You're not coding. You're worrying you're about to waste months.",
+      "highlightWord": "worrying",
+      "metaphor": "clock"
+    },
+    {
+      "id": "scene-2-stakes",
+      "type": "human-stakes",
+      "durationInFrames": 436,
+      "personaLabel": "The Beginner Freeze",
+      "comparison": {
+        "pastLabel": "What you wanted",
+        "pastValue": "Start building",
+        "presentLabel": "What happens",
+        "presentValue": "Tutorial paralysis"
+      },
+      "impactStatement": "Two gurus. Two languages. Zero progress—because the question itself is the trap."
+    },
+    {
+      "id": "scene-3-mechanism",
+      "type": "chart-explanation",
+      "durationInFrames": 2126,
+      "chartType": "bar",
+      "chartTitle": "Fit Score by Beginner Goal",
+      "data": [
+        { "label": "Py · AI/Data", "value": 95 },
+        { "label": "Py · Web UI", "value": 35 },
+        { "label": "JS · Web UI", "value": 95 },
+        { "label": "JS · AI/Data", "value": 40 }
+      ],
+      "unit": "",
+      "highlightIndex": 0,
+      "keyTakeaway": "Python = patient teacher for data/AI/automation (weak on rich browser UI). JavaScript = language of the internet for things people click (chaotic first; not the default AI door)."
+    },
+    {
+      "id": "scene-4-climax",
+      "type": "dramatic-climax",
+      "durationInFrames": 765,
+      "epiphanyHeadline": "DON'T PICK A LANGUAGE",
+      "punchline": "Ask what you'd be proud to show a friend in 30 days—then pick the tool that builds that.",
+      "dramaticPauseFrames": 42,
+      "subBassHit": true
+    },
+    {
+      "id": "scene-5-payoff",
+      "type": "empowerment-payoff",
+      "durationInFrames": 866,
+      "coreLesson": "Your first language is a door, not a prison. You're not behind—and you're not choosing forever.",
+      "callToAction": "Start with the thing you can't stop thinking about building.",
+      "loopTransitionPhrase": "If you're just starting out, you've probably felt this."
+    }
+  ]
+}
