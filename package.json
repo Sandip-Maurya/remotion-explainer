@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "remotion studio",
-    "build": "remotion render",
+    "build": "tsx scripts/build-episode.ts",
+    "render": "remotion render",
     "upgrade": "remotion upgrade",
     "validate": "tsx scripts/validate-episode.ts",
     "validate:all": "tsx scripts/validate-episode.ts --all",

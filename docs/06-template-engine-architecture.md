@@ -108,7 +108,7 @@ explainer-channel/
       └─ assets/
 ```
 
-**Migration note:** **I1+I2 done** — episode products under `episodes/`; Schema v1 + discovery; `decision-compare` / `data-explainer` templates ready; Ep 002/003 use `beats[]`. Ep 001 remains a legacy composition until I3. `videos/` is a pointer-only leftover. Doc 05 tracks the cutover.
+**Migration note:** **I1–I3 done** — episode products under `episodes/`; Schema v1 + discovery; templates ready; Ep 002/003 on `beats[]`; `npm run build -- --slug` validates + renders to `out/`. Ep 001 remains a legacy composition (optional later migrate). `videos/` is a pointer-only leftover.
 
 **Git policy:**
 - ✅ Commit: episode data, narration, captions, templates, engine  

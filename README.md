@@ -45,11 +45,13 @@ Built with **Remotion + React + TypeScript + Tailwind CSS**, powered by a two-ti
 * Prototype: `uv run scripts/tts/generate-edge.py …`  
 * Production: `npm run tts:elevenlabs -- --slug <slug>`  
 
-### Episodes & validate
+### Episodes, validate & build
 ```bash
 npm run episodes          # list products under episodes/
 npm run validate -- --slug 003-python-vs-javascript
 npm run validate:all
+npm run build -- --slug 002-debt-clock
+npm run build -- --slug 003-python-vs-javascript
 ```
 
 ---
@@ -61,13 +63,11 @@ npm run validate:all
 | Phase 1–2.5 | ✅ Complete (foundation, charts, Living Canvas, Ep 002) |
 | Phase 3 voice/tooling | ✅ ElevenLabs + validate/scaffold; Ep 002/003 masters exist |
 | Phase 3.5 Ep 003 | ✅ `out/003-python-vs-javascript.mp4` (+ thumbnail) |
-| **Phase 3.6 Template Engine** | 🔵 **Docs complete → implementation next** |
-
-**Validation gate (after code):** re-render Episodes **002** and **003** from templates + episode data only.
+| **Phase 3.6 Template Engine** | ✅ **I1–I3 complete** (templates + build CLI + re-render gate) |
 
 ---
 
-## Active Focus: Template Engine (docs → code → re-render)
+## Active Focus: Template Engine
 
 Product model:
 
@@ -79,9 +79,4 @@ Initial templates:
 - `data-explainer` ← Episode 002  
 - `decision-compare` ← Episode 003  
 
-See [docs/06-template-engine-architecture.md](docs/06-template-engine-architecture.md) before changing structure.
-
-**Interim render (legacy compositions still active until cutover):**
-```bash
-.\node_modules\.bin\remotion render src/index.ts PythonVsJavascript out/003-python-vs-javascript.mp4 --gl=angle
-```
+See [docs/06-template-engine-architecture.md](docs/06-template-engine-architecture.md).

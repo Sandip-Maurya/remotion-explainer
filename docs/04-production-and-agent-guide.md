@@ -139,10 +139,12 @@ uv run scripts/tts/generate-elevenlabs.py --slug 003-my-topic --voice nPczCjzI2d
   - Safe-zone scrub; one idea per beat; SFX/callout timing
 
 [Step 5: Render]
-  - Target: npm run build -- --slug <slug>
-  - Interim: .\node_modules\.bin\remotion render src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
-  - Masters land in out/ (gitignored); regenerate anytime from episode folder
+  - npm run build -- --slug <slug>
+  - Pipeline: mirror public audio → validate → remotion render → out/<slug>.mp4
+  - TTS runs only when narration.mp3 is missing (or with --force-tts)
+  - Low-level escape: npm run render -- src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
 ```
+
 
 ---
 

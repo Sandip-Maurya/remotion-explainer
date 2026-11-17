@@ -294,11 +294,15 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
   * `episodes/003-python-vs-javascript/content.json` → `decision-compare`
   * Thin adapters: `PythonVsJavascript`, `TheDebtClockRemastered`
   * Root registers slug ids `002-debt-clock` / `003-python-vs-javascript` (+ Studio aliases)
-- [ ] **M4 (Iteration I3):** `build --slug` CLI (validate → render; TTS only if audio missing)
-- [ ] **M5 Validation gate (Iteration I3):**
-  - [ ] Re-render `002-debt-clock` from `data-explainer` + episode data
-  - [ ] Re-render `003-python-vs-javascript` from `decision-compare` + episode data
-  - [ ] Invariants pass; visual parity vs current masters; JSON-only smoke tweak on 003
+- [x] **M4 (Iteration I3):** `build --slug` CLI ✅
+  * `scripts/build-episode.ts` + `src/engine/buildEpisode.ts`
+  * `npm run build -- --slug <slug>` → mirror public → validate → remotion → `out/<slug>.mp4`
+  * TTS only when narration missing (`--force-tts` / `--no-tts` overrides)
+  * Raw Remotion CLI moved to `npm run render`
+- [x] **M5 Validation gate (Iteration I3):** ✅
+  - [x] Re-render `out/002-debt-clock.mp4` from `data-explainer` + episode data (~19 MB)
+  - [x] Re-render `out/003-python-vs-javascript.mp4` from `decision-compare` + episode data (~36 MB)
+  - [x] Invariants pass; JSON-only smoke tweak on 003 callout verified via still, then reverted
 
 ---
 
@@ -341,7 +345,8 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
 | **2026-11-17** | Phase 3.6 | Template engine design locked; audio stays in git; pre-refactor checkpoint committed. | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Docs: created Doc 06 + template catalogs; updated 02–05 + README. | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 / I1 | M1 foundation: `episodes/`, Schema v1 types, discovery, registry stub; compositions still legacy. | ✅ COMPLETED |
-| **2026-11-17** | Phase 3.6 / I2 | M2+M3: `decision-compare` + `data-explainer` templates; Ep 002/003 on beats; thin adapters. **Next: I3 (M4+M5 re-render gate).** | 🔵 ACTIVE |
+| **2026-11-17** | Phase 3.6 / I2 | M2+M3: `decision-compare` + `data-explainer` templates; Ep 002/003 on beats; thin adapters. | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 / I3 | M4+M5: `npm run build -- --slug`; re-rendered 002+003 from templates; JSON smoke OK. **Template-engine cutover complete.** | ✅ COMPLETED |
 
 ---
 

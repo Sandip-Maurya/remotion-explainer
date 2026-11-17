@@ -8,3 +8,8 @@ export {
 export type { DiscoveredEpisode } from './discoverEpisodes';
 export { EpisodePlayer } from './EpisodePlayer';
 export type { EpisodePlayerProps } from './EpisodePlayer';
+export {
+  resolveCompositionId,
+  defaultOutputPath,
+  defaultGlFlag,
+} from './buildEpisode';
