@@ -140,10 +140,12 @@ uv run scripts/tts/generate-elevenlabs.py --slug 003-my-topic --voice nPczCjzI2d
 
 [Step 5: Render]
   - npm run build -- --slug <slug>
-  - Pipeline: mirror public audio → validate → remotion render → out/<slug>.mp4
+  - Pipeline: mirror public audio → validate → remotion render → out/<slug>/master.mp4
   - TTS runs only when narration.mp3 is missing (or with --force-tts)
-  - Low-level escape: npm run render -- src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
+  - Artifacts: out/<slug>/{master.mp4, thumbnail.*, stills/}
+  - Low-level escape: npm run render -- src/index.ts <CompositionId> out/<slug>/master.mp4 --gl=angle
 ```
+
 
 
 ---

@@ -1,11 +1,11 @@
 #!/usr/bin/env npx tsx
 /**
- * Episode build pipeline: validate → (TTS if audio missing) → remotion render → out/<slug>.mp4
+ * Episode build pipeline: validate → (TTS if audio missing) → remotion render → out/<slug>/master.mp4
  *
  * Usage:
  *   npm run build -- --slug 002-debt-clock
  *   npm run build -- --slug 003-python-vs-javascript --skip-validate
- *   npx tsx scripts/build-episode.ts --slug 002-debt-clock --out out/custom.mp4
+ *   npx tsx scripts/build-episode.ts --slug 002-debt-clock --out out/002-debt-clock/master.mp4
  */
 
 import { spawnSync } from 'child_process';
@@ -160,11 +160,16 @@ Pipeline:
   1. Mirror episodes/<slug>/narration.mp3 + captions.json → public/<slug>/
   2. If narration missing: run ElevenLabs TTS (unless --no-tts)
   3. Validate invariants (unless --skip-validate)
-  4. remotion render → out/<slug>.mp4
+  4. remotion render → out/<slug>/master.mp4
+
+Artifact layout:
+  out/<slug>/master.mp4
+  out/<slug>/thumbnail.*   (optional, not written by this CLI)
+  out/<slug>/stills/       (review frames)
 
 Options:
   --slug <id>         Episode folder name (required)
-  --out <path>        Output MP4 (default: out/<slug>.mp4)
+  --out <path>        Output MP4 (default: out/<slug>/master.mp4)
   --composition <id>  Override Remotion composition id
   --skip-validate     Skip invariant checks
   --no-tts            Fail if narration.mp3 is missing (do not call TTS)

@@ -10,6 +10,8 @@ export { EpisodePlayer } from './EpisodePlayer';
 export type { EpisodePlayerProps } from './EpisodePlayer';
 export {
   resolveCompositionId,
+  episodeOutDir,
   defaultOutputPath,
+  episodeStillsDir,
   defaultGlFlag,
 } from './buildEpisode';

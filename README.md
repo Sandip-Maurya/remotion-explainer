@@ -39,7 +39,7 @@ Built with **Remotion + React + TypeScript + Tailwind CSS**, powered by a two-ti
 * **Duration:** Flexible (story first; often 45–90s+, longer OK when needed)  
 * **Safe Zone:** Top 180 · Bottom 320 · Right 140 · Left 60 → **880 × 1420**  
 * **Audio policy:** Commit `narration.mp3` + `captions.json` with each episode  
-* **Renders:** `out/` is **gitignored** and regenerable  
+* **Renders:** `out/<slug>/master.mp4` (+ optional `thumbnail.*`, `stills/`) — gitignored  
 
 ### Voice
 * Prototype: `uv run scripts/tts/generate-edge.py …`  
@@ -62,7 +62,7 @@ npm run build -- --slug 003-python-vs-javascript
 |---|---|
 | Phase 1–2.5 | ✅ Complete (foundation, charts, Living Canvas, Ep 002) |
 | Phase 3 voice/tooling | ✅ ElevenLabs + validate/scaffold; Ep 002/003 masters exist |
-| Phase 3.5 Ep 003 | ✅ `out/003-python-vs-javascript.mp4` (+ thumbnail) |
+| Phase 3.5 Ep 003 | ✅ `out/003-python-vs-javascript/master.mp4` (+ thumbnail) |
 | **Phase 3.6 Template Engine** | ✅ **Complete** — Ep 001–003 on templates; `npm run build -- --slug` |
 
 ---

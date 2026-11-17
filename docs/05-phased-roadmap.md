@@ -296,7 +296,7 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
   * Root registers slug ids `002-debt-clock` / `003-python-vs-javascript` (+ Studio aliases)
 - [x] **M4 (Iteration I3):** `build --slug` CLI ✅
   * `scripts/build-episode.ts` + `src/engine/buildEpisode.ts`
-  * `npm run build -- --slug <slug>` → mirror public → validate → remotion → `out/<slug>.mp4`
+  * `npm run build -- --slug <slug>` → mirror public → validate → remotion → `out/<slug>/master.mp4`
   * TTS only when narration missing (`--force-tts` / `--no-tts` overrides)
   * Raw Remotion CLI moved to `npm run render`
 - [x] **M5 Validation gate (Iteration I3):** ✅
@@ -349,6 +349,7 @@ Ep 003 proved the creative path. Remaining gap: compositions still embed episode
 | **2026-11-17** | Phase 3.6 / I3 | M4+M5: `npm run build -- --slug`; re-rendered 002+003 from templates; JSON smoke OK. **Template-engine cutover complete.** | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Ep 001 migrated to `data-explainer` + rebuilt `out/001-why-inflation-hurts.mp4`. All 001–003 on templates. | ✅ COMPLETED |
 | **2026-11-17** | Phase 3.6 | Deleted legacy `TheDebtClock` + Phase-1 `src/scenes/*` + orphan primitives (pipeline-only codebase). | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 | `out/` reorganized to `out/<slug>/{master.mp4,thumbnail.*,stills/}`; build CLI + docs updated. | ✅ COMPLETED |
 
 ---
 

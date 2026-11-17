@@ -65,7 +65,11 @@ explainer-channel/
 │
 ├─ scripts/                    # Engine CLIs (validate, scaffold, TTS, build)
 ├─ public/                     # staticFile() mirrors (sfx, episode audio/captions)
-├─ out/                        # GITIGNORED — renders & publish artifacts
+├─ out/                        # GITIGNORED — per-episode publish artifacts
+│  └─ <slug>/
+│     ├─ master.mp4            # canonical render (`npm run build -- --slug`)
+│     ├─ thumbnail.*           # optional publish art
+│     └─ stills/               # review frames only
 │
 ├─ src/                        # ENGINE
 │  ├─ index.ts
@@ -108,11 +112,11 @@ explainer-channel/
       └─ assets/
 ```
 
-**Migration note:** **I1–I3 done** — all shipped episodes (`001`–`003`) are Schema v1 + templates; `npm run build -- --slug` validates + renders to `out/`. Legacy `TheDebtClock` (59s) and Phase-1 `src/scenes/*` removed. `videos/` is a pointer-only leftover.
+**Migration note:** **I1–I3 done** — all shipped episodes (`001`–`003`) are Schema v1 + templates; `npm run build -- --slug` → `out/<slug>/master.mp4`. Legacy `TheDebtClock` (59s) and Phase-1 `src/scenes/*` removed. `videos/` is a pointer-only leftover.
 
 **Git policy:**
 - ✅ Commit: episode data, narration, captions, templates, engine  
-- ❌ Ignore: `out/**` (MP4 masters, preview stills, generated thumbnails for publish)
+- ❌ Ignore: `out/**` (per-slug masters, stills, thumbnails)
 
 ---
 
@@ -133,7 +137,7 @@ Every episode folder is a **reproducible product**:
 
 ```bash
 npm run build -- --slug 003-python-vs-javascript
-# validate → render → out/003-python-vs-javascript.mp4
+# validate → render → out/003-python-vs-javascript/master.mp4
 # TTS skipped when narration.mp3 already present (default)
 ```
 
@@ -254,14 +258,16 @@ Reproduce:
 ```bash
 npm run build -- --slug 002-debt-clock
 npm run build -- --slug 003-python-vs-javascript
+# → out/002-debt-clock/master.mp4
+# → out/003-python-vs-javascript/master.mp4
 ```
 
 **Pass criteria:**
 1. No edits to shared templates required to build either episode as a one-off.  
 2. Frame/audio/caption invariants pass.  
-3. Visual parity “good enough” vs current `out/002-debt-clock-remastered.mp4` and `out/003-python-vs-javascript.mp4` (same beats, VO, SFX intent).  
+3. Visual parity “good enough” vs prior masters (same beats, VO, SFX intent).  
 4. Smoke test: change one callout/prop in Ep 003 JSON only → re-render succeeds.  
-5. `out/` is gitignored; episode audio remains in git and is used without mandatory TTS.
+5. `out/<slug>/` is gitignored; episode audio remains in git and is used without mandatory TTS.
 
 ---
 

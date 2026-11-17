@@ -10,7 +10,7 @@
 | **Engine (`src/`)** | Remotion runtime, shared primitives, AudioMixer, discovery, validate/TTS/render |
 | **Templates (`src/templates/`)** | Versioned layout recipes (`decision-compare`, `data-explainer`) — **extend, don't modify** for new genres |
 | **Episodes (`episodes/`)** | Data products: `content.json`, `script.txt`, committed `narration.mp3` + `captions.json` |
-| **`out/`** | Gitignored renders (reproducible via CLI) |
+| **`out/<slug>/`** | Gitignored publish folder (`master.mp4`, optional `thumbnail.*`, `stills/`) |
 
 Legacy hand-wired compositions under `src/compositions/` and folders under `videos/` remain until the template-engine validation gate (re-render 002 + 003) passes.
 
@@ -99,9 +99,10 @@ explainer-channel/
 │     └─ …                         # templateId: decision-compare
 │
 ├─ public/                         # staticFile mirrors (sfx, episode audio)
-├─ out/                            # GITIGNORED renders
+├─ out/<slug>/                     # GITIGNORED — master.mp4 + thumbnail.* + stills/
 └─ videos/                         # LEGACY episode path (migrate → episodes/)
 ```
+
 
 ---
 
