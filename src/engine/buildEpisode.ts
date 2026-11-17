@@ -1,10 +1,5 @@
 import * as path from 'path';
 
-/** Legacy composition ids for episodes not yet on EpisodePlayer + slug registration. */
-const LEGACY_COMPOSITION_IDS: Record<string, string> = {
-  '001-why-inflation-hurts': 'WhyInflationHurts',
-};
-
 /**
  * Remotion composition id for an episode slug.
  * Template-driven episodes register as the slug itself in Root.
@@ -16,7 +11,7 @@ export function resolveCompositionId(
   if (content.templateId && content.templateId !== 'custom') {
     return slug;
   }
-  return LEGACY_COMPOSITION_IDS[slug] ?? slug;
+  return slug;
 }
 
 export function defaultOutputPath(workspaceRoot: string, slug: string): string {

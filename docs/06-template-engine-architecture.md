@@ -108,7 +108,7 @@ explainer-channel/
       └─ assets/
 ```
 
-**Migration note:** **I1–I3 done** — episode products under `episodes/`; Schema v1 + discovery; templates ready; Ep 002/003 on `beats[]`; `npm run build -- --slug` validates + renders to `out/`. Ep 001 remains a legacy composition (optional later migrate). `videos/` is a pointer-only leftover.
+**Migration note:** **I1–I3 done** — all shipped episodes (`001`–`003`) are Schema v1 + templates; `npm run build -- --slug` validates + renders to `out/`. Legacy `TheDebtClock` (59s) and Phase-1 `src/scenes/*` removed. `videos/` is a pointer-only leftover.
 
 **Git policy:**
 - ✅ Commit: episode data, narration, captions, templates, engine  

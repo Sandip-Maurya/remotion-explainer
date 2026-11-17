@@ -63,7 +63,7 @@ npm run build -- --slug 003-python-vs-javascript
 | Phase 1–2.5 | ✅ Complete (foundation, charts, Living Canvas, Ep 002) |
 | Phase 3 voice/tooling | ✅ ElevenLabs + validate/scaffold; Ep 002/003 masters exist |
 | Phase 3.5 Ep 003 | ✅ `out/003-python-vs-javascript.mp4` (+ thumbnail) |
-| **Phase 3.6 Template Engine** | ✅ **I1–I3 complete** (templates + build CLI + re-render gate) |
+| **Phase 3.6 Template Engine** | ✅ **Complete** — Ep 001–003 on templates; `npm run build -- --slug` |
 
 ---
 

@@ -4,7 +4,9 @@
   "topic": "Economics",
   "aspectRatio": "9:16",
   "fps": 30,
-  "totalDurationInFrames": 1203,
+  "totalDurationInFrames": 1204,
+  "templateId": "data-explainer",
+  "templateVersion": 1,
   "narrativeMood": "tension-to-clarity",
   "narration": {
     "engine": "edge-tts",
@@ -12,63 +14,136 @@
     "audioFile": "001-why-inflation-hurts/narration.mp3",
     "durationInSeconds": 40.11
   },
-  "sfxEvents": [],
-  "captions": [],
-  "scenes": [
+  "sfxEvents": [
+    { "frame": 8, "soundId": "sub-drop", "volume": 0.7 },
+    { "frame": 126, "soundId": "whoosh", "volume": 0.45 },
+    { "frame": 360, "soundId": "pop", "volume": 0.55 },
+    { "frame": 735, "soundId": "sub-drop", "volume": 0.8 },
+    { "frame": 1020, "soundId": "chime", "volume": 0.6 }
+  ],
+  "beats": [
     {
-      "id": "scene-1-hook",
-      "type": "hook",
+      "id": "b1-metric-hook",
+      "slot": "metric-hook",
       "durationInFrames": 126,
-      "headline": "Somebody is quietly taking 4 hours of your work every week.",
-      "subtext": "You never signed up for it.",
-      "highlightWord": "quietly",
-      "metaphor": "dollar-burn"
+      "props": {
+        "eyebrow": "THE QUIET THEFT",
+        "title": { "prefix": "4 HOURS", "accent": "GONE" },
+        "metric": {
+          "label": "Stolen Work Every Week",
+          "value": 4,
+          "suffix": " hours",
+          "delta": "Invisible",
+          "trend": "down",
+          "subtext": "Somebody is quietly taking 4 hours of your work every week.",
+          "stats": [
+            { "label": "You Signed Up?", "value": "No" },
+            { "label": "You See It?", "value": "Rarely" },
+            { "label": "It Compounds", "value": "Weekly" }
+          ],
+          "color": "#f59e0b"
+        },
+        "callout": {
+          "text": "YOU NEVER SIGNED UP",
+          "subtext": "Sounds crazy — until you look at the cart",
+          "badgeTag": "HOOK",
+          "accentColor": "#f59e0b",
+          "startFrame": 25,
+          "durationFrames": 90
+        }
+      }
     },
     {
-      "id": "scene-2-stakes",
-      "type": "human-stakes",
+      "id": "b2-before-after",
+      "slot": "before-after",
       "durationInFrames": 234,
-      "personaLabel": "Your Grocery Cart",
-      "comparison": {
-        "pastLabel": "2020",
-        "pastValue": "$100 (Full Cart)",
-        "presentLabel": "Today",
-        "presentValue": "$142 (Half Empty)"
-      },
-      "impactStatement": "You didn't work any less. The farmer didn't work any less."
+      "props": {
+        "eyebrow": "YOUR GROCERY CART",
+        "title": "SAME $100. HALF THE FOOD.",
+        "subtitle": "You didn't work any less. The farmer didn't work any less.",
+        "before": {
+          "tag": "2020",
+          "value": "$100",
+          "label": "Full cart",
+          "subtext": "Filled to the brim"
+        },
+        "after": {
+          "tag": "Today",
+          "value": "$142",
+          "label": "Half empty",
+          "subtext": "Same basket, more cash",
+          "isShock": true
+        },
+        "connectorBadge": "▲ +42%",
+        "layout": "stacked",
+        "callout": {
+          "text": "WHERE DID THE VALUE GO?",
+          "subtext": "Not the shelf. Not the farmer. Your dollar.",
+          "badgeTag": "STAKES",
+          "accentColor": "#ef4444",
+          "startFrame": 35,
+          "durationFrames": 180
+        }
+      }
     },
     {
-      "id": "scene-3-mechanism",
-      "type": "chart-explanation",
+      "id": "b3-bar-mechanism",
+      "slot": "bar-mechanism",
       "durationInFrames": 375,
-      "chartType": "bar",
-      "chartTitle": "Purchasing Power of the Dollar",
-      "unit": "%",
-      "data": [
-        { "label": "2020", "value": 100 },
-        { "label": "2022", "value": 85 },
-        { "label": "2024", "value": 72 },
-        { "label": "2026", "value": 61 }
-      ],
-      "highlightIndex": 3,
-      "keyTakeaway": "39% of your purchasing power vanished in 6 years."
+      "props": {
+        "title": "PURCHASING POWER OF THE DOLLAR",
+        "data": [
+          { "label": "2020", "value": 100 },
+          { "label": "2022", "value": 85 },
+          { "label": "2024", "value": 72 },
+          { "label": "2026", "value": 61, "delta": "-39%" }
+        ],
+        "unit": "%",
+        "highlightIndex": 3,
+        "decimals": 0,
+        "height": 660,
+        "callout": {
+          "text": "39% VANISHED IN 6 YEARS",
+          "subtext": "Same hours worked. Less life bought.",
+          "badgeTag": "MECHANISM",
+          "accentColor": "#38bdf8",
+          "startFrame": 40,
+          "durationFrames": 310
+        }
+      }
     },
     {
-      "id": "scene-4-climax",
-      "type": "dramatic-climax",
+      "id": "b4-climax-drop",
+      "slot": "climax-drop",
       "durationInFrames": 285,
-      "epiphanyHeadline": "Inflation isn't prices rising.",
-      "punchline": "It is your life energy being quietly diluted.",
-      "dramaticPauseFrames": 35,
-      "subBassHit": true
+      "props": {
+        "eyebrow": "THE REAL DEFINITION",
+        "title": "INFLATION ISN'T PRICES RISING.",
+        "titleAccent": "IT'S YOUR LIFE ENERGY DILUTED.",
+        "arrowLabel": "PURCHASING POWER",
+        "dramaticPauseFrames": 35,
+        "subBassHit": true,
+        "callout": {
+          "text": "QUIETLY DILUTED",
+          "subtext": "Every hour you work buys less of the world",
+          "badgeTag": "EPIPHANY",
+          "accentColor": "#ef4444",
+          "startFrame": 50,
+          "durationFrames": 210
+        }
+      }
     },
     {
-      "id": "scene-5-payoff",
-      "type": "empowerment-payoff",
-      "durationInFrames": 183,
-      "coreLesson": "Don't save currency that can be printed. Own real assets.",
-      "callToAction": "Follow to protect your time.",
-      "loopTransitionPhrase": "Because every single week..."
+      "id": "b5-payoff-end",
+      "slot": "payoff-end",
+      "durationInFrames": 184,
+      "props": {
+        "bannerEyebrow": "PROTECT YOUR TIME",
+        "bannerText": "Don't save currency that can be printed.",
+        "coreLesson": "Don't save currency that can be printed. Own real assets.",
+        "callToAction": "Follow to protect your time.",
+        "loopBridge": "Because every single week..."
+      }
     }
   ]
 }
