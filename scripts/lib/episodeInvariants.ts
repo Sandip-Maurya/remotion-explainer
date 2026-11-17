@@ -40,10 +40,20 @@ export interface SceneLike {
   dramaticPauseFrames?: number;
 }
 
+export interface BeatLike {
+  id?: string;
+  slot?: string;
+  durationInFrames: number;
+  dramaticPauseFrames?: number;
+  props?: Record<string, unknown>;
+}
+
 export interface VideoContentLike {
   id: string;
   fps: number;
   totalDurationInFrames: number;
+  templateId?: string;
+  templateVersion?: number;
   narration: {
     engine: string;
     voiceId: string;
@@ -52,7 +62,10 @@ export interface VideoContentLike {
   };
   sfxEvents?: Array<{ frame: number; soundId: string; volume?: number }>;
   captions?: CaptionTokenLike[];
-  scenes: SceneLike[];
+  /** Legacy scene list */
+  scenes?: SceneLike[];
+  /** Schema v1 beat list */
+  beats?: BeatLike[];
 }
 
 export interface EpisodePaths {
@@ -65,10 +78,37 @@ export interface EpisodePaths {
   publicDir: string;
   publicNarrationPath: string;
   publicCaptionsPath: string;
+  root: 'episodes' | 'videos';
 }
 
+/** Prefer episodes/<slug>, fall back to legacy videos/<slug>. */
 export function resolveEpisodePaths(workspaceRoot: string, slug: string): EpisodePaths {
-  const episodeDir = path.join(workspaceRoot, 'videos', slug);
+  const candidates: Array<{ root: 'episodes' | 'videos'; dir: string }> = [
+    { root: 'episodes', dir: path.join(workspaceRoot, 'episodes', slug) },
+    { root: 'videos', dir: path.join(workspaceRoot, 'videos', slug) },
+  ];
+
+  for (const candidate of candidates) {
+    const contentPath = path.join(candidate.dir, 'content.json');
+    if (fs.existsSync(contentPath)) {
+      const publicDir = path.join(workspaceRoot, 'public', slug);
+      return {
+        slug,
+        episodeDir: candidate.dir,
+        contentPath,
+        captionsPath: path.join(candidate.dir, 'captions.json'),
+        scriptPath: path.join(candidate.dir, 'script.txt'),
+        narrationPath: path.join(candidate.dir, 'narration.mp3'),
+        publicDir,
+        publicNarrationPath: path.join(publicDir, 'narration.mp3'),
+        publicCaptionsPath: path.join(publicDir, 'captions.json'),
+        root: candidate.root,
+      };
+    }
+  }
+
+  // Default target path for new episodes (even if missing — callers check exists)
+  const episodeDir = path.join(workspaceRoot, 'episodes', slug);
   const publicDir = path.join(workspaceRoot, 'public', slug);
   return {
     slug,
@@ -80,7 +120,33 @@ export function resolveEpisodePaths(workspaceRoot: string, slug: string): Episod
     publicDir,
     publicNarrationPath: path.join(publicDir, 'narration.mp3'),
     publicCaptionsPath: path.join(publicDir, 'captions.json'),
+    root: 'episodes',
   };
+}
+
+export function getTimingUnits(content: VideoContentLike): Array<{
+  id?: string;
+  durationInFrames: number;
+  dramaticPauseFrames?: number;
+  kind: 'beat' | 'scene';
+}> {
+  if (content.beats && content.beats.length > 0) {
+    return content.beats.map((b) => ({
+      id: b.id ?? b.slot,
+      durationInFrames: b.durationInFrames,
+      dramaticPauseFrames:
+        typeof b.props?.dramaticPauseFrames === 'number'
+          ? b.props.dramaticPauseFrames
+          : b.dramaticPauseFrames,
+      kind: 'beat' as const,
+    }));
+  }
+  return (content.scenes ?? []).map((s) => ({
+    id: s.id,
+    durationInFrames: s.durationInFrames,
+    dramaticPauseFrames: s.dramaticPauseFrames,
+    kind: 'scene' as const,
+  }));
 }
 
 export function loadJson<T>(filePath: string): T {
@@ -112,9 +178,11 @@ export function validateEpisode(
   const issues: Issue[] = [];
   const fps = content.fps || 30;
   const total = content.totalDurationInFrames;
-  const sceneSum = content.scenes.reduce((sum, scene) => sum + (scene.durationInFrames || 0), 0);
+  const units = getTimingUnits(content);
+  const sceneSum = units.reduce((sum, u) => sum + (u.durationInFrames || 0), 0);
   const audioFrames = expectedFramesFromAudio(content.narration.durationInSeconds, fps);
   const totalMs = (total / fps) * 1000;
+  const unitLabel = content.beats && content.beats.length > 0 ? 'Beat' : 'Scene';
 
   if (!content.id) {
     issues.push({ level: 'error', code: 'missing-id', message: 'content.id is required' });
@@ -128,17 +196,25 @@ export function validateEpisode(
     });
   }
 
+  if (units.length === 0) {
+    issues.push({
+      level: 'error',
+      code: 'missing-beats-or-scenes',
+      message: 'content.json needs beats[] (Schema v1) or legacy scenes[]',
+    });
+  }
+
   if (sceneSum !== total) {
     issues.push({
       level: 'error',
       code: 'frame-sum-mismatch',
-      message: `Scene duration sum (${sceneSum}) !== totalDurationInFrames (${total})`,
+      message: `${unitLabel} duration sum (${sceneSum}) !== totalDurationInFrames (${total})`,
     });
   } else {
     issues.push({
       level: 'info',
       code: 'frame-sum-ok',
-      message: `Scene frame sum matches totalDurationInFrames (${total})`,
+      message: `${unitLabel} frame sum matches totalDurationInFrames (${total})`,
     });
   }
 
@@ -168,12 +244,21 @@ export function validateEpisode(
     });
   }
 
-  const climaxScenes = content.scenes.filter((s) => s.type === 'dramatic-climax');
-  if (climaxScenes.length === 0) {
+  // Climax pause: legacy dramatic-climax scenes OR beat props.dramaticPauseFrames / climax slots
+  const climaxScenes = (content.scenes ?? []).filter((s) => s.type === 'dramatic-climax');
+  const climaxBeats = (content.beats ?? []).filter(
+    (b) =>
+      b.slot === 'climax-drop' ||
+      b.slot === 'goal-paths' ||
+      typeof b.props?.dramaticPauseFrames === 'number' ||
+      typeof b.dramaticPauseFrames === 'number',
+  );
+
+  if (climaxScenes.length === 0 && climaxBeats.length === 0) {
     issues.push({
       level: 'warn',
       code: 'missing-climax',
-      message: 'No dramatic-climax scene found (dramatic silence cannot be enforced)',
+      message: 'No climax scene/beat with dramatic pause found',
     });
   }
 
@@ -194,7 +279,28 @@ export function validateEpisode(
     }
   }
 
-  for (const scene of content.scenes) {
+  for (const beat of climaxBeats) {
+    const pause =
+      (typeof beat.props?.dramaticPauseFrames === 'number'
+        ? beat.props.dramaticPauseFrames
+        : beat.dramaticPauseFrames) ?? 0;
+    if (pause === 0) continue; // slot present but pause optional until I2 props filled
+    if (pause < 30 || pause > 60) {
+      issues.push({
+        level: 'error',
+        code: 'climax-pause-range',
+        message: `Beat "${beat.id ?? beat.slot}": dramaticPauseFrames=${pause} must be 30–60`,
+      });
+    } else {
+      issues.push({
+        level: 'info',
+        code: 'climax-pause-ok',
+        message: `Climax pause OK (${pause} frames)`,
+      });
+    }
+  }
+
+  for (const scene of content.scenes ?? []) {
     if (!VALID_SCENE_TYPES.includes(scene.type as (typeof VALID_SCENE_TYPES)[number])) {
       issues.push({
         level: 'error',
@@ -207,6 +313,23 @@ export function validateEpisode(
         level: 'error',
         code: 'invalid-scene-duration',
         message: `Scene "${scene.id ?? scene.type}" has invalid durationInFrames`,
+      });
+    }
+  }
+
+  for (const beat of content.beats ?? []) {
+    if (!beat.slot) {
+      issues.push({
+        level: 'error',
+        code: 'missing-beat-slot',
+        message: `Beat "${beat.id ?? '(missing id)'}" has no slot`,
+      });
+    }
+    if (!beat.durationInFrames || beat.durationInFrames <= 0) {
+      issues.push({
+        level: 'error',
+        code: 'invalid-beat-duration',
+        message: `Beat "${beat.id ?? beat.slot}" has invalid durationInFrames`,
       });
     }
   }

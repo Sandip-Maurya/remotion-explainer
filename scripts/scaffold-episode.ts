@@ -212,7 +212,7 @@ import { EndCard } from '../components/core/EndCard';
 import { OrganicHover } from '../components/motion/OrganicHover';
 import { THEME } from '../styles/theme';
 import { VideoContent } from '../types/content.types';
-import contentData from '../../videos/${opts.slug}/content.json';
+import contentData from '../../episodes/${opts.slug}/content.json';
 
 const content = contentData as unknown as VideoContent;
 
@@ -351,9 +351,9 @@ function main() {
   npx tsx scripts/scaffold-episode.ts --slug 003-topic-slug --title "Episode Title" --topic Economics --mood urgent-escalation
 
 Creates:
-  videos/<slug>/{script.txt,script.md,content.json,assets/,output/}
+  episodes/<slug>/{script.txt,script.md,content.json,assets/}
   public/<slug>/
-  src/compositions/<PascalSlug>.tsx  (5-beat EpisodeShell stub)
+  src/compositions/<PascalSlug>.tsx  (legacy stub until templates land in I2)
 
 Next:
   1. Write the real script.txt
@@ -370,7 +370,7 @@ Next:
   }
 
   const root = process.cwd();
-  const episodeDir = path.join(root, 'videos', args.slug);
+  const episodeDir = path.join(root, 'episodes', args.slug);
   const publicDir = path.join(root, 'public', args.slug);
   const compositionName = toCompositionName(args.slug);
   const compositionPath = path.join(root, 'src', 'compositions', `${compositionName}.tsx`);
@@ -381,7 +381,6 @@ Next:
   }
 
   fs.mkdirSync(path.join(episodeDir, 'assets'), { recursive: true });
-  fs.mkdirSync(path.join(episodeDir, 'output'), { recursive: true });
   fs.mkdirSync(publicDir, { recursive: true });
 
   const content = buildContentJson({
@@ -417,10 +416,10 @@ Next:
 Done.
 
 Next steps:
-  1. Edit videos/${args.slug}/script.txt
-  2. uv run scripts/tts/generate-elevenlabs.py --slug ${args.slug}
-  3. npx tsx scripts/validate-episode.ts --slug ${args.slug} --sync
-  4. Register in src/Root.tsx:
+  1. Edit episodes/${args.slug}/script.txt
+  2. npm run tts:elevenlabs -- --slug ${args.slug}
+  3. npm run validate -- --slug ${args.slug} --sync
+  4. Register in src/Root.tsx (until I2 auto-discovery):
        import { ${compositionName} } from './compositions/${compositionName}';
        <Composition id="${compositionName}" component={${compositionName}} durationInFrames={…} fps={30} width={1080} height={1920} />
   5. npm run dev

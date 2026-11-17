@@ -50,14 +50,19 @@ function printIssues(slug: string, issues: Issue[]) {
 }
 
 function listEpisodeSlugs(workspaceRoot: string): string[] {
-  const videosDir = path.join(workspaceRoot, 'videos');
-  if (!fs.existsSync(videosDir)) return [];
-  return fs
-    .readdirSync(videosDir, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-    .filter((name) => fs.existsSync(path.join(videosDir, name, 'content.json')))
-    .sort();
+  // Prefer episodes/, merge legacy videos/ (episodes wins on slug collision)
+  const roots: Array<'episodes' | 'videos'> = ['videos', 'episodes'];
+  const bySlug = new Map<string, string>();
+  for (const root of roots) {
+    const dir = path.join(workspaceRoot, root);
+    if (!fs.existsSync(dir)) continue;
+    for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!d.isDirectory()) continue;
+      if (!fs.existsSync(path.join(dir, d.name, 'content.json'))) continue;
+      bySlug.set(d.name, root);
+    }
+  }
+  return [...bySlug.keys()].sort();
 }
 
 function validateOne(workspaceRoot: string, slug: string, sync: boolean): boolean {
@@ -115,7 +120,7 @@ Checks:
   const slugs = args.all ? listEpisodeSlugs(workspaceRoot) : [args.slug];
 
   if (slugs.length === 0) {
-    console.error('No episodes found under videos/');
+    console.error('No episodes found under episodes/ (or legacy videos/)');
     process.exit(1);
   }
 

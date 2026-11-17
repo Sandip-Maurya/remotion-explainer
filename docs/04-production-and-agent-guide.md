@@ -78,13 +78,13 @@ Studio-grade emotional speech with word alignments via `scripts/tts/generate-ele
 
 #### Prerequisites
 * Set `ELEVENLABS_API_KEY` in the environment **or** in a workspace-root `.env` as `ELEVENLABS_API_KEY=sk_...`.
-* Episode folder must contain `videos/<slug>/script.txt`.
+* Episode folder must contain `episodes/<slug>/script.txt` (falls back to legacy `videos/<slug>/`).
 
 #### What the script does
 1. Calls ElevenLabs `POST /v1/text-to-speech/{voice_id}/with-timestamps` (`eleven_multilingual_v2`).
-2. Writes `videos/<slug>/narration.mp3` and word-level `captions.json`.
+2. Writes `episodes/<slug>/narration.mp3` and word-level `captions.json`.
 3. Mirrors both into `public/<slug>/` for Remotion `staticFile()`.
-4. Updates `videos/<slug>/content.json` narration metadata (`engine`, `voiceId`, `audioFile`, `durationInSeconds`).
+4. Updates `episodes/<slug>/content.json` narration metadata (`engine`, `voiceId`, `audioFile`, `durationInSeconds`).
 
 #### Default voice settings
 | Setting | Default | Notes |
@@ -111,59 +111,57 @@ uv run scripts/tts/generate-elevenlabs.py --slug 003-my-topic --voice nPczCjzI2d
 
 ## 2. Step-by-Step Production Protocol
 
+> **Template engine target** ([Doc 06](./06-template-engine-architecture.md)): episode = data product; template = layout recipe; `out/` gitignored; **audio committed**.
+
 ```text
-[Step 0: Scaffold]
-  - npm run scaffold -- --slug 003-topic --title "Episode Title"
-  - Creates videos/<slug>/, public/<slug>/, content.json stub, and EpisodeShell composition stub.
+[Step 0: Choose template + scaffold]
+  - Pick templateId: decision-compare | data-explainer | (rare) custom
+  - npm run scaffold -- --slug 004-topic --title "Title" --template decision-compare
+  - Creates episodes/<slug>/ with content.json (beats/slots), script stubs, public mirror dirs
+  - Does NOT invent a one-off composition in shared engine files
 
 [Step 1: Topic & Narrative Draft]
-  - Formulate the core paradox or dilemma using Doc 01.
-  - Write script in `videos/<slug>/script.txt` (130–180 words, 45–80 seconds).
+  - Formulate the core paradox using Doc 01 + template slot doc
+  - Write episodes/<slug>/script.txt (flexible duration; story over hard cutoffs)
 
 [Step 2: Generate Speech & Timestamps]
-  - Prototype (free): npm run tts:edge -- --script videos/<slug>/script.txt --audio videos/<slug>/narration.mp3 --captions videos/<slug>/captions.json
+  - Prototype: Edge-TTS into episodes/<slug>/
   - Production: npm run tts:elevenlabs -- --slug <slug>
-    (writes audio + captions, mirrors to public/, updates narration meta + totalDurationInFrames).
+  - Commit narration.mp3 + captions.json with the episode (policy: audio stays in git)
 
-[Step 3: Validate & Assemble Beats]
-  - npm run validate -- --slug <slug> --sync
-  - Rebalance scene durations in content.json so scene sum == audio frames.
-  - Map SFX frames and chart/callout copy to the spoken beat map.
+[Step 3: Fill beat props + validate]
+  - Map spoken beats → slot props in content.json (no hardcoded copy in templates)
+  - npm run validate -- --slug <slug> [--sync]
+  - Rebalance beat durations so Σ beats == audio frames
 
-[Step 4: Interactive Remotion Studio Review]
-  - Register the scaffolded composition in src/Root.tsx if not already.
-  - Run `npm run dev` to launch Remotion Studio.
-  - Enable the safe-zone overlay composition variant.
-  - Scrub timeline to confirm:
-    1. Visuals enter precisely on audio keywords.
-    2. Numbers count up smoothly with spring physics.
-    3. No text touches the top 180px, bottom 320px, right 140px, or left 60px danger zones.
+[Step 4: Studio review]
+  - npm run dev → open composition id == slug (auto-registered after template-engine cutover)
+  - Safe-zone scrub; one idea per beat; SFX/callout timing
 
-[Step 5: Local CLI Render]
-  - npx remotion render src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
-  - Verify exported MP4 visually and auditorily from start to finish.
+[Step 5: Render]
+  - Target: npm run build -- --slug <slug>
+  - Interim: .\node_modules\.bin\remotion render src/index.ts <CompositionId> out/<slug>.mp4 --gl=angle
+  - Masters land in out/ (gitignored); regenerate anytime from episode folder
 ```
 
 ---
 
 ## 3. Strict Guardrails for AI Coding Agents
 
-When working inside this codebase, AI coding assistants (Claude Code, Cursor, Antigravity) must strictly obey these ten directives:
+When working inside this codebase, AI coding assistants must obey these directives:
 
-1. **In-Built Remotion Priority:** Always use official first-party packages (`@remotion/shapes`, `@remotion/paths`, `@remotion/transitions`, `@remotion/captions`, `@remotion/media-utils`, and `@remotion/google-fonts`). Do not install external chart, icon, or animation packages without explicit human approval.
-2. **Mandatory `.tsx` Extension:** All visual components, scenes, and overlays must be saved as `.tsx` files with strict TypeScript types.
-3. **No Hard-Coded Copy or Statistics:** Never hardcode script text, stats, or values inside visual scene components. Pull them strictly from `content.json` or typed scene props.
-4. **Mobile Safe Zone Enforcement:** Never position critical text, titles, charts, or focal elements inside the danger zones:
-   - Top 180px (Search, header, sound track)
-   - Bottom 320px (Account handle, title, audio pill, subscribe button)
-   - Right 140px (Like, comment, share, remix icons)
-   - Left 60px (Edge curvature and gesture navigation)
-5. **Human Stakes with Every Stat:** Never render a dry chart or macro statistic without an accompanying relatable human stakes callout (e.g. grocery basket, rent, hours of labor).
-6. **100% Deterministic Animations:** Never use unseeded `Math.random()`, `setInterval`, `requestAnimationFrame`, or CSS transitions (`transition: ...`). All layout and animation state must be pure mathematical functions of `useCurrentFrame()` and `fps`.
-7. **Dramatic Silence Enforcement:** In the Climax scene, mute or duck the background music track completely for 30–60 frames (1.0–2.0 seconds) around the core realization statement.
-8. **Respect Narrative Duration Flexibility:** Do not butcher a compelling narrative or truncate essential dramatic pauses just to hit an arbitrary 50-second timer. The target sweet spot is 45–90 seconds; storytelling depth takes precedence over rigid cutoffs.
-9. **Pure SVG Vector Graphics for Data:** Always render charts and metric graphs using native SVG (`<svg>`, `<rect>`, `<path>`, `<text>`). Never use HTML `<div>` mockups for data visualizations.
-10. **Single Source of Truth Adherence:** All video episode configurations must strictly validate against the master TypeScript schema defined in `src/types/content.types.ts`.
+1. **In-Built Remotion Priority:** Official `@remotion/*` first; no external chart/icon/animation packages without human approval.
+2. **Mandatory `.tsx` Extension:** Visual components/templates as `.tsx` with strict types.
+3. **No Hard-Coded Episode Copy:** Never hardcode script/stats inside templates or shared components — only `content.json` beat props.
+4. **Extend Templates, Don't Patch for One Video:** New genre → new `src/templates/<id>/`. Normal episode → new `episodes/<slug>/` only. Do not modify `decision-compare` / `data-explainer` just to ship one topic.
+5. **Mobile Safe Zone Enforcement:** No focal UI in Top 180 / Bottom 320 / Right 140 / Left 60.
+6. **Human Stakes with Every Stat:** Macro numbers need a lived-consequence callout.
+7. **100% Deterministic Animations:** No unseeded `Math.random()`, `setInterval`, `requestAnimationFrame`, or CSS `transition`.
+8. **Dramatic Silence Enforcement:** Climax music duck/cut 30–60 frames when the template slot declares it.
+9. **Narrative Duration Flexibility:** Story depth over rigid 45–60s cuts (Shorts limits may still apply for publish format).
+10. **Pure SVG for Data Charts:** Native SVG + `@remotion/paths` — no HTML div faux charts.
+11. **Schema SSOT:** Episodes validate as Schema v1 (`templateId` + `beats`) per Doc 03 / Doc 06; legacy `scenes[]` only for pre-migration files.
+12. **Audio in Git:** Commit `narration.mp3` + `captions.json`; do not delete them to “save space.” Ignore `out/` renders only.
 
 ---
 
@@ -210,14 +208,13 @@ Before any exported `.mp4` is published to YouTube Shorts:
 - [x] **Milestone 2:** `out/002-debt-clock.mp4` + `out/002-debt-clock-remastered.mp4`.
 
 ### Phase 3 — Production Voice Acting & Automation 🟡 PARTIAL
-- [x] `scripts/tts/generate-elevenlabs.py` with expressive parameters + word timestamps (live on Ep 002).
-- [x] `scripts/validate-episode.ts` invariant checks + `--sync` duration helper.
-- [x] `scripts/scaffold-episode.ts` + `EpisodeShell` / `BeatSequence` for fast Episode 003+ starts.
-- [ ] Full `build-episode` one-command render (**deferred**).
+- [x] ElevenLabs TTS + validate/scaffold tooling; Ep 002/003 shipped with committed audio.
+- [ ] Full `build-episode` CLI (completes with the template engine).
 
-### Active Focus — Content-First Episode Production 🔵
-- [ ] Ship Episode 003+ via scaffold → script → ElevenLabs → validate → thin composition → render.
-- [ ] Prefer new topics/story/data over new tooling until the episode pattern is boring.
+### Active Focus — Template Engine 🔵
+- [x] Design docs: Doc 06 + template slot catalogs (`decision-compare`, `data-explainer`).
+- [ ] Implement engine/templates/episodes cutover.
+- [ ] Validation gate: re-render Ep 002 + Ep 003 from templates + episode data only.
 
 ### Phase 4 — Analytics & Template Scaling ⚪ FUTURE
 - [ ] Analyze YouTube Shorts retention drop-offs and refine hook pacing.
@@ -227,7 +224,8 @@ Before any exported `.mp4` is published to YouTube Shorts:
 
 ## 6. Cross-Document Architecture Links
 
-* **[01. Storytelling, Narrative & Sensitization Bible](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md):** 5-beat emotional arc, SFX taxonomy, and creative copywriting.
-* **[02. Technical Architecture & Engineering Specification](file:///c:/Users/skmpa/vdo/rm/docs/02-technical-architecture.md):** Remotion component implementations, `<ShortsSafeZone />`, `<AudioMixer />`, and SVG charting engine.
-* **[03. Content Models, Schemas & Data Contracts](file:///c:/Users/skmpa/vdo/rm/docs/03-content-and-schemas.md):** TypeScript data contracts, `content.types.ts`, and episode configurations.
-* **[05. Phased Implementation Roadmap & Milestone Tracker](file:///c:/Users/skmpa/vdo/rm/docs/05-phased-roadmap.md):** Living operational task tracker, subtask breakdowns, and acceptance gates.
+* **[01. Storytelling](./01-storytelling-and-creative.md):** arcs, SFX, copy.
+* **[02. Technical Architecture](./02-technical-architecture.md):** engine tree + primitives.
+* **[03. Content Models](./03-content-and-schemas.md):** Schema v1 + invariants.
+* **[05. Phased Roadmap](./05-phased-roadmap.md):** Template-engine milestone tracker.
+* **[06. Template Engine Architecture](./06-template-engine-architecture.md):** Template-engine SSOT.

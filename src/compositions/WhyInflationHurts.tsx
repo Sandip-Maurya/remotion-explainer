@@ -13,8 +13,8 @@ import { ShortsSafeZone } from '../components/core/ShortsSafeZone';
 import { VideoContent, CaptionToken, HookSceneData, HumanStakesSceneData, ChartExplainerSceneData, DramaticClimaxSceneData, PayoffSceneData } from '../types/content.types';
 
 // Load episode content & captions data
-import contentJson from '../../videos/001-why-inflation-hurts/content.json';
-import captionsJson from '../../videos/001-why-inflation-hurts/captions.json';
+import contentJson from '../../episodes/001-why-inflation-hurts/content.json';
+import captionsJson from '../../episodes/001-why-inflation-hurts/captions.json';
 
 export interface WhyInflationHurtsProps {
   showSafeZone?: boolean;

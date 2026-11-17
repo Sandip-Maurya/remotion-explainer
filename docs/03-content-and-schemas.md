@@ -4,11 +4,76 @@
 
 The Remotion code is an **abstract rendering engine**. It must know *how* to draw an animated bar chart, a kinetic subtitle, or an emotional vignette, but it must **never hardcode what is being explained**.
 
-All scripts, numbers, scene sequences, and audio cues are defined in a structured **Content Model** (`content.json` or `video.config.ts`).
+All scripts, numbers, beat sequences, and audio cues are defined in a structured **Content Model** (`content.json`).
+
+Under the **template engine model** ([Doc 06](./06-template-engine-architecture.md)):
+- Episodes declare `templateId` + ordered `beats[]` (slot + props).
+- Templates own layout/animation; episodes own data.
+- **`narration.mp3` and `captions.json` are committed in git** with each episode.
 
 ---
 
-## 2. Master TypeScript Schema (`src/types/content.types.ts`)
+## 1.5 Schema v1 — Declarative Episodes (Target)
+
+Authoritative shape for new and migrated episodes. Slot prop details live in template docs.
+
+```ts
+export type TemplateId = 'decision-compare' | 'data-explainer' | 'custom';
+
+export interface EpisodeBeatV1 {
+  id: string;
+  slot: string; // must be allowed by the resolved template
+  durationInFrames: number;
+  props: Record<string, unknown>; // validated by template schema
+}
+
+export interface EpisodeContentV1 {
+  id: string;
+  title: string;
+  topic: 'Economics' | 'Technology' | 'Psychology' | 'Society';
+  aspectRatio: '9:16';
+  fps: number;
+  totalDurationInFrames: number;
+
+  templateId: TemplateId;
+  templateVersion: number;
+
+  narrativeMood: NarrativeMood;
+  narration: {
+    engine: 'edge-tts' | 'elevenlabs';
+    voiceId: string;
+    audioFile: string; // e.g. "003-python-vs-javascript/narration.mp3"
+    durationInSeconds: number;
+  };
+  backgroundMusic?: {
+    file: string;
+    baseVolume: number;
+    duckedVolume: number;
+  };
+  sfxEvents: SfxCue[];
+  beats: EpisodeBeatV1[];
+}
+```
+
+**Template slot catalogs:**
+- [`decision-compare`](./templates/decision-compare.md) — Ep 003 family  
+- [`data-explainer`](./templates/data-explainer.md) — Ep 002 family  
+
+**Invariants (engine-enforced, unchanged):**
+1. Σ `beats[i].durationInFrames` == `totalDurationInFrames`  
+2. `totalDurationInFrames` == ⌈`narration.durationInSeconds` × fps⌉  
+3. Caption tokens within video bounds  
+4. Climax / dramatic pause 30–60 frames when the template beat declares it  
+5. Safe zone: focal UI inside 880 × 1420  
+
+---
+
+## 2. Legacy / Transitional Scene Schema (`scenes[]`)
+
+> Used by Ep 001 and current pre-migration `content.json` files.  
+> New work should prefer Schema v1 `beats[]`. Keep until the template-engine validation gate passes.
+
+### Master TypeScript Schema (`src/types/content.types.ts`) — legacy scene unions
 
 ```ts
 // src/types/content.types.ts
@@ -325,6 +390,8 @@ export interface NarrationTrack {
 
 ## 7. Cross-Document Architecture Links
 
-* **[01. Storytelling, Narrative & Sensitization Bible](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md):** 5-beat emotional arc, SFX taxonomy, and script copywriting examples.
-* **[02. Technical Architecture & Engineering Specification](file:///c:/Users/skmpa/vdo/rm/docs/02-technical-architecture.md):** Remotion component implementations, `<AudioMixer />`, and SVG charting engine.
-* **[04. Production Runbook, Audio Pipelines & AI Agent Guardrails](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md):** Audio generation CLI tools, AI agent guardrails, and validation runbook.
+* **[01. Storytelling](./01-storytelling-and-creative.md):** arcs, SFX taxonomy, copywriting.
+* **[02. Technical Architecture](./02-technical-architecture.md):** Remotion primitives, tree, AudioMixer.
+* **[04. Production & Agent Guide](./04-production-and-agent-guide.md):** TTS + build protocol.
+* **[06. Template Engine Architecture](./06-template-engine-architecture.md):** Template-engine product model.
+* **[templates/decision-compare](./templates/decision-compare.md)** · **[templates/data-explainer](./templates/data-explainer.md)**

@@ -24,7 +24,7 @@ import { CameraMicroBump } from '../components/motion/CameraMicroBump';
 import { VideoContent } from '../types/content.types';
 
 // Master episode configuration
-import contentData from '../../videos/002-debt-clock/content.json';
+import contentData from '../../episodes/002-debt-clock/content.json';
 const content = contentData as unknown as VideoContent;
 
 export const TheDebtClockRemastered: React.FC<{ showSafeZone?: boolean }> = ({

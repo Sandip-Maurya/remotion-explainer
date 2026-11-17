@@ -107,7 +107,7 @@ export interface CaptionToken {
   isEmphasized?: boolean;
 }
 
-// --- Master Video Object ---
+// --- Master Video Object (legacy compositions: scenes[]) ---
 
 export interface VideoContent {
   id: string;
@@ -133,6 +133,53 @@ export interface VideoContent {
   };
 
   sfxEvents: SfxCue[];
-  captions: CaptionToken[];
+  captions?: CaptionToken[];
+  /** @deprecated Prefer EpisodeContentV1.beats — kept for legacy compositions */
   scenes: SceneData[];
 }
+
+// --- Schema v1: template engine episodes (beats + templateId) ---
+
+export type TemplateId = 'decision-compare' | 'data-explainer' | 'custom';
+
+export interface EpisodeBeatV1 {
+  id: string;
+  /** Must be allowed by the resolved template */
+  slot: string;
+  durationInFrames: number;
+  props: Record<string, unknown>;
+}
+
+export interface EpisodeContentV1 {
+  id: string;
+  title: string;
+  topic: 'Economics' | 'Technology' | 'Psychology' | 'Society';
+  aspectRatio: '9:16';
+  fps: number;
+  totalDurationInFrames: number;
+
+  templateId: TemplateId;
+  templateVersion: number;
+
+  narrativeMood: NarrativeMood;
+
+  narration: {
+    engine: 'edge-tts' | 'elevenlabs';
+    voiceId: string;
+    audioFile: string;
+    durationInSeconds: number;
+  };
+
+  backgroundMusic?: {
+    file: string;
+    baseVolume: number;
+    duckedVolume: number;
+  };
+
+  sfxEvents: SfxCue[];
+  /** Ordered beats; slot must be allowed by the template */
+  beats: EpisodeBeatV1[];
+}
+
+/** Content that compositions may read during migration (legacy scenes or v1 beats). */
+export type AnyEpisodeContent = VideoContent | EpisodeContentV1;

@@ -176,6 +176,7 @@ Because every single week...
 
 This creative guide works in concert with the engineering and production specifications:
 
-* **[02. Technical Architecture & Engineering Specification](file:///c:/Users/skmpa/vdo/rm/docs/02-technical-architecture.md):** Remotion component implementations, `<ShortsSafeZone />`, theme tokens (`src/styles/theme.ts`), and SVG animation mechanics.
-* **[03. Content Models, Schemas & Data Contracts](file:///c:/Users/skmpa/vdo/rm/docs/03-content-and-schemas.md):** TypeScript types (`content.types.ts`), validation constraints, and declarative episode data (`content.json`).
-* **[04. Production Runbook, Audio Pipelines & AI Agent Guardrails](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md):** TTS generation scripts (`generate-edge.py`), coding agent guardrails, and the pre-publish quality checklist.
+* **[02. Technical Architecture](./02-technical-architecture.md):** Remotion primitives, safe zones, theme tokens.
+* **[03. Content Models](./03-content-and-schemas.md):** Schema v1 beats + legacy scenes.
+* **[04. Production & Agent Guide](./04-production-and-agent-guide.md):** TTS + publish checklist.
+* **[06. Template Engine](./06-template-engine-architecture.md):** Maps archetypes → templates (`decision-compare`, `data-explainer`).

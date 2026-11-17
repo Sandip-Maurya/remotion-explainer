@@ -19,7 +19,7 @@ import {
   DramaticClimaxSceneData,
   PayoffSceneData,
 } from '../types/content.types';
-import contentData from '../../videos/003-python-vs-javascript/content.json';
+import contentData from '../../episodes/003-python-vs-javascript/content.json';
 
 const content = contentData as unknown as VideoContent;
 

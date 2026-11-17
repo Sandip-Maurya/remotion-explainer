@@ -194,12 +194,18 @@ def main():
     args = parser.parse_args()
 
     slug = args.slug
-    script_path = Path(f"videos/{slug}/script.txt")
-    video_audio = Path(f"videos/{slug}/narration.mp3")
+    # Prefer episodes/<slug> (template engine); fall back to legacy videos/<slug>
+    episode_dir = Path(f"episodes/{slug}")
+    if not (episode_dir / "script.txt").exists():
+        legacy = Path(f"videos/{slug}")
+        if (legacy / "script.txt").exists():
+            episode_dir = legacy
+    script_path = episode_dir / "script.txt"
+    video_audio = episode_dir / "narration.mp3"
     public_audio = Path(f"public/{slug}/narration.mp3")
-    video_captions = Path(f"videos/{slug}/captions.json")
+    video_captions = episode_dir / "captions.json"
     public_captions = Path(f"public/{slug}/captions.json")
-    content_json_path = Path(f"videos/{slug}/content.json")
+    content_json_path = episode_dir / "content.json"
 
     duration_sec, frames = synthesize_elevenlabs(
         script_path=str(script_path),

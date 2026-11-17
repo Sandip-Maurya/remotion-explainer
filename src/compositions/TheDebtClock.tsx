@@ -23,8 +23,8 @@ import { EndCard } from '../components/core/EndCard';
 import { CaptionToken, VideoContent } from '../types/content.types';
 
 // Load content and enriched captions
-import contentData from '../../videos/002-debt-clock/content.json';
-import captionsData from '../../videos/002-debt-clock/captions.json';
+import contentData from '../../episodes/002-debt-clock/content.json';
+import captionsData from '../../episodes/002-debt-clock/captions.json';
 
 const content = contentData as unknown as VideoContent;
 const captions = captionsData as CaptionToken[];

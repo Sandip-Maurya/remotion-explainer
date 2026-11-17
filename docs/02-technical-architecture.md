@@ -1,5 +1,21 @@
 # 02. Technical Architecture & Engineering Specification
 
+## 0. Product Architecture
+
+> **Scaling model:** Engine → Templates → Episodes → `out/` artifacts.  
+> **SSOT for this model:** [06. Template Engine Architecture](./06-template-engine-architecture.md).
+
+| Layer | Role |
+|---|---|
+| **Engine (`src/`)** | Remotion runtime, shared primitives, AudioMixer, discovery, validate/TTS/render |
+| **Templates (`src/templates/`)** | Versioned layout recipes (`decision-compare`, `data-explainer`) — **extend, don't modify** for new genres |
+| **Episodes (`episodes/`)** | Data products: `content.json`, `script.txt`, committed `narration.mp3` + `captions.json` |
+| **`out/`** | Gitignored renders (reproducible via CLI) |
+
+Legacy hand-wired compositions under `src/compositions/` and folders under `videos/` remain until the template-engine validation gate (re-render 002 + 003) passes.
+
+---
+
 ## 1. Core Engineering Principle: Inbuilt First-Party Priority
 
 To maintain extreme render determinism, lightning-fast build speeds, and zero dependency rot, we enforce a strict package policy:
@@ -30,104 +46,61 @@ To maintain extreme render determinism, lightning-fast build speeds, and zero de
 
 ---
 
-## 3. Canonical Project Directory Structure
+## 3. Canonical Project Directory Structure (Target)
+
+> Full rationale and migration notes: [Doc 06](./06-template-engine-architecture.md).  
+> Until cutover, runtime may still use `videos/` + `src/compositions/`.
 
 ```text
 explainer-channel/
-├─ package.json                    # Remotion v4, React, Tailwind CSS, TypeScript dependencies
-├─ tsconfig.json                   # Strict TypeScript compiler options
-├─ tailwind.config.js              # Theme tokens & safe zone layout extensions
-├─ remotion.config.ts              # Output codec, concurrency, chromium flags (--gl=angle)
-├─ README.md                       # Project overview & documentation index
+├─ package.json
+├─ remotion.config.ts
+├─ README.md
 │
-├─ docs/                           # Authoritative System Documentation (Single Source of Truth)
+├─ docs/
 │  ├─ 01-storytelling-and-creative.md
 │  ├─ 02-technical-architecture.md
 │  ├─ 03-content-and-schemas.md
 │  ├─ 04-production-and-agent-guide.md
-│  └─ 05-phased-roadmap.md
+│  ├─ 05-phased-roadmap.md
+│  ├─ 06-template-engine-architecture.md
+│  └─ templates/
+│     ├─ decision-compare.md
+│     └─ data-explainer.md
 │
 ├─ scripts/
-│  ├─ tts/
-│  │  ├─ generate-edge.py          # Free Edge-TTS prototype audio & millisecond timestamps
-│  │  └─ generate-elevenlabs.py    # Production ElevenLabs TTS with character/word alignment
-│  ├─ 11labs/
-│  │  └─ audio_test.py             # Voice audition clips → public/audio/test-*.mp3
-│  ├─ audio/
-│  │  └─ generate-sfx.py           # Broadcast SFX synthesizer → public/sfx/
-│  ├─ lib/
-│  │  └─ episodeInvariants.ts      # Shared content.json invariant rules
-│  ├─ validate-episode.ts          # Invariant checker + --sync duration helper
-│  ├─ scaffold-episode.ts          # New episode folder + EpisodeShell composition stub
-│  └─ render.ts                    # Local CLI batch render wrapper (optional / backlog)
+│  ├─ tts/generate-edge.py
+│  ├─ tts/generate-elevenlabs.py
+│  ├─ validate-episode.ts
+│  ├─ scaffold-episode.ts          # writes episodes/<slug>/ data for a templateId
+│  └─ build-episode.ts             # target: validate + render (TTS if audio missing)
 │
-├─ src/
-│  ├─ index.ts                     # Remotion root entrypoint
-│  ├─ Root.tsx                     # Composition registration & font preloading
-│  │
-│  ├─ components/
-│  │  ├─ core/
-│  │  │  ├─ Title.tsx              # Expressive headline with spring pop entrance
-│  │  │  ├─ BigNumber.tsx          # Animated counting metric with scale bounce
-│  │  │  ├─ TextBlock.tsx          # Clean body text with highlight styling
-│  │  │  ├─ ProgressBar.tsx        # Top retention progress indicator
-│  │  │  ├─ ShortsSafeZone.tsx     # Development visual overlay guide for mobile UI bounds
-│  │  │  └─ EndCard.tsx            # Channel outro & loop back trigger
-│  │  │
-│  │  ├─ storytelling/             # Emotional & Narrative Primitives (.tsx)
-│  │  │  ├─ HumanStakesCard.tsx    # "What this means for you" personal stakes card
-│  │  │  ├─ DramaticQuote.tsx      # Emotive realization statement with dim background
-│  │  │  ├─ TensionVignette.tsx    # Pulsing vignette shadow overlay for suspense
-│  │  │  ├─ BeforeAfterSplit.tsx   # Contrast comparison (2020 vs Today)
-│  │  │  └─ MetaphorIcon.tsx       # SVG visual metaphors (padlock, empty-cart, clock, dollar-burn)
-│  │  │
-│  │  ├─ data/                     # Pure SVG Informational & Data Components (.tsx)
-│  │  │  ├─ BarChart.tsx           # Deterministic SVG animated bar chart
-│  │  │  ├─ LineChart.tsx          # SVG line chart animated via @remotion/paths
-│  │  │  ├─ MetricCard.tsx         # Comparative stat card with change indicator
-│  │  │  └─ SimpleTable.tsx        # Side-by-side metric breakdown
-│  │  │
-│  │  ├─ graphics/                 # Geometric & Vector Primitives (.tsx)
-│  │  │  ├─ AnimatedArrow.tsx      # Native arrow via @remotion/shapes
-│  │  │  ├─ CalloutBox.tsx         # Native callout bubble via @remotion/shapes
-│  │  │  └─ StepTimeline.tsx       # Progressive step-by-step connector
-│  │  │
-│  │  └─ captions/
-│  │     └─ KineticCaptions.tsx    # Word-by-word subtitles with spring pops & emphasis
-│  │
-│  ├─ scenes/                      # 5-Beat Narrative Scene Compositions (.tsx)
-│  │  ├─ HookScene.tsx             # Beat 1: High-impact curiosity or emotional paradox
-│  │  ├─ AgitationScene.tsx        # Beat 2: Human stakes and lived tension
-│  │  ├─ MechanismScene.tsx        # Beat 3: Data, mechanics & chart breakdown
-│  │  ├─ ClimaxScene.tsx           # Beat 4: Paradigm epiphany with dramatic silence
-│  │  └─ PayoffScene.tsx           # Beat 5: Core takeaway & seamless loop bridge
-│  │
-│  ├─ audio/
-│  │  ├─ AudioMixer.tsx            # Narration, side-chain music ducking, and SFX trigger engine
-│  │  └─ sfxLibrary.ts             # Audio asset mapping for all soundId cues
-│  │
+├─ src/                            # ENGINE
+│  ├─ index.ts
+│  ├─ Root.tsx                     # Discovers episodes; registers by slug
+│  ├─ engine/                      # discovery, metadata, build helpers
+│  ├─ templates/
+│  │  ├─ registry.ts
+│  │  ├─ decision-compare/         # Ep 003 family
+│  │  └─ data-explainer/           # Ep 002 family
+│  ├─ compositions/                # LEGACY adapters (remove after validation gate)
+│  ├─ components/                  # Shared primitives (core, data, graphics, motion, …)
+│  ├─ audio/                       # AudioMixer, sfxLibrary
 │  ├─ styles/
-│  │  ├─ theme.ts                  # Centralized color tokens, font families, spring presets
-│  │  └─ global.css                # Tailwind utility directives and base reset
-│  │
-│  └─ types/
-│     ├─ content.types.ts          # Master TypeScript schema for episodes & scenes
-│     └─ audio.types.ts            # Sound effects, ducking envelopes & caption token interfaces
+│  └─ types/                       # content.types.ts (Schema v1), audio.types.ts
 │
-├─ videos/                         # Episode Workspace Folders
-│  └─ 001-why-inflation-hurts/
-│     ├─ script.txt                # Plain text voiceover script for TTS synthesis
-│     ├─ script.md                 # Storyboard with emotional tags and director cues
-│     ├─ content.json              # Declarative scene & audio config adhering to content.types.ts
-│     ├─ narration.mp3             # Synthesized voiceover audio file
-│     ├─ captions.json             # Word-level timestamp array
-│     ├─ assets/                   # Episode-specific custom SVGs or images
-│     └─ output/                   # Final rendered 1080x1920 MP4
+├─ episodes/                       # EPISODE PRODUCTS (committed audio + captions)
+│  ├─ 002-debt-clock/
+│  │  ├─ content.json              # templateId: data-explainer
+│  │  ├─ script.txt / script.md
+│  │  ├─ narration.mp3             # IN GIT
+│  │  └─ captions.json             # IN GIT
+│  └─ 003-python-vs-javascript/
+│     └─ …                         # templateId: decision-compare
 │
-└─ assets/                         # Global Shared Static Assets
-   ├─ fonts/                       # Local font fallbacks (Montserrat, Inter, JetBrains Mono)
-   ├─ sfx/                         # Pre-trimmed broadcast audio cues (sub-drop, pop, whoosh, etc.)
-   └─ music/                       # Mood-aligned audio tracks (tension, ambient, synth)
+├─ public/                         # staticFile mirrors (sfx, episode audio)
+├─ out/                            # GITIGNORED renders
+└─ videos/                         # LEGACY episode path (migrate → episodes/)
 ```
 
 ---
@@ -679,6 +652,9 @@ Vector primitives visually illustrate abstract concepts without external heavy i
 
 ## 12. Cross-Document Architecture Links
 
-* **[01. Storytelling, Narrative & Sensitization Bible](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md):** 5-beat emotional arc, SFX taxonomy, and color psychology.
-* **[03. Content Models, Schemas & Data Contracts](file:///c:/Users/skmpa/vdo/rm/docs/03-content-and-schemas.md):** TypeScript data contracts, `content.types.ts`, and episode configs.
-* **[04. Production Runbook, Audio Pipelines & AI Agent Guardrails](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md):** TTS generation pipelines, AI coding agent guardrails, and validation runbook.
+* **[01. Storytelling](./01-storytelling-and-creative.md):** 5-beat emotional arc, SFX taxonomy, and color psychology.
+* **[03. Content Models](./03-content-and-schemas.md):** Schema v1 (`templateId` + `beats`) and legacy scene schemas.
+* **[04. Production & Agent Guide](./04-production-and-agent-guide.md):** TTS, build protocol, agent guardrails.
+* **[05. Phased Roadmap](./05-phased-roadmap.md):** Template-engine refactor milestones.
+* **[06. Template Engine Architecture](./06-template-engine-architecture.md):** Engine / templates / episodes SSOT.
+* **[templates/decision-compare](./templates/decision-compare.md)** · **[templates/data-explainer](./templates/data-explainer.md)**

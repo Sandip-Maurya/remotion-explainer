@@ -11,9 +11,10 @@ This roadmap serves as the **living operational execution tracker** for building
 | **Phase 1** | **Foundation, Story Primitives & Edge-TTS Prototype** | 🟢 **COMPLETED** | Sprint 1 | First 40s test Short (*"Why $100 Isn't $100 Anymore"*) rendered locally via Remotion CLI (`out/001-why-inflation-hurts.mp4`) |
 | **Phase 2** | **Explainer SVG Charts & Diagram Suite** | 🟢 **COMPLETED** | Sprint 2 | Pure SVG Bar/Line charts, diagram connectors, SFX library & Episode 002 |
 | **Phase 2.5** | **Living Canvas & Visual Polish** | 🟢 **COMPLETED** | Sprint 2.5 | Editorial callouts, idle motion engine, Episode 002 remaster with tall charts |
-| **Phase 3** | **Production Voice Acting & Automated Pipeline** | 🟡 **PARTIAL** — voice done; automation deferred | Sprint 3 | ElevenLabs TTS live on Ep 002; `build-episode` CLI + invariant tests backlog |
-| **Phase 3.5 / Active** | **Content-First Episode Production** | 🔵 **ACTIVE FOCUS** | Ongoing | Ship Episode 003+ by reusing components; prioritize script/story/data over new tooling |
-| **Phase 4** | **Channel Scaling, Analytics & Template Presets** | ⚪ FUTURE | Sprint 4 | Retention curve optimization, genre storytelling presets, cloud batch rendering |
+| **Phase 3** | **Production Voice Acting & Tooling** | 🟡 **PARTIAL** | Sprint 3 | ElevenLabs + validate/scaffold; Ep 002/003 shipped; full `build-episode` completes with the template engine |
+| **Phase 3.5** | **Content-First Episodes** | 🟢 **COMPLETED** (Ep 003 published path) | Sprint 3.5 | Ep 003 Python vs JS master + thumbnail; proved content-first before full templating |
+| **Phase 3.6 / Active** | **Template Engine Refactor** | 🔵 **ACTIVE** — docs done; code next | Sprint 3.6 | Engine → templates → episodes; re-render 002 + 003 validation gate |
+| **Phase 4** | **Channel Scaling, Analytics & Template Presets** | ⚪ FUTURE | Sprint 4 | Retention optimization; more templates; optional cloud batch |
 
 ---
 
@@ -259,21 +260,38 @@ This roadmap serves as the **living operational execution tracker** for building
   * One-button MP4 from script alone.
   * *Near-term substitute:* content-first Episode 003+ via scaffold → ElevenLabs → validate → thin composition.
 
-### Content-First Production Workflow (Active Default)
+### Content-First Workflow (superseded by template engine after gate)
 
-Visual primitives, SFX, Living Canvas motion, and ElevenLabs are ready. New episodes prioritize story and data:
+Ep 003 proved the creative path. Remaining gap: compositions still embed episode data in `.tsx`. **Phase 3.6 (template engine)** removes that gap.
 
-```text
-[1] Scaffold episode        → npm run scaffold -- --slug 003-topic --title "Title"
-[2] Write 5-beat script     → videos/<slug>/script.txt (+ optional script.md with SFX tags)
-[3] ElevenLabs voice        → npm run tts:elevenlabs -- --slug <slug>
-[4] Validate / sync frames  → npm run validate -- --slug <slug> --sync
-[5] Rebalance beats + data  → content.json scenes / SFX / chart numbers
-[6] Thin composition        → edit scaffolded EpisodeShell stub; register in Root.tsx
-[7] Studio scrub + render   → npm run dev → npx remotion render ... --gl=angle
-```
+---
 
-**Known gap (intentional):** Episode compositions still embed some chart series, callout copy, and beat timings in `.tsx`. Fully declarative `content.json` → render stays deferred until 1–2 more episodes prove the pattern.
+## 5.5 Phase 3.6: Template Engine Refactor 🔵 ACTIVE
+
+> **SSOT:** [06. Template Engine Architecture](./06-template-engine-architecture.md)  
+> **Policies:** `out/` gitignored · **`narration.mp3` + `captions.json` committed** · extend templates, don’t patch for one video  
+> **Git checkpoint:** Pre-refactor implementation committed before this doc/code cutover
+
+### Docs (done)
+- [x] Doc 06 template-engine architecture SSOT
+- [x] Template slot catalogs: `docs/templates/decision-compare.md`, `data-explainer.md`
+- [x] Docs 02–05 + README updated for engine/episodes/schema v1
+
+### Implementation checklist
+- [x] **M1 (Iteration I1):** `episodes/` layout + Schema v1 types + `out/` gitignore; discovery stubs ✅
+  * Moved episode products `videos/*` → `episodes/*` (legacy `videos/README.md` pointer)
+  * `EpisodeContentV1` / `EpisodeBeatV1` / `TemplateId` in `src/types/content.types.ts`
+  * `src/engine/discoverEpisodes.ts` + `npm run episodes`
+  * `src/templates/registry.ts` stub (planned slots for I2)
+  * validate / scaffold / ElevenLabs resolve `episodes/` first
+  * Legacy compositions still render via updated imports
+- [ ] **M2:** Extract `templates/decision-compare` (from Ep 003) + `templates/data-explainer` (from Ep 002 remaster)
+- [ ] **M3:** Migrate Ep 002 + 003 `content.json` → `templateId` + `beats[]`; thin/remove legacy compositions
+- [ ] **M4:** `build --slug` CLI (validate → render; TTS only if audio missing)
+- [ ] **M5 Validation gate:**
+  - [ ] Re-render `002-debt-clock` from `data-explainer` + episode data
+  - [ ] Re-render `003-python-vs-javascript` from `decision-compare` + episode data
+  - [ ] Invariants pass; visual parity vs current masters; JSON-only smoke tweak on 003
 
 ---
 
@@ -310,15 +328,21 @@ Visual primitives, SFX, Living Canvas motion, and ElevenLabs are ready. New epis
 | **2026-11-15** | Phase 2 | Steps 2A–2C: SVG chart suite, SFX pack, Episode 002 master (`out/002-debt-clock.mp4`). **PHASE 2 COMPLETE!** | ✅ COMPLETED |
 | **2026-11-15** | Phase 2.5 | Living Canvas motion engine, editorial callouts, tall charts, remaster (`out/002-debt-clock-remastered.mp4`). **PHASE 2.5 COMPLETE!** | ✅ COMPLETED |
 | **2026-11-15** | Phase 3 | Subtask 3.1: `generate-elevenlabs.py` + voice auditions; Episode 002 switched to Daniel ElevenLabs narration (63.39s / 1902 frames). | ✅ COMPLETED |
-| **2026-11-16** | Phase 3 | Docs realigned: full `build-episode` automation deferred; **active focus = content-first Episode 003+**. | 🔵 ACTIVE |
-| **2026-11-16** | Phase 3 | Shipped high-leverage tooling: `validate-episode` (+ `--sync`), `scaffold-episode`, `EpisodeShell`/`BeatSequence`; ElevenLabs now syncs `totalDurationInFrames`. | ✅ COMPLETED |
+| **2026-11-16** | Phase 3 | Docs realigned; content-first Episode 003 path. | ✅ COMPLETED |
+| **2026-11-16** | Phase 3 | `validate-episode`, `scaffold-episode`, `EpisodeShell`/`BeatMotion`; ElevenLabs syncs `totalDurationInFrames`. | ✅ COMPLETED |
+| **2026-11-16** | Phase 3.5 | Episode 003 Python vs JS produced + master render (`out/003-python-vs-javascript.mp4`). | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 | Template engine design locked; audio stays in git; pre-refactor checkpoint committed. | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 | Docs: created Doc 06 + template catalogs; updated 02–05 + README. | ✅ COMPLETED |
+| **2026-11-17** | Phase 3.6 / I1 | M1 foundation: `episodes/`, Schema v1 types, discovery, registry stub; compositions still legacy. **Next: I2 (M2+M3).** | 🔵 ACTIVE |
 
 ---
 
 ## 8. Cross-Document Architecture Links
 
-* **[README.md](file:///c:/Users/skmpa/vdo/rm/README.md):** Project mission statement and documentation index.
-* **[01. Storytelling, Narrative & Sensitization Bible](file:///c:/Users/skmpa/vdo/rm/docs/01-storytelling-and-creative.md):** Narrative arc, emotional sensitization, archetypes, and audio cues.
-* **[02. Technical Architecture & Engineering Specification](file:///c:/Users/skmpa/vdo/rm/docs/02-technical-architecture.md):** Remotion v4 specs, safe zones, `<AudioMixer />`, and SVG chart code.
-* **[03. Content Models, Schemas & Data Contracts](file:///c:/Users/skmpa/vdo/rm/docs/03-content-and-schemas.md):** Master schemas, invariants, and production `content.json` structure.
-* **[04. Production Runbook, Audio Pipelines & AI Agent Guardrails](file:///c:/Users/skmpa/vdo/rm/docs/04-production-and-agent-guide.md):** TTS setup runbook, AI agent guardrails, and pre-publish checklist.
+* **[README.md](../README.md):** Mission + documentation index.
+* **[01. Storytelling](./01-storytelling-and-creative.md):** Narrative arc, archetypes, audio cues.
+* **[02. Technical Architecture](./02-technical-architecture.md):** Remotion specs, tree, AudioMixer.
+* **[03. Content Models](./03-content-and-schemas.md):** Schema v1 + legacy scenes + invariants.
+* **[04. Production & Agent Guide](./04-production-and-agent-guide.md):** TTS, build protocol, guardrails.
+* **[06. Template Engine Architecture](./06-template-engine-architecture.md):** Template-engine SSOT.
+* **[templates/decision-compare](./templates/decision-compare.md)** · **[templates/data-explainer](./templates/data-explainer.md)**
