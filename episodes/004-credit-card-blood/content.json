@@ -4,7 +4,7 @@
   "topic": "Society",
   "aspectRatio": "9:16",
   "fps": 30,
-  "totalDurationInFrames": 2551,
+  "totalDurationInFrames": 2595,
   "templateId": "evidence-explainer",
   "templateVersion": 1,
   "narrativeMood": "urgent-escalation",
@@ -12,7 +12,12 @@
     "engine": "elevenlabs",
     "voiceId": "Daniel (British Broadcaster)",
     "audioFile": "004-credit-card-blood/narration.mp3",
-    "durationInSeconds": 85.03
+    "durationInSeconds": 86.47
+  },
+  "backgroundMusic": {
+    "file": "audio/ambient-tension.mp3",
+    "baseVolume": 0.1,
+    "duckedVolume": 0.04
   },
   "sfxEvents": [
     {
@@ -21,47 +26,47 @@
       "volume": 0.8
     },
     {
-      "frame": 35,
+      "frame": 36,
       "soundId": "pop",
       "volume": 0.6
     },
     {
-      "frame": 200,
+      "frame": 203,
       "soundId": "whoosh",
       "volume": 0.5
     },
     {
-      "frame": 450,
+      "frame": 458,
       "soundId": "whoosh",
       "volume": 0.5
     },
     {
-      "frame": 728,
+      "frame": 741,
       "soundId": "pop",
       "volume": 0.6
     },
     {
-      "frame": 1263,
+      "frame": 1285,
       "soundId": "pop",
       "volume": 0.6
     },
     {
-      "frame": 1496,
+      "frame": 1522,
       "soundId": "whoosh",
       "volume": 0.5
     },
     {
-      "frame": 1697,
+      "frame": 1727,
       "soundId": "clock-tick",
       "volume": 0.6
     },
     {
-      "frame": 2095,
+      "frame": 2131,
       "soundId": "sub-drop",
       "volume": 0.85
     },
     {
-      "frame": 2245,
+      "frame": 2284,
       "soundId": "chime",
       "volume": 0.65
     }
@@ -70,7 +75,7 @@
     {
       "id": "b1-hook-asset",
       "slot": "asset-spotlight",
-      "durationInFrames": 200,
+      "durationInFrames": 203,
       "props": {
         "eyebrow": "THE INVISIBLE DIET",
         "eyebrowColor": "#f59e0b",
@@ -78,16 +83,11 @@
           "prefix": "A CREDIT CARD",
           "accent": "EVERY WEEK"
         },
-        "subtitle": "You consume 5 grams of industrial polymers every 7 days.",
         "imageSrc": "004-credit-card-blood/assets/credit-card-plate.jpg",
-        "badgeTag": "THE WEEKLY INGESTION",
-        "badgeColor": "#f59e0b",
-        "caption": "5 grams per week enters your body through drinking water, salt, and air.",
         "zoomDirection": "in",
         "callout": {
-          "text": "5 GRAMS EVERY WEEK",
-          "subtext": "The exact weight of a plastic credit card",
-          "badgeTag": "WEEKLY DOSE",
+          "text": "~5 GRAMS / WEEK",
+          "badgeTag": "DOSE",
           "accentColor": "#f59e0b",
           "startFrame": 35,
           "durationFrames": 150
@@ -97,7 +97,7 @@
     {
       "id": "b2a-turtle-asset",
       "slot": "asset-spotlight",
-      "durationInFrames": 250,
+      "durationInFrames": 254,
       "props": {
         "eyebrow": "OCEAN DEGRADATION",
         "eyebrowColor": "#ef4444",
@@ -105,26 +105,14 @@
           "prefix": "WHERE IT",
           "accent": "STARTS"
         },
-        "subtitle": "Ghost nets and plastic waste entangle marine ecosystems.",
         "imageSrc": "004-credit-card-blood/assets/sea-turtle-plastic.jpg",
-        "badgeTag": "WILDLIFE ENTANGLEMENT",
-        "badgeColor": "#ef4444",
-        "caption": "Over 100,000 marine animals die annually from abandoned nylon fishing gear.",
-        "zoomDirection": "out",
-        "callout": {
-          "text": "THE PLASTIC TRAP",
-          "subtext": "Millions of tons abandoned in ocean gyres",
-          "badgeTag": "EVIDENCE",
-          "accentColor": "#ef4444",
-          "startFrame": 30,
-          "durationFrames": 180
-        }
+        "zoomDirection": "out"
       }
     },
     {
-      "id": "b2b-kachra-asset",
+      "id": "b2b-beach-asset",
       "slot": "asset-spotlight",
-      "durationInFrames": 278,
+      "durationInFrames": 282,
       "props": {
         "eyebrow": "GLOBAL ACCUMULATION",
         "eyebrowColor": "#f59e0b",
@@ -132,26 +120,14 @@
           "prefix": "CHOKED",
           "accent": "COASTLINES"
         },
-        "subtitle": "Plastic kachra waste never biodegrades. It only fragments.",
         "imageSrc": "004-credit-card-blood/assets/plastic-kachra-beach.jpg",
-        "badgeTag": "COASTAL KACHRA",
-        "badgeColor": "#f59e0b",
-        "caption": "Single-use polymers break down into trillions of microscopic particles.",
-        "zoomDirection": "in",
-        "callout": {
-          "text": "IT NEVER STAYED OUT THERE",
-          "subtext": "The waste has completed the loop back to us",
-          "badgeTag": "THE RETURN",
-          "accentColor": "#f59e0b",
-          "startFrame": 35,
-          "durationFrames": 200
-        }
+        "zoomDirection": "in"
       }
     },
     {
       "id": "b3a-fragmentation-diagram",
       "slot": "diagram-spotlight",
-      "durationInFrames": 535,
+      "durationInFrames": 544,
       "props": {
         "eyebrow": "THE HIDDEN MECHANISM",
         "eyebrowColor": "#38bdf8",
@@ -159,49 +135,28 @@
           "prefix": "HOW PLASTIC",
           "accent": "ENTERS"
         },
-        "subtitle": "Waves & UV sunlight shred polymers until they cross into your blood.",
-        "diagramType": "fragmentation",
-        "callout": {
-          "text": "SLIPS PAST THE GUT BARRIER",
-          "subtext": "Nanoplastics are small enough to enter capillaries",
-          "badgeTag": "CELLULAR PASSAGE",
-          "accentColor": "#38bdf8",
-          "startFrame": 80,
-          "durationFrames": 350
-        }
+        "diagramType": "fragmentation"
       }
     },
     {
       "id": "b3b-cellular-asset",
       "slot": "asset-spotlight",
-      "durationInFrames": 233,
+      "durationInFrames": 237,
       "props": {
-        "eyebrow": "CLINICAL PATHOLOGY",
+        "eyebrow": "INSIDE THE BODY",
         "eyebrowColor": "#ef4444",
         "title": {
           "prefix": "IN YOUR",
           "accent": "BLOODSTREAM"
         },
-        "subtitle": "Synthetic polymers discovered across major human organs.",
         "imageSrc": "004-credit-card-blood/assets/cellular-microplastics.jpg",
-        "badgeTag": "CELLULAR MICROSCOPY",
-        "badgeColor": "#ef4444",
-        "caption": "Fluorescent microscopy reveals glowing synthetic fibers inside vascular tissue.",
-        "zoomDirection": "out",
-        "callout": {
-          "text": "FOUND IN 80% OF PEOPLE",
-          "subtext": "Lungs, hearts, placenta & brain tissue",
-          "badgeTag": "BIOPSY DATA",
-          "accentColor": "#ef4444",
-          "startFrame": 30,
-          "durationFrames": 170
-        }
+        "zoomDirection": "out"
       }
     },
     {
       "id": "b3c-line-mechanism",
       "slot": "line-mechanism",
-      "durationInFrames": 387,
+      "durationInFrames": 394,
       "props": {
         "title": "CUMULATIVE LIFETIME PLASTIC INTAKE (KG)",
         "data": [
@@ -223,7 +178,7 @@
           },
           {
             "label": "Age 70",
-            "value": 20.0
+            "value": 20
           }
         ],
         "prefix": "",
@@ -231,9 +186,8 @@
         "color": "#38bdf8",
         "height": 660,
         "callout": {
-          "text": "20 KG OVER A LIFETIME",
-          "subtext": "The weight of 4,000 solid credit cards",
-          "badgeTag": "LIFETIME BURDEN",
+          "text": "~20 KG LIFETIME",
+          "badgeTag": "SCALE",
           "accentColor": "#f59e0b",
           "startFrame": 40,
           "durationFrames": 280
@@ -243,7 +197,7 @@
     {
       "id": "b4-climax-drop",
       "slot": "climax-drop",
-      "durationInFrames": 288,
+      "durationInFrames": 293,
       "props": {
         "eyebrow": "THE TERRIFYING REALIZATION",
         "title": "WE DIDN'T JUST POLLUTE",
@@ -254,8 +208,7 @@
         "subBassHit": true,
         "callout": {
           "text": "WE ARE THE LANDFILL",
-          "subtext": "The pollution is no longer outside of us",
-          "badgeTag": "PUNCHLINE",
+          "badgeTag": "DROP",
           "accentColor": "#ffffff",
           "startFrame": 40,
           "durationFrames": 200
@@ -265,11 +218,11 @@
     {
       "id": "b5-payoff-end",
       "slot": "payoff-end",
-      "durationInFrames": 380,
+      "durationInFrames": 388,
       "props": {
         "bannerEyebrow": "PROTECT YOUR BODY",
-        "bannerText": "Reverse osmosis filters & stainless steel cut intake by 60%.",
-        "coreLesson": "Stop drinking bottled plastic. Own glass and stainless steel.",
+        "bannerText": "Filters and ditching bottled water can cut a major intake path.",
+        "coreLesson": "Cut single-use plastic where you can. Prefer glass and stainless steel.",
         "callToAction": "Follow to protect your health.",
         "loopBridge": "Because every single week..."
       }

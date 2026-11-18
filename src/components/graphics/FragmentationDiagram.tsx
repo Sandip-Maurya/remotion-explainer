@@ -317,7 +317,7 @@ export const FragmentationDiagram: React.FC<FragmentationDiagramProps> = ({
             fontWeight: 600,
           }}
         >
-          Detected across: Bloodstream (80%), Lung Tissue, Placental Barrier & Brain.
+          Reported in: Blood, Lung Tissue, Placenta & Brain (study-dependent rates).
         </span>
       </div>
     </div>

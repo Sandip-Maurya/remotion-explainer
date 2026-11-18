@@ -10,7 +10,7 @@
 
 ### Beat 2: The Agitation & Sensitization (7–22s)
 * **Voiceover:** "Sounds impossible, right? We've all seen the heartbreaking photos: sea turtles tangled in plastic ghost nets, and endless mountains of trash choking our coastlines. We thought all that plastic stayed out in the ocean. It didn't."
-* **Visual:** Shot 2 — Sea turtle entangled in abandoned nylon ghost nets under murky sea. Transition to Shot 3 — Mountain of plastic kachra / trash choking a coastline.
+* **Visual:** Shot 2 — Sea turtle entangled in abandoned nylon ghost nets under murky sea. Transition to Shot 3 — Mountain of plastic trash choking a coastline.
 * **SFX:** `whoosh` (f220) -> `pop` (f420)
 * **Callout:** "THE RETURNED WASTE" (Coral Red)
 
